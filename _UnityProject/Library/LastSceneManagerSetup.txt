@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_GAME/Scenes/NeverTouchThisScene.unity
+- path: Assets/_GAME/Scenes/DimitryScene/DimiScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
