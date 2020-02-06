@@ -18004,11 +18004,13 @@ MonoBehaviour:
   buttonDownInputs:
   - Jump
   - Die
+  - Recall
   buttonUpInputs:
   - Jump
   axisInputs:
   - Horizontal
   - Vertical
+  _ghostBehavior: {fileID: 4427175655523834960}
   _playerID: 0
   _characterBehaviour: {fileID: 114661623838467906}
   _leftStickAxis: {x: 0, y: 0}
@@ -18128,9 +18130,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7c4ecc4e2f6374cafb692b8ab51d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonUnpressedInputs: []
+  buttonInputs: []
+  buttonDownInputs: []
+  buttonUpInputs: []
+  axisInputs: []
   _test: {fileID: 3413003305425732307, guid: 4a01a324083dec644ae0253a6523332d, type: 3}
   recallPeriod: 4
   positions: []
+  PlayerID: 0
 --- !u!1 &1960416646807306
 GameObject:
   m_ObjectHideFlags: 0

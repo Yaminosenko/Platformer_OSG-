@@ -4,7 +4,10 @@ using System.Collections;
 
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public partial class CharacterController : InputListener {
+public partial class CharacterController : InputListener
+{
+
+    public GhostBehavior _ghostBehavior;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -172,8 +175,8 @@ public partial class CharacterController : InputListener {
     [SerializeField] private float resurrectDelay = 1f;
 
     [Header("LOCKS")]
-	[Space(10)]
-	[SerializeField] private bool enableGroundDetection = true;
+    [Space(10)]
+    [SerializeField] private bool enableGroundDetection = true;
 
     [Header("CHEATS")]
     [Space(10)]
@@ -275,30 +278,31 @@ public partial class CharacterController : InputListener {
     #region UNITY_BASED
 
     private void Awake()
-	{
+    {
 #if UNITY_EDITOR
         OnJump += CheatJumpCallback;
+        _ghostBehavior = GetComponent<GhostBehavior>();
 #endif
     }
 
-	private void Update()
-	{
-		GetInputs();
-	}
+    private void Update()
+    {
+        GetInputs();
+    }
 
-	private void FixedUpdate()
-	{
+    private void FixedUpdate()
+    {
         FixedCacheData();
 
-		Gravity();
+        Gravity();
 
-		GroundDetection();
+        GroundDetection();
         WallDetection();
-		AirBehaviour();
+        AirBehaviour();
 
-		Motion();
-		CharacterOrientation();
-	}
+        Motion();
+        CharacterOrientation();
+    }
 
     #endregion
 
@@ -309,9 +313,9 @@ public partial class CharacterController : InputListener {
     /// </summary>
     /// <param name="ID"></param>
     public Rewired.Player GetPlayer()
-	{
+    {
         return player;
-	}
+    }
 
     /// <summary>
     /// Sets playerID.
@@ -351,125 +355,129 @@ public partial class CharacterController : InputListener {
     #region INPUTS
 
     protected override void GetButtonUnpressed(InputActionEventData data)
-	{
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
         base.GetButtonUnpressed(data);
-	}
+    }
 
     protected override void GetButtonDown(InputActionEventData data)
-	{
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
         switch (data.actionName)
-		{
-			case "Jump":
+        {
+            case "Jump":
                 buttonA = true;
                 SetJumpBuffer();
-				break;
+                break;
 
             case "Die":
                 if (!hit && !isDead)
                     Death();
                 break;
+
+            case "Recall":
+                _ghostBehavior.Recall();
+                break;
         }
 
-		base.GetButtonDown(data);
-	}
+        base.GetButtonDown(data);
+    }
 
     protected override void GetButton(InputActionEventData data)
-	{
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
         switch (data.actionName)
-		{
-			case "Jump":
+        {
+            case "Jump":
                 buttonA = true;
                 break;
-		}
+        }
 
-		base.GetButton(data);
-	}
+        base.GetButton(data);
+    }
 
     protected override void GetButtonUp(InputActionEventData data)
-	{
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
         switch (data.actionName)
-		{
-			case "Jump":
+        {
+            case "Jump":
                 buttonA = false;
-				//CancelJumpDosage();
-				break;
-		}
+                //CancelJumpDosage();
+                break;
+        }
 
-		base.GetButtonUp(data);
-	}
+        base.GetButtonUp(data);
+    }
 
     protected override void GetAxis(InputActionEventData data)
-	{
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
         switch (data.actionName)
-		{
-			case "Horizontal":
-				_leftStickAxis.x = data.GetAxis();
-				break;
+        {
+            case "Horizontal":
+                _leftStickAxis.x = data.GetAxis();
+                break;
 
-			case "Vertical":
-				_leftStickAxis.y = data.GetAxis();
-				break;
-		}
+            case "Vertical":
+                _leftStickAxis.y = data.GetAxis();
+                break;
+        }
 
-		base.GetAxis(data);
-	}
+        base.GetAxis(data);
+    }
 
-	private void GetInputs ()
-	{
+    private void GetInputs()
+    {
         // All inputs locked
         if (lockAllInputs)
             return;
 
-		if (leftStickAxis.magnitude > 1f)
-		{
-			_leftStickAxis = leftStickAxis.normalized;
-			leftStickMagnitude = 1f;
-		}
-		else
-		{
-			leftStickMagnitude = leftStickAxis.magnitude;
-		}
-        
-		if (leftStickDeadZone == 0f)
-		{
-			_leftStickAxisLerped = leftStickAxis;
-			leftStickMagnitudeLerped = leftStickMagnitude;
-		}
-		else
-		{
+        if (leftStickAxis.magnitude > 1f)
+        {
+            _leftStickAxis = leftStickAxis.normalized;
+            leftStickMagnitude = 1f;
+        }
+        else
+        {
+            leftStickMagnitude = leftStickAxis.magnitude;
+        }
+
+        if (leftStickDeadZone == 0f)
+        {
+            _leftStickAxisLerped = leftStickAxis;
+            leftStickMagnitudeLerped = leftStickMagnitude;
+        }
+        else
+        {
             float xLerp = MathUtils.SignedLerp(leftStickAxis.x, leftStickDeadZone, 1f);
             float yLerp = MathUtils.SignedLerp(leftStickAxis.y, leftStickDeadZone, 1f);
             _leftStickAxisLerped = new Vector2(xLerp, yLerp);
             leftStickMagnitudeLerped = leftStickAxisLerped.magnitude;
         }
-	}
+    }
 
-	#endregion
+    #endregion
 
-	#region BEHAVIOUR
+    #region BEHAVIOUR
 
-	private void Gravity ()
-	{
+    private void Gravity()
+    {
         // Character physics is frozen
         if (isFrozen)
             return;
@@ -477,8 +485,8 @@ public partial class CharacterController : InputListener {
         if (isGrounded && !isFacingEdge)
             return;
 
-		if (isJumping)
-			return;
+        if (isJumping)
+            return;
 
         if (!isFastFalling && !isGrounded && !isJumping && rigid.velocity.y < 0f && leftStickAxisLerped.y < -0.5f)
             isFastFalling = true;
@@ -488,18 +496,18 @@ public partial class CharacterController : InputListener {
 
         float targetFallSpeed = isFastFalling ? minFastFallSpeed : minFallSpeed;
         if (rigid.velocity.y < targetFallSpeed)
-			SetRigidbodyVelocity(new Vector3(rigid.velocity.x, targetFallSpeed, 0));
-	}
+            SetRigidbodyVelocity(new Vector3(rigid.velocity.x, targetFallSpeed, 0));
+    }
 
-	private void Motion ()
-	{
-		_isMoving = Mathf.Abs(leftStickAxisLerped.x) != 0f;
+    private void Motion()
+    {
+        _isMoving = Mathf.Abs(leftStickAxisLerped.x) != 0f;
 
-		if (isMoving)
-		{
-			if (isGrounded && !uTurn)
-				_leftRight = (int)Mathf.Sign(leftStickAxisLerped.x);
-		}
+        if (isMoving)
+        {
+            if (isGrounded && !uTurn)
+                _leftRight = (int)Mathf.Sign(leftStickAxisLerped.x);
+        }
 
         // Character physics is frozen
         if (isFrozen)
@@ -520,7 +528,7 @@ public partial class CharacterController : InputListener {
         if (uTurn)
             return;
 
-		_speedLerp = Mathf.InverseLerp(0f, runSpeedThresold, Mathf.Abs(leftStickAxisLerped.x));
+        _speedLerp = Mathf.InverseLerp(0f, runSpeedThresold, Mathf.Abs(leftStickAxisLerped.x));
 
         // Ground tilt speed
         Vector2 targetVector = _movingVector * targetSpeed;
@@ -541,15 +549,15 @@ public partial class CharacterController : InputListener {
         // U Turn
         if (!uTurn && isGrounded && isMoving && // Default conditions
             (leftRight * rigid.velocity.x < 0f) // Stick on opposite side
-            //&& Mathf.Abs(rigidbodyVelocity.x) > 2f) // Character was moving fast
+                                                //&& Mathf.Abs(rigidbodyVelocity.x) > 2f) // Character was moving fast
             && currentSpeed > 1f)
         {
             UTurn();
         }
-	}
+    }
 
-	private void CharacterOrientation (bool forceOrientation = false)
-	{
+    private void CharacterOrientation(bool forceOrientation = false)
+    {
         // Character physics is frozen
         if (isFrozen)
             return;
@@ -561,17 +569,17 @@ public partial class CharacterController : InputListener {
         }
 
         characterBehaviour.transform.rotation = Quaternion.Slerp(characterBehaviour.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
-	}
+    }
 
-	private void GroundDetection ()
-	{
-		// Ground detection explicitely disabled
-		if (!enableGroundDetection)
-			return;
+    private void GroundDetection()
+    {
+        // Ground detection explicitely disabled
+        if (!enableGroundDetection)
+            return;
 
         // Do not detect ground while jumping
-		if (isJumping)
-			return;
+        if (isJumping)
+            return;
 
         // When grounded, the cast is a sphere, else it's a ray
         bool raycast = isGrounded ?
@@ -585,13 +593,13 @@ public partial class CharacterController : InputListener {
                 capsuleCollider.radius + groundDetectionDistance, environmentLayer);
 
         if (raycast) // Ground detected
-		{
+        {
             GroundAttach();
-		}
-		else // No ground detected
-		{
+        }
+        else // No ground detected
+        {
             GroundDetach();
-		}
+        }
 
         // Edge detection
         isFacingEdge = EdgeCast();
@@ -648,7 +656,7 @@ public partial class CharacterController : InputListener {
             Jump(0);
     }
 
-    private void GroundDetach ()
+    private void GroundDetach()
     {
         // Ground just not found (air start)
         if (isGrounded)
@@ -668,7 +676,7 @@ public partial class CharacterController : InputListener {
         _isGrounded = false;
     }
 
-    private bool EdgeCast ()
+    private bool EdgeCast()
     {
         if (!isGrounded)
             return false;
@@ -678,7 +686,7 @@ public partial class CharacterController : InputListener {
                 Vector3.down, capsuleCollider.height / 2f + Mathf.Lerp(minimumEdgeDetectionDistance, maximumEdgeDetectionDistance, groundAngle / maximumGroundAngle), environmentLayer);
     }
 
-    private Vector3 GetSphereHitPosition (RaycastHit hit)
+    private Vector3 GetSphereHitPosition(RaycastHit hit)
     {
         return hit.point + (hit.normal - Vector3.up) * capsuleCollider.radius;
     }
@@ -688,7 +696,7 @@ public partial class CharacterController : InputListener {
         return hit.point + (hit.normal - Vector3.up) * capsuleCollider.radius;
     }
 
-    private void WallDetection ()
+    private void WallDetection()
     {
         _isFacingLeftWall = SideWallDetection(-1);
         _isFacingRightWall = SideWallDetection(1);
@@ -697,7 +705,7 @@ public partial class CharacterController : InputListener {
             Jump(1);
     }
 
-    private bool SideWallDetection (int direction)
+    private bool SideWallDetection(int direction)
     {
         float xDetectionOffset = 0.1f;
         Vector3 defaultPos = cachedTransform.position + new Vector3(-direction * xDetectionOffset, capsuleCollider.center.y, 0);
@@ -778,16 +786,16 @@ public partial class CharacterController : InputListener {
         }
     }
 
-	private void AirBehaviour ()
-	{
-		if (isGrounded)
-		{
-			airTime = 0f;
-			return;
-		}
+    private void AirBehaviour()
+    {
+        if (isGrounded)
+        {
+            airTime = 0f;
+            return;
+        }
 
-		airTime += gameManager.fixedDeltaTime;
-	}
+        airTime += gameManager.fixedDeltaTime;
+    }
 
     private void SetRigidbodyVelocity(Vector2 vel, string message = "")
     {
@@ -814,7 +822,7 @@ public partial class CharacterController : InputListener {
         return angle;
     }
 
-    private void SetJumpBuffer ()
+    private void SetJumpBuffer()
     {
         bool canWallJump = CheckWallJump();
         bool canJump = jumpCount < maxJumpCount;
@@ -835,15 +843,15 @@ public partial class CharacterController : InputListener {
         }
     }
 
-    private IEnumerator CoSetJumpBuffer ()
+    private IEnumerator CoSetJumpBuffer()
     {
         jumpBuffer = true;
         yield return new WaitForSecondsRealtime(0.2f);
         jumpBuffer = false;
     }
 
-	private void Jump (int jumpMode)
-	{
+    private void Jump(int jumpMode)
+    {
         // Character physics is frozen
         if (isFrozen)
             return;
@@ -851,13 +859,13 @@ public partial class CharacterController : InputListener {
         if (hit)
             return;
 
-		if (jumpCoroutine != null)
-			StopCoroutine(jumpCoroutine);
-		jumpCoroutine = StartCoroutine(JumpDosage());
+        if (jumpCoroutine != null)
+            StopCoroutine(jumpCoroutine);
+        jumpCoroutine = StartCoroutine(JumpDosage());
 
         CancelUTurn();
 
-		_isJumping = true;
+        _isJumping = true;
         jumpBuffer = false;
         _wallJump = false;
         isFastFalling = false;
@@ -871,7 +879,7 @@ public partial class CharacterController : InputListener {
             DoAWallJump();
     }
 
-    private void DoAJump ()
+    private void DoAJump()
     {
         OnJump(jumpCount);
 
@@ -913,38 +921,38 @@ public partial class CharacterController : InputListener {
         return isFacingAWall;
     }
 
-    private IEnumerator JumpDosage ()
-	{
-		float t = 0;
-		Keyframe lastKey = jumpDosageCurve.keys[jumpDosageCurve.keys.Length - 1];
+    private IEnumerator JumpDosage()
+    {
+        float t = 0;
+        Keyframe lastKey = jumpDosageCurve.keys[jumpDosageCurve.keys.Length - 1];
 
         while (t < lastKey.time)
-		{
+        {
             float holdFactor = buttonA ? 1f : shortJumpSpeedFactor;
-			t += gameManager.deltaTime * holdFactor;
-			float jumpDosageStrength = jumpDosageCurve.Evaluate(t);
+            t += gameManager.deltaTime * holdFactor;
+            float jumpDosageStrength = jumpDosageCurve.Evaluate(t);
 
             //rigid.AddForce(Vector3.up * jumpDosageStrength, ForceMode.Acceleration);
             SetRigidbodyVelocity(new Vector3(rigid.velocity.x, jumpDosageStrength, 0));
 
-			yield return null;
-		}
+            yield return null;
+        }
 
-		_isJumping = false;
-	}
+        _isJumping = false;
+    }
 
-	private void CancelJumpDosage ()
-	{
+    private void CancelJumpDosage()
+    {
         if (!isJumping)
             return;
 
-		if (jumpCoroutine != null)
-			StopCoroutine(jumpCoroutine);
+        if (jumpCoroutine != null)
+            StopCoroutine(jumpCoroutine);
 
         _isJumping = false;
-	}
+    }
 
-    private void UTurn ()
+    private void UTurn()
     {
         if (uTurnCoroutine != null)
             StopCoroutine(uTurnCoroutine);
@@ -953,7 +961,7 @@ public partial class CharacterController : InputListener {
         OnUTurn();
     }
 
-    private IEnumerator CoUTurn ()
+    private IEnumerator CoUTurn()
     {
         float t = 0f;
         float startXVelocity = rigidbodyVelocity.x;
@@ -987,7 +995,7 @@ public partial class CharacterController : InputListener {
         _uTurn = false;
     }
 
-    private void SetColliderMode (int mode)
+    private void SetColliderMode(int mode)
     {
         SetColliderParameters(capsuleCollider.radius, mode == 0 ? _defaultColliderHeight : _defaultColliderRadius * 2f, defaultColliderHeight / 2f);
     }
@@ -1004,7 +1012,7 @@ public partial class CharacterController : InputListener {
         _capsuleCollider.center = new Vector3(0, yPos, 0);
     }
 
-    private void FreezeCharacter ()
+    private void FreezeCharacter()
     {
         isFrozen = true;
 
@@ -1037,7 +1045,7 @@ public partial class CharacterController : InputListener {
 
     #region COMBAT
 
-    public void Hit (float hitLagDuration = 0.2f)
+    public void Hit(float hitLagDuration = 0.2f)
     {
         if (hitCoroutine != null)
             StopCoroutine(hitCoroutine);
@@ -1046,7 +1054,7 @@ public partial class CharacterController : InputListener {
         OnHit();
     }
 
-    private IEnumerator CoHit (float hitLagDuration)
+    private IEnumerator CoHit(float hitLagDuration)
     {
         hit = true;
         FreezeCharacter();
@@ -1067,7 +1075,7 @@ public partial class CharacterController : InputListener {
         Death();
     }
 
-    private void CancelHit ()
+    private void CancelHit()
     {
         if (!hit)
             return;
@@ -1080,7 +1088,7 @@ public partial class CharacterController : InputListener {
         OnEndHitlag();
     }
 
-    public void Death ()
+    public void Death()
     {
         FreezeCharacter();
 
@@ -1108,7 +1116,7 @@ public partial class CharacterController : InputListener {
         Resurrect();
     }
 
-    public void CancelWaitForResurrect ()
+    public void CancelWaitForResurrect()
     {
         if (!isDead)
             return;
@@ -1124,7 +1132,7 @@ public partial class CharacterController : InputListener {
         _resurrectCheckpoint = checkpoint;
     }
 
-    public void Resurrect ()
+    public void Resurrect()
     {
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
 
@@ -1183,13 +1191,13 @@ public partial class CharacterController : InputListener {
         _defaultColliderHeight = capsuleCollider.height;
     }
 
-    public void SetAllCheats (bool enabled)
+    public void SetAllCheats(bool enabled)
     {
         enableResetCharacter = enabled;
         enableInfiniteJumps = enabled;
     }
 
-    private void CheatJumpCallback (int count)
+    private void CheatJumpCallback(int count)
     {
         if (!enableInfiniteJumps)
             return;

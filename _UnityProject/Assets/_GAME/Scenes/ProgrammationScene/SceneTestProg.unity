@@ -917,13 +917,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2928410573264764557, guid: 5d8dd4013dfa0364eb07033a06723c41,
-        type: 3}
-      propertyPath: recallPeriod
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2928410573264764557, guid: 5d8dd4013dfa0364eb07033a06723c41, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8dd4013dfa0364eb07033a06723c41, type: 3}
 --- !u!43 &229033155
 Mesh:
@@ -5254,6 +5248,76 @@ PrefabInstance:
     - target: {fileID: 4656425328990238, guid: ad96df7b803f2f641ac6bd140b908b2f, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._id
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._name
+      value: Recall
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._descriptiveName
+      value: TeleportToGhost
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actions.Array.data[11]._userAssignable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actionCategoryMap.list.Array.data[0].actionIds.Array.data[11]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.actionIdCounter
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._actionId
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._elementIdentifierId
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114557520511642232, guid: ad96df7b803f2f641ac6bd140b908b2f,
+        type: 3}
+      propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[12]._keyboardKeyCode
+      value: 101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad96df7b803f2f641ac6bd140b908b2f, type: 3}
