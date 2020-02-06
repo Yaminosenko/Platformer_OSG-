@@ -56,6 +56,8 @@ namespace FigmentGames
 
             virtualTargetPoint = position;
             targetFOV = camera.fieldOfView;
+
+
         }
 
         private void LateUpdate()

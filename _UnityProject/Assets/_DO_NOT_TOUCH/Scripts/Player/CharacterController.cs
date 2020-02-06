@@ -197,16 +197,16 @@ public partial class CharacterController : InputListener {
         }
     }
     private CameraBehaviour _cameraBehaviour;
-    private CameraBehaviour cameraBehaviour
-    {
-        get
-        {
-            if (!_cameraBehaviour)
-                _cameraBehaviour = CameraBehaviour.Instance;
+    private CameraBehaviour cameraBehaviour;
+    //{
+    //    get
+    //    {
+    //        if (!_cameraBehaviour)
+    //            _cameraBehaviour = CameraBehaviour.Instance;
 
-            return _cameraBehaviour;
-        }
-    }
+    //        return _cameraBehaviour;
+    //    }
+    //}
 
     // Events
     public delegate void DefaultCallback();
@@ -1102,7 +1102,7 @@ public partial class CharacterController : InputListener {
         if (!gameManager.isSoloMode)
         {
             // Wait until resurrect position is within camera bounds
-            yield return new WaitUntil(() => cameraBehaviour.IsResurrectPositionInsideCameraBounds(this));
+            //yield return new WaitUntil(() => cameraBehaviour.IsResurrectPositionInsideCameraBounds(this));
         }
 
         Resurrect();

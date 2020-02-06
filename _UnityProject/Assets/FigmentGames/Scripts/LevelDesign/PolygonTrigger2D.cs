@@ -9,7 +9,7 @@ namespace FigmentGames
     {
         [Space(10)]
         [Header("EVENTS")]
-        [SerializeField] private Transform[] transforms;
+        [SerializeField] public Transform[] transforms;
 
         [Space]
         [SerializeField] private UnityEvent onFirstTransformEnter;

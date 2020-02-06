@@ -2,8 +2,14 @@
 using UnityEngine.SceneManagement;
 using Rewired;
 using System.Collections.Generic;
-
+using FigmentGames;
 public class GameManager : InputListener {
+
+
+
+    public VirtualCamera2D _virtualCamera2D;
+    public GhostBehavior _Ghost;
+    public PolygonTrigger2D _Polygontrigger2D;
 
 	private static GameManager _Instance;
 	public static GameManager Instance { get { return _Instance; } }
@@ -149,6 +155,12 @@ public class GameManager : InputListener {
             characterControllersArray[i] = newCharacterController;
             newCharacterController.gameObject.name = "Player" + (i + 1);
 
+
+            _Polygontrigger2D.transforms[0] = newCharacterController.transform;
+
+            _virtualCamera2D.AddTransformAnchor(newCharacterController.transform);
+
+
             newCharacterController.SetRigidbodyPosition(new Vector2(i * 2 - (startPlayersCount - 1), 0));
             newCharacterController.SetPlayer(i);
             newCharacterController.SetStartPosition(newCharacterController.cachedTransform.position);
@@ -252,7 +264,7 @@ public class GameManager : InputListener {
 
     private void SetCameraCharacters(bool gameStart = false)
     {
-        cameraBehaviour.SetCharacters(GetAliveCharactersList(), gameStart);
+        //cameraBehaviour.SetCharacters(GetAliveCharactersList(), gameStart);
     }
 
     private List<CharacterController> GetAliveCharactersList()
@@ -417,7 +429,7 @@ public class GameManager : InputListener {
         {
             if (!isSoloMode)
                 characterControllers[0].CancelWaitForResurrect();
-            cameraBehaviour.DisableCollidersUntilEveryoneIsOnScreen(isSoloMode);
+            //cameraBehaviour.DisableCollidersUntilEveryoneIsOnScreen(isSoloMode);
             return;
         }
 
