@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SK_MA_Player
+  m_Name: FX_MA_Smokepuffs
   m_Shader: {fileID: 4800000, guid: f2309240b1485d14da3525fb99a9f913, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -80,7 +80,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LightDiffusePower: 2
+    - _LightDiffusePower: 2.5
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
