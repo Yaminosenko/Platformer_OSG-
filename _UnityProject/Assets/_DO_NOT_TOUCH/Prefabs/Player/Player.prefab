@@ -18048,10 +18048,10 @@ MonoBehaviour:
   _maximumGroundAngle: 60
   _isJumping: 0
   _wallJump: 0
-  maxJumpCount: 2
+  maxJumpCount: 1
   jumpCount: 0
   jumpBuffer: 0
-  jumpStrength: 6
+  jumpStrength: 1
   jumpDosageCurve:
     serializedVersion: 2
     m_Curve:
