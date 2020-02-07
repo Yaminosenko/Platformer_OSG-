@@ -141,21 +141,10 @@ namespace AmplifyShaderEditor
 				break;
 				case 2:
 				{
-					bool sampleThroughMacros = UIUtils.CurrentWindow.OutsideGraph.SamplingThroughMacros;
-
 					m_functionBody = string.Empty;
 					m_functionHeader = "Dither" + PatternsFuncStr[ m_selectedPatternInt ] + "( {0}, {1}, {2})";
-					
-					if( sampleThroughMacros )
-					{
-						IOUtils.AddFunctionHeader( ref m_functionBody, "inline float Dither" + PatternsFuncStr[ m_selectedPatternInt ] + "( float4 screenPos, TEXTURE2D_PARAM( noiseTexture, samplernoiseTexture ), float4 noiseTexelSize )" );
-						IOUtils.AddFunctionLine( ref m_functionBody, "float dither = SAMPLE_TEXTURE2D_LOD( noiseTexture, samplernoiseTexture, float3( screenPos.xy * _ScreenParams.xy * noiseTexelSize.xy, 0 ), 0 ).g;" );
-					}
-					else
-					{
-						IOUtils.AddFunctionHeader( ref m_functionBody, "inline float Dither" + PatternsFuncStr[ m_selectedPatternInt ] + "( float4 screenPos, sampler2D noiseTexture, float4 noiseTexelSize )" );
-						IOUtils.AddFunctionLine( ref m_functionBody, "float dither = tex2Dlod( noiseTexture, float4( screenPos.xy * _ScreenParams.xy * noiseTexelSize.xy, 0, 0 ) ).g;" );
-					}
+					IOUtils.AddFunctionHeader( ref m_functionBody, "inline float Dither" + PatternsFuncStr[ m_selectedPatternInt ] + "( float4 screenPos, sampler2D noiseTexture, float4 noiseTexelSize )" );
+					IOUtils.AddFunctionLine( ref m_functionBody, "float dither = tex2Dlod( noiseTexture, float4( screenPos.xy * _ScreenParams.xy * noiseTexelSize.xy, 0, 0 ) ).g;" );
 					IOUtils.AddFunctionLine( ref m_functionBody, "float ditherRate = noiseTexelSize.x * noiseTexelSize.y;" );
 					IOUtils.AddFunctionLine( ref m_functionBody, "dither = ( 1 - ditherRate ) * dither + ditherRate;" );
 					IOUtils.AddFunctionLine( ref m_functionBody, "return dither;" );
@@ -230,19 +219,9 @@ namespace AmplifyShaderEditor
 						return "0";
 					} else
 					{
-						bool sampleThroughMacros = UIUtils.CurrentWindow.OutsideGraph.SamplingThroughMacros;
-
 						string noiseTex = m_inputPorts[ 1 ].GeneratePortInstructions( ref dataCollector );
 						dataCollector.AddToUniforms( UniqueId, "uniform float4 " + noiseTex + "_TexelSize;" );
-						if( sampleThroughMacros )
-						{
-							dataCollector.AddToUniforms( UniqueId, string.Format( Constants.SamplerDeclarationSRPMacros[ TextureType.Texture2D ], noiseTex ) );
-							functionResult = dataCollector.AddFunctions( m_functionHeader, m_functionBody, varName, noiseTex+", sampler"+noiseTex, noiseTex + "_TexelSize" );
-						}
-						else
-						{
-							functionResult = dataCollector.AddFunctions( m_functionHeader, m_functionBody, varName, noiseTex, noiseTex + "_TexelSize" );
-						}
+						functionResult = dataCollector.AddFunctions( m_functionHeader, m_functionBody, varName, noiseTex, noiseTex+"_TexelSize" );
 					}
 				}
 				break;

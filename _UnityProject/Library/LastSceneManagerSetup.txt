@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/_GAME/Scenes/LevelDesign/LevelDesignScene GAULTIER.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0

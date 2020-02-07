@@ -608,55 +608,6 @@ namespace AmplifyShaderEditor
 			{"vf"   ,TemplateInfoOnSematics.VFACE}
 		};
 
-		public static readonly Dictionary<TemplateInfoOnSematics, string> InfoToDefineFrag = new Dictionary<TemplateInfoOnSematics, string>
-		{
-			{TemplateInfoOnSematics.POSITION ,"ASE_NEEDS_FRAG_POSITION"},
-			{TemplateInfoOnSematics.CLIP_POS ,"ASE_NEEDS_FRAG_CLIP_POS"},
-			{TemplateInfoOnSematics.SCREEN_POSITION_NORMALIZED,"ASE_NEEDS_FRAG_SCREEN_POSITION_NORMALIZED" },
-			{TemplateInfoOnSematics.COLOR, "ASE_NEEDS_FRAG_COLOR"},
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES0,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES0" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES1,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES1" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES2,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES2" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES3,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES3" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES4,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES4" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES5,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES5" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES6,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES6" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES7,"ASE_NEEDS_FRAG_TEXTURE_COORDINATES7" },
-			{TemplateInfoOnSematics.NORMAL,"ASE_NEEDS_FRAG_NORMAL" },
-			{TemplateInfoOnSematics.TANGENT ,"ASE_NEEDS_FRAG_TANGENT"},
-			{TemplateInfoOnSematics.WORLD_NORMAL,"ASE_NEEDS_FRAG_WORLD_NORMAL"},
-			{TemplateInfoOnSematics.WORLD_TANGENT,"ASE_NEEDS_FRAG_WORLD_TANGENT"},
-			{TemplateInfoOnSematics.WORLD_BITANGENT,"ASE_NEEDS_FRAG_WORLD_BITANGENT"},
-			{TemplateInfoOnSematics.WORLD_VIEW_DIR,"ASE_NEEDS_FRAG_WORLD_VIEW_DIR"},
-			{TemplateInfoOnSematics.WORLD_POSITION,"ASE_NEEDS_FRAG_WORLD_POSITION"},
-			{TemplateInfoOnSematics.RELATIVE_WORLD_POS,"ASE_NEEDS_FRAG_RELATIVE_WORLD_POS"},
-			{TemplateInfoOnSematics.VFACE,"ASE_NEEDS_FRAG_VFACE"}
-		};
-
-		public static readonly Dictionary<TemplateInfoOnSematics, string> InfoToDefineVertex = new Dictionary<TemplateInfoOnSematics, string>
-		{
-			{TemplateInfoOnSematics.POSITION ,"ASE_NEEDS_VERT_POSITION"},
-			{TemplateInfoOnSematics.CLIP_POS ,"ASE_NEEDS_VERT_CLIP_POS"},
-			{TemplateInfoOnSematics.SCREEN_POSITION_NORMALIZED,"ASE_NEEDS_VERT_SCREEN_POSITION_NORMALIZED" },
-			{TemplateInfoOnSematics.COLOR, "ASE_NEEDS_VERT_COLOR"},
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES0,"ASE_NEEDS_VERT_TEXTURE_COORDINATES0" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES1,"ASE_NEEDS_VERT_TEXTURE_COORDINATES1" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES2,"ASE_NEEDS_VERT_TEXTURE_COORDINATES2" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES3,"ASE_NEEDS_VERT_TEXTURE_COORDINATES3" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES4,"ASE_NEEDS_VERT_TEXTURE_COORDINATES4" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES5,"ASE_NEEDS_VERT_TEXTURE_COORDINATES5" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES6,"ASE_NEEDS_VERT_TEXTURE_COORDINATES6" },
-			{TemplateInfoOnSematics.TEXTURE_COORDINATES7,"ASE_NEEDS_VERT_TEXTURE_COORDINATES7" },
-			{TemplateInfoOnSematics.NORMAL,"ASE_NEEDS_VERT_NORMAL" },
-			{TemplateInfoOnSematics.TANGENT ,"ASE_NEEDS_VERT_TANGENT"},
-			{TemplateInfoOnSematics.WORLD_NORMAL,"ASE_NEEDS_VERT_WORLD_NORMAL"},
-			{TemplateInfoOnSematics.WORLD_TANGENT,"ASE_NEEDS_VERT_WORLD_TANGENT"},
-			{TemplateInfoOnSematics.WORLD_BITANGENT,"ASE_NEEDS_VERT_WORLD_BITANGENT"},
-			{TemplateInfoOnSematics.WORLD_VIEW_DIR,"ASE_NEEDS_VERT_WORLD_VIEW_DIR"},
-			{TemplateInfoOnSematics.WORLD_POSITION,"ASE_NEEDS_VERT_WORLD_POSITION"},
-			{TemplateInfoOnSematics.RELATIVE_WORLD_POS,"ASE_NEEDS_VERT_RELATIVE_WORLD_POS"},
-			{TemplateInfoOnSematics.VFACE,"ASE_NEEDS_VERT_VFACE"}
-		};
 
 		public static readonly Dictionary<TemplateInfoOnSematics, string> InfoToLocalVar = new Dictionary<TemplateInfoOnSematics, string>
 		{
@@ -849,14 +800,12 @@ namespace AmplifyShaderEditor
 		public static string CoreCommonLib = "CoreRP/ShaderLibrary/Common.hlsl";
 		public static string CoreColorLib = "CoreRP/ShaderLibrary/Color.hlsl";
 #endif
-
-		public static string FetchSubShaderBody = @"(SubShader.*)\/\*ase_lod\*\/";
 		public static string TemplateCustomUI = @"\/\*CustomNodeUI:(\w*)\*\/";
 		public static string HidePassPattern = @"\/\*ase_hide_pass[:]*([a-zA-Z:]*)\*\/";
 		public static string ASEPassPattern = @"\/\*ase_pass[:]*([a-zA-Z:]*)\*\/";
 		public static string BlendWholeWordPattern = @"\bBlend\b";
 		public static string BlendOpWholeWordPattern = @"\bBlendOp\b";
-		public static string AlphaToMaskPattern = @"\bAlphaToMask (\w*)";
+		public static string ALphaToMaskPattern = @"\bAlphaToMask (\w*)";
 		public static string CullWholeWordPattern = @"\bCull\b";
 		public static string ColorMaskWholeWordPattern = @"\bColorMask\b";
 		public static string StencilWholeWordPattern = @"\bStencil\b";
@@ -883,7 +832,7 @@ namespace AmplifyShaderEditor
 
 		public static readonly string LocalVarPattern = @"\/\*ase_local_var[:]*(\w*)\*\/\s*(\w*)\s+(\w*)";
 
-		public static readonly string SubShaderLODPattern = @"\sLOD\s+(\d+)";
+		public static readonly string SubShaderLODPattern = @"\sLOD\s+(\w+)";
 
 		public static readonly string PassNamePattern = "Name\\s+\\\"([\\w\\+\\-\\*\\/\\(\\) ]*)\\\"";
 
@@ -900,7 +849,7 @@ namespace AmplifyShaderEditor
 		//public static readonly string PropertiesPatternE = "(\\/\\/\\s*)*(\\w*)\\s*\\(\\s*\"([\\w\\(\\)\\+\\-\\\\* ]*)\"\\s*\\,\\s*(\\w*)\\s*.*\\)\\s*=\\s*[\\w,()\" {}]*";
 		//public static readonly string PropertiesPatternF = "^(\\/\\/)*\\s*(\\[[\\[\\]\\w\\s\\(\\)\\_\\,]*\\])*\\s*(\\w*)\\s*\\(\\s*\"([\\w\\(\\)\\+\\-\\\\* ]*)\"\\s*\\,\\s*(\\w*)\\s*.*\\)\\s*=\\s*[\\w,()\" {}]*";
 		//public static readonly string PropertiesPatternG = "^(\\s*)(\\[[\\[\\]\\w\\s\\(\\)\\_\\,]*\\])*\\s*(\\w*)\\s*\\(\\s*\"([\\w\\(\\)\\+\\-\\\\* ]*)\"\\s*\\,\\s*(\\w*)\\s*.*\\)\\s*=\\s*[\\w,()\" {}]*";
-		public static readonly string PropertiesPatternG = "^(\\s*)(\\[[\\[\\]\\w\\s\\(\\)_,\\.]*\\])*\\s*(\\w*)\\s*\\(\\s*\"([\\w\\(\\)\\+\\-\\\\* ]*)\"\\s*\\,\\s*(\\w*)\\s*.*\\)\\s*=\\s*[\\w,()\" {}]*";
+		public static readonly string PropertiesPatternG = "^(\\s*)(\\[[\\[\\]\\w\\s\\(\\)_,]*\\])*\\s*(\\w*)\\s*\\(\\s*\"([\\w\\(\\)\\+\\-\\\\* ]*)\"\\s*\\,\\s*(\\w*)\\s*.*\\)\\s*=\\s*[\\w,()\" {}]*";
 		public static readonly string CullModePattern = @"^\s*Cull\s+(\[*\w+\]*)";
 		public static readonly string ColorMaskPattern = @"^\s*ColorMask\s+([\d\w\[\]]+)(\s*\d)*";
 		//public static readonly string BlendModePattern = @"\s*Blend\s+(\w+)\s+(\w+)(?:[\s,]+(\w+)\s+(\w+)|)";
@@ -1859,12 +1808,10 @@ namespace AmplifyShaderEditor
 					}
 					if( minVal > maxVal )
 					{
-						//int aux = minVal;
-						//minVal = maxVal;
-						//maxVal = aux;
-						maxVal = minVal;
+						int aux = minVal;
+						minVal = maxVal;
+						maxVal = aux;
 					}
-
 					for( int i = minVal; i <= maxVal; i++ )
 					{
 						interpDataObj.AvailableInterpolators.Add( new TemplateInterpElement( IntToSemantic[ i ] ) );
@@ -2064,7 +2011,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public static string AutoSwizzleData( string dataVar, WirePortDataType from, WirePortDataType to, bool isPosition )
+		public static string AutoSwizzleData( string dataVar, WirePortDataType from, WirePortDataType to )
 		{
 			switch( from )
 			{
@@ -2084,7 +2031,7 @@ namespace AmplifyShaderEditor
 					{
 						switch( to )
 						{
-							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},{1})", dataVar,(isPosition?1:0) ); break;
+							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},0)", dataVar ); break;
 							case WirePortDataType.FLOAT2: dataVar += ".xy"; break;
 							case WirePortDataType.INT:
 							case WirePortDataType.FLOAT: dataVar += ".x"; break;
@@ -2095,7 +2042,7 @@ namespace AmplifyShaderEditor
 					{
 						switch( to )
 						{
-							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},0,{1})", dataVar , (isPosition ? 1 : 0) ); break;
+							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},0,0)", dataVar ); break;
 							case WirePortDataType.FLOAT3: dataVar = string.Format( "float3({0},0)", dataVar ); break;
 							case WirePortDataType.INT:
 							case WirePortDataType.FLOAT: dataVar += ".x"; break;
@@ -2106,7 +2053,7 @@ namespace AmplifyShaderEditor
 					{
 						switch( to )
 						{
-							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},0,0,{1})", dataVar, ( isPosition ? 1 : 0 ) ); break;
+							case WirePortDataType.FLOAT4: dataVar = string.Format( "float4({0},0,0,0)", dataVar ); break;
 							case WirePortDataType.FLOAT3: dataVar = string.Format( "float3({0},0,0)", dataVar ); break;
 							case WirePortDataType.FLOAT2: dataVar = string.Format( "float2({0},0)", dataVar ); break;
 						}
@@ -2328,17 +2275,6 @@ namespace AmplifyShaderEditor
 				}
 			}
 			return false;
-		}
-
-		public static string GetSubShaderFrom( string shaderBody )
-		{
-			Match match = Regex.Match( shaderBody, FetchSubShaderBody, RegexOptions.Singleline );
-			if( match.Success && match.Groups.Count > 1 )
-			{
-				return match.Groups[ 1 ].Value;
-			}
-
-			return string.Empty;
 		}
 	}
 }
