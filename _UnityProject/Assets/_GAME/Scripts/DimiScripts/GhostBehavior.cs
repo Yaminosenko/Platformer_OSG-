@@ -25,6 +25,10 @@ public class GhostBehavior : InputListener
     private float startTime;
 
     private float fractionOfJourney;
+    private float distCovered;
+    private float TimeTravel;
+    private Vector3[] ArrayFreeze;
+    private int _index;
 
 
     private void Awake()
@@ -52,29 +56,50 @@ public class GhostBehavior : InputListener
         }
 
 
+        //Debug.Log(TimeTravel);
+        TimeTravel += Time.deltaTime;
 
 
 
 
 
-
-
-        float distCovered = (Time.time - startTime) * _recalTime;
+        distCovered = (Time.time - startTime) * _recalTime;
 
         // Fraction of journey completed equals current distance divided by total distance.
          fractionOfJourney = distCovered / _distanceGhostPlayer;
 
         if (IsWorking == true)
         {
-            transform.position = Vector3.Lerp(transform.position, _RecallPosition,fractionOfJourney);
-            StartCoroutine(DelayRecall());
+            //transform.position = Vector3.Lerp(transform.position, _RecallPosition, fractionOfJourney);
+
+            //StartCoroutine(DelayRecall());
+
+            RecallPosition();
+            //IsWorking = false;
 
         }
 
 
 
-      
+
     }
+
+    void RecallPosition()
+    {
+
+        //for (int i = ArrayFreeze.Length-1; i > 0; i--)
+        //{
+        //    transform.position = ArrayFreeze[i];
+        //}
+        if(_index > 0)
+        {
+            transform.position = ArrayFreeze[_index];
+            _index--;
+        }
+     
+    }
+
+
     void TrackPositions()
     {
         //Debug.Log(positions);
@@ -91,12 +116,17 @@ public class GhostBehavior : InputListener
     }
     public void Recall()
     {
-        StartCoroutine(FreezeTime());
-     
-        
+       // StartCoroutine(FreezeTime());
+        TimeTravel = 0f;
 
-      
+        List<Vector3> FreezeList = new List<Vector3>();
+        FreezeList = positions;
+        ArrayFreeze = FreezeList.ToArray();
+        _index = ArrayFreeze.Length - 1;
+        Debug.Log(ArrayFreeze.Length);
 
+   
+        IsWorking = true;
     }
 
 
@@ -113,13 +143,15 @@ public class GhostBehavior : InputListener
         _capsuleCharacter.isTrigger = true;
         _characterController._recallDisableHit = true;
         IsWorking = true;
+
     }
 
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(TimeTravel);
         _capsuleCharacter.isTrigger = false;
         _characterController._recallDisableHit = false;
         IsWorking = false;
     }
+ 
 }
