@@ -16,7 +16,6 @@ namespace AmplifyShaderEditor
 			ChangeOutputName( 3, "Unused" );
 			ChangeOutputName( 4, "Projection Mode" );
 			m_value = "unity_OrthoParams";
-			m_previewShaderGUID = "88a910ece3dce224793e669bb1bc158d";
 		}
 
 		public override void RefreshExternalReferences()

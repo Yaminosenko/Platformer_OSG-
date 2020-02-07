@@ -30,12 +30,11 @@ namespace AmplifyShaderEditor
 			m_funcType = "ParallaxOffset";
 			m_inputPorts[ 0 ].ChangeProperties( "H", WirePortDataType.FLOAT, false );
 			AddInputPort( WirePortDataType.FLOAT, false, "Height" );
-			AddInputPort( WirePortDataType.FLOAT3, false, "ViewDir (tan)" );
+			AddInputPort( WirePortDataType.FLOAT3, false, "ViewDir" );
 			m_outputPorts[ 0 ].ChangeType( WirePortDataType.FLOAT2, false );
 			m_outputPorts[ 0 ].Name = "Out";
 			OnHDAction = OnSRPActionEvent;
 			OnLightweightAction = OnSRPActionEvent;
-			m_previewShaderGUID = "6085f804c6fbf354eac039c11feaa7cc";
 		}
 
 		protected override void OnUniqueIDAssigned()

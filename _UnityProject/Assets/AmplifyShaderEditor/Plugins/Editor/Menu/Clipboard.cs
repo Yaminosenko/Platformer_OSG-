@@ -45,7 +45,6 @@ namespace AmplifyShaderEditor
 		
 		public void AddMultiPassNodesToClipboard( List<TemplateMultiPassMasterNode> masterNodes )
 		{
-			Debug.Log( "Caching master nodes" );
 			m_multiPassMasterNodeData.Clear();
 			int templatesAmount = masterNodes.Count;
 			for( int i = 0; i < templatesAmount; i++ )
@@ -73,16 +72,6 @@ namespace AmplifyShaderEditor
 					masterNodes[ i ].FullReadFromString( ref nodeParams );
 				}
 			}
-
-			for( int i = 0; i < templatesAmount; i++ )
-			{
-				if( m_multiPassMasterNodeData.ContainsKey( masterNodes[ i ].PassUniqueName ) )
-				{
-					masterNodes[ i ].SetReadOptions();
-					masterNodes[ i ].ForceOptionsRefresh();
-				}
-			}
-
 			m_multiPassMasterNodeData.Clear();
 		}
 

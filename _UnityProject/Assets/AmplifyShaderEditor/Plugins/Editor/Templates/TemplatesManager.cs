@@ -349,11 +349,10 @@ namespace AmplifyShaderEditor
 		public static readonly string TemplatePragmaTag = "/*ase_pragma*/";
 		public static readonly string TemplatePassTag = "/*ase_pass*/";
 		public static readonly string TemplatePassesEndTag = "/*ase_pass_end*/";
-		public static readonly string TemplateLODsTag = "/*ase_lod*/";
 		//public static readonly string TemplatePassTagPattern = @"\s\/\*ase_pass\*\/";
 		public static readonly string TemplatePassTagPattern = @"\s\/\*ase_pass[:\*]+";
-		public static readonly string TemplatePropertyTag = "/*ase_props*/";
-		public static readonly string TemplateGlobalsTag = "/*ase_globals*/";
+		public static readonly string TemplatePropertyTag = "/*ase_props*/\n";
+		public static readonly string TemplateGlobalsTag = "/*ase_globals*/\n";
 		public static readonly string TemplateSRPBatcherTag = "/*ase_srp_batcher*/\n";
 		public static readonly string TemplateInterpolatorBeginTag = "/*ase_interp(";
 		public static readonly string TemplateVertexDataTag = "/*ase_vdata:";
@@ -403,8 +402,7 @@ namespace AmplifyShaderEditor
 																new TemplateTagData( TemplatePragmaTag,true),
 																new TemplateTagData( TemplatePassTag,true),
 																new TemplateTagData( TemplateInputsVertParamsTag,false),
-																new TemplateTagData( TemplateInputsFragParamsTag,false),
-																new TemplateTagData( TemplateLODsTag,true)
+																new TemplateTagData( TemplateInputsFragParamsTag,false)
 																//new TemplateTagData( TemplateCullModeTag,false),
 																//new TemplateTagData( TemplateBlendModeTag,false),
 																//new TemplateTagData( TemplateBlendOpTag,false),
@@ -522,12 +520,6 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		//[MenuItem( "Window/Amplify Shader Editor/Create Menu Items", false, 1000 )]
-		//public static void ForceCreateTemplateMenuItems()
-		//{
-		//	UIUtils.CurrentWindow.TemplatesManagerInstance.CreateTemplateMenuItems();
-		//}
-
 		public void CreateTemplateMenuItems()
 		{
 			if( m_sortedTemplates == null || m_sortedTemplates.Count == 0 )
@@ -548,8 +540,7 @@ namespace AmplifyShaderEditor
 				fileContents.AppendFormat( "\t\t[MenuItem( \"Assets/Create/Amplify Shader/{0}\", false, {1} )]\n", m_sortedTemplates[ i ].Name, fixedPriority );
 				fileContents.AppendFormat( "\t\tpublic static void ApplyTemplate{0}()\n", i );
 				fileContents.Append( "\t\t{\n" );
-				//fileContents.AppendFormat( "\t\t\tAmplifyShaderEditorWindow.CreateNewTemplateShader( \"{0}\" );\n", m_sortedTemplates[ i ].GUID );
-				fileContents.AppendFormat( "\t\t\tAmplifyShaderEditorWindow.CreateConfirmationTemplateShader( \"{0}\" );\n", m_sortedTemplates[ i ].GUID );
+				fileContents.AppendFormat( "\t\t\tAmplifyShaderEditorWindow.CreateNewTemplateShader( \"{0}\" );\n", m_sortedTemplates[ i ].GUID );
 				fileContents.Append( "\t\t}\n" );
 			}
 			fileContents.Append( "\t}\n" );

@@ -200,26 +200,18 @@ namespace AmplifyShaderEditor
 		VertexData
 	}
 
-	public enum TransformSpaceFrom
+	public enum TransformSpace
 	{
 		Object = 0,
 		World,
 		View,
+		Clip,
 		Tangent
-	}
-
-	public enum TransformSpaceTo
-	{
-		Object = 0,
-		World,
-		View,
-		Tangent,
-		Clip
+		//Screen??
 	}
 
 	public class UIUtils
 	{
-		public static string NewTemplateGUID;
 		public static int SerializeHelperCounter = 0;
 		public static bool IgnoreDeselectAll = false;
 
@@ -271,7 +263,6 @@ namespace AmplifyShaderEditor
 
 		public static GUIStyle EmptyStyle = new GUIStyle();
 
-		public static GUIStyle ConsoleLogLabel;
 		public static GUIStyle ConsoleLogMessage;
 		public static GUIStyle ConsoleLogCircle;
 
@@ -833,7 +824,6 @@ namespace AmplifyShaderEditor
 			GraphButton = null;
 			GraphDropDown = null;
 
-			ConsoleLogLabel = null;
 			ConsoleLogMessage = null;
 			ConsoleLogCircle = null;
 
@@ -1014,7 +1004,7 @@ namespace AmplifyShaderEditor
 			GraphDropDown = new GUIStyle( MainSkin.customStyles[ (int)CustomStyle.GraphButton ] );
 			GraphDropDown.padding.right = 20;
 
-			Box = new GUIStyle( MainSkin.box );
+			Box = new GUIStyle( GUI.skin.box );
 			Button = new GUIStyle( GUI.skin.button );
 			TextArea = new GUIStyle( GUI.skin.textArea );
 			Label = new GUIStyle( GUI.skin.label );
@@ -1023,7 +1013,6 @@ namespace AmplifyShaderEditor
 			//ShaderIcon = EditorGUIUtility.IconContent( "Shader Icon" ).image;
 			//MaterialIcon = EditorGUIUtility.IconContent( "Material Icon" ).image;
 
-			ConsoleLogLabel = new GUIStyle( GUI.skin.label );
 			ConsoleLogMessage = new GUIStyle( MainSkin.customStyles[ (int)CustomStyle.ConsoleLogMessage ] );
 			ConsoleLogCircle = new GUIStyle( MainSkin.customStyles[ (int)CustomStyle.ConsoleLogCircle ] );
 
@@ -1898,19 +1887,19 @@ namespace AmplifyShaderEditor
 
 		public static string InvalidParameter( ParentNode node )
 		{
-			ShowMessage( node.UniqueId, "Invalid entrance type on node" + node, MessageSeverity.Error );
+			ShowMessage( "Invalid entrance type on node" + node, MessageSeverity.Error );
 			return "0";
 		}
 
 		public static string NoConnection( ParentNode node )
 		{
-			ShowMessage( node.UniqueId, "No Input connection on node" + node, MessageSeverity.Error );
+			ShowMessage( "No Input connection on node" + node, MessageSeverity.Error );
 			return "0";
 		}
 
 		public static string UnknownError( ParentNode node )
 		{
-			ShowMessage( node.UniqueId, "Unknown error on node" + node, MessageSeverity.Error );
+			ShowMessage( "Unknown error on node" + node, MessageSeverity.Error );
 			return "0";
 		}
 
@@ -1978,7 +1967,7 @@ namespace AmplifyShaderEditor
 			return newShader;
 		}
 
-		public static Shader CreateNewEmpty( string customPath = null , string customShaderName = null )
+		public static Shader CreateNewEmpty( string customPath = null )
 		{
 			if( CurrentWindow == null )
 				return null;
@@ -2006,19 +1995,12 @@ namespace AmplifyShaderEditor
 			else
 			{
 				pathName = customPath;
-				if( string.IsNullOrEmpty( customShaderName ) )
-				{
-					shaderName = Constants.DefaultShaderName;
-					int indexOfAssets = pathName.IndexOf( "Assets" );
-					string uniquePath = ( indexOfAssets > 0 ) ? pathName.Remove( 0, indexOfAssets ) : pathName;
-					string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath( uniquePath + shaderName + ".shader" );
-					pathName = assetPathAndName;
-					shaderName = assetPathAndName.Remove( 0, assetPathAndName.IndexOf( shaderName ) );
-				}
-				else
-				{
-					shaderName = customShaderName;
-				}
+				shaderName = Constants.DefaultShaderName;
+				int indexOfAssets = pathName.IndexOf( "Assets" );
+				string uniquePath = ( indexOfAssets > 0 )? pathName.Remove( 0, indexOfAssets ) : pathName;
+				string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath( uniquePath + shaderName + ".shader" );
+				pathName = assetPathAndName;
+				shaderName = assetPathAndName.Remove( 0, assetPathAndName.IndexOf( shaderName ) );
 				shaderName = shaderName.Remove( shaderName.Length - 7 );
 			}
 			if( !System.String.IsNullOrEmpty( shaderName ) && !System.String.IsNullOrEmpty( pathName ) )
@@ -2038,7 +2020,7 @@ namespace AmplifyShaderEditor
 		}
 
 
-		public static Shader CreateNewEmptyTemplate( string templateGUID, string customPath = null, string customShaderName = null )
+		public static Shader CreateNewEmptyTemplate( string templateGUID, string customPath = null )
 		{
 			if( CurrentWindow == null )
 				return null;
@@ -2066,19 +2048,12 @@ namespace AmplifyShaderEditor
 			else
 			{
 				pathName = customPath;
-				if( string.IsNullOrEmpty( customShaderName ) )
-				{
-					shaderName = Constants.DefaultShaderName;
-					int indexOfAssets = pathName.IndexOf( "Assets" );
-					string uniquePath = ( indexOfAssets > 0 ) ? pathName.Remove( 0, indexOfAssets ) : pathName;
-					string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath( uniquePath + shaderName + ".shader" );
-					pathName = assetPathAndName;
-					shaderName = assetPathAndName.Remove( 0, assetPathAndName.IndexOf( shaderName ) );
-				}
-				else
-				{
-					shaderName = customShaderName;
-				}
+				shaderName = Constants.DefaultShaderName;
+				int indexOfAssets = pathName.IndexOf( "Assets" );
+				string uniquePath = ( indexOfAssets > 0 ) ? pathName.Remove( 0, indexOfAssets ) : pathName;
+				string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath( uniquePath + shaderName + ".shader" );
+				pathName = assetPathAndName;
+				shaderName = assetPathAndName.Remove( 0, assetPathAndName.IndexOf( shaderName ) );
 				shaderName = shaderName.Remove( shaderName.Length - 7 );
 			}
 			if( !System.String.IsNullOrEmpty( shaderName ) && !System.String.IsNullOrEmpty( pathName ) )
@@ -2215,14 +2190,6 @@ namespace AmplifyShaderEditor
 			}
 		}
 
-		public static void ShowMessage( int ownerId, string message, MessageSeverity severity = MessageSeverity.Normal, bool registerTimestamp = true )
-		{
-			if( CurrentWindow != null )
-			{
-				CurrentWindow.ShowMessage( ownerId, message, severity, registerTimestamp );
-			}
-		}
-
 		public static void ShowMessage( string message, MessageSeverity severity = MessageSeverity.Normal, bool registerTimestamp = true )
 		{
 			if( CurrentWindow != null )
@@ -2248,16 +2215,6 @@ namespace AmplifyShaderEditor
 			}
 			return null;
 		}
-
-		public static PropertyNode GetInternalTemplateNode( string propertyName )
-		{
-			if( CurrentWindow != null )
-			{
-				return CurrentWindow.CurrentGraph.GetInternalTemplateNode( propertyName );
-			}
-			return null;
-		}
-
 
 		public static void DeleteConnection( bool isInput, int nodeId, int portId, bool registerOnLog, bool propagateCallback )
 		{
@@ -2750,12 +2707,12 @@ namespace AmplifyShaderEditor
 		{
 			string inPortName = inPort.Name.Equals( Constants.EmptyPortValue ) ? inPort.PortId.ToString() : inPort.Name;
 			string outPortName = outPort.Name.Equals( Constants.EmptyPortValue ) ? outPort.PortId.ToString() : outPort.Name;
-			ShowMessage( outNode.UniqueId, string.Format( ( fromInput ? IncorrectInputConnectionErrorMsg : IncorrectOutputConnectionErrorMsg ), inPortName, inNode.Attributes.Name, inPort.DataType, outPort.DataType, outPortName, outNode.Attributes.Name ) );
+			ShowMessage( string.Format( ( fromInput ? IncorrectInputConnectionErrorMsg : IncorrectOutputConnectionErrorMsg ), inPortName, inNode.Attributes.Name, inPort.DataType, outPort.DataType, outPortName, outNode.Attributes.Name ) );
 		}
 
 		public static void ShowNoVertexModeNodeMessage( ParentNode node )
 		{
-			ShowMessage( node.UniqueId, string.Format( NoVertexModeNodeWarning, node.Attributes.Name ), MessageSeverity.Warning );
+			ShowMessage( string.Format( NoVertexModeNodeWarning, node.Attributes.Name ), MessageSeverity.Warning );
 		}
 
 		public static int TotalExampleMaterials { get { return m_exampleMaterialIDs.Count; } }

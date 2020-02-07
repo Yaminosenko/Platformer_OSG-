@@ -514,7 +514,7 @@ namespace AmplifyShaderEditor
 				if( dataCollector.IsTemplate )
 				{
 					string propertyHelperVar = propertyName + "_ST";
-					dataCollector.AddToUniforms( UniqueId, "float4", propertyHelperVar, dataCollector.IsSRP );
+					dataCollector.AddToUniforms( UniqueId, "float4", propertyHelperVar );
 					string uvName = string.Empty;
 					if( dataCollector.TemplateDataCollectorInstance.HasUV( m_textureCoordSet ) )
 					{
@@ -629,7 +629,7 @@ namespace AmplifyShaderEditor
 				}
 				else
 				{
-					UIUtils.ShowMessage( UniqueId, "Substance not found ", MessageSeverity.Error );
+					UIUtils.ShowMessage( "Substance not found ", MessageSeverity.Error );
 				}
 			}
 		}
@@ -1164,7 +1164,7 @@ namespace AmplifyShaderEditor
 				if( dataCollector.IsTemplate )
 				{
 					string propertyHelperVar = propertyName + "_ST";
-					dataCollector.AddToUniforms( UniqueId, "float4", propertyHelperVar, dataCollector.IsSRP );
+					dataCollector.AddToUniforms( UniqueId, "float4", propertyHelperVar );
 					string uvName = string.Empty;
 					if( dataCollector.TemplateDataCollectorInstance.HasUV( m_textureCoordSet ) )
 					{

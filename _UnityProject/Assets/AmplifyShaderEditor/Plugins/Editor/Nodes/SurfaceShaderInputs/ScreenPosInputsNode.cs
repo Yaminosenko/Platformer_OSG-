@@ -89,8 +89,10 @@ namespace AmplifyShaderEditor
 			{
 				return GetOutputVectorItem( 0, outputId, m_outputPorts[ 0 ].LocalValue( dataCollector.PortCategory ) );
 			}
-			m_currentPrecisionType = PrecisionType.Float;
-			
+
+			if( dataCollector.IsFragmentCategory && !dataCollector.UsingCustomScreenPos )
+				base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
+
 			string screenPos = string.Empty;
 			if( m_outputTypeInt == 0 )
 			{
@@ -100,7 +102,7 @@ namespace AmplifyShaderEditor
 				}
 				else
 				{
-					screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, CurrentPrecisionType);
+					screenPos = GeneratorUtils.GenerateScreenPositionNormalized( ref dataCollector, UniqueId, CurrentPrecisionType, false );
 				}
 			}
 			else
@@ -111,7 +113,7 @@ namespace AmplifyShaderEditor
 				}
 				else
 				{
-					screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, CurrentPrecisionType );
+					screenPos = GeneratorUtils.GenerateScreenPosition( ref dataCollector, UniqueId, CurrentPrecisionType, false );
 				}
 			}
 			

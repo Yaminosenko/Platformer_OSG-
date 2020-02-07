@@ -13,8 +13,7 @@ namespace AmplifyShaderEditor
 	{
 		private const string InputPortName = "In ";
 		private const string CurrSelectedStr = "Toggle Value";
-		//private const string LerpOp = "lerp({0},{1},{2})";
-		private const string LerpOp = "(( {2} )?( {1} ):( {0} ))";
+		private const string LerpOp = "lerp({0},{1},{2})";
 
 		[SerializeField]
 		private string[] AvailableInputsLabels = { "In 0", "In 1" };
@@ -270,11 +269,8 @@ namespace AmplifyShaderEditor
 
 		public override void ForceUpdateFromMaterial( Material material )
 		{
-			if( UIUtils.IsProperty( m_currentParameterType ) && material.HasProperty( m_propertyName ) )
-			{
-				m_currentSelectedInput = (int)material.GetFloat( m_propertyName );
-				PreviewIsDirty = true;
-			}
+			if ( UIUtils.IsProperty( m_currentParameterType ) && material.HasProperty( m_propertyName ) )
+				m_currentSelectedInput = ( int ) material.GetFloat( m_propertyName );
 		}
 
 		public override string GetPropertyValStr()
