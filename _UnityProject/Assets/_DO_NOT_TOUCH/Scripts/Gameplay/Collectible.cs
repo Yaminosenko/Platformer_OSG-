@@ -68,6 +68,7 @@ public class Collectible : MonoBehaviour {
             meshRenderer.enabled = false;
 
         if (particleSystem)
+            
             particleSystem.Stop();
 
         gameManager.CollectibleCollected();
@@ -77,6 +78,7 @@ public class Collectible : MonoBehaviour {
         float t = 0f;
         while (t < lightIntensityDelay)
         {
+            
             t += Time.deltaTime;
             float lerp = t / lightIntensityDelay;
 
@@ -85,14 +87,14 @@ public class Collectible : MonoBehaviour {
 
             yield return null;
         }
-
+        Destroy(gameObject);
         if (!particleSystem)
             Destroy(gameObject);
 
         // Wait until the FX destroys itself
         while (particleSystem)
             yield return null;
-
+        
         Destroy(gameObject);
     }
 }

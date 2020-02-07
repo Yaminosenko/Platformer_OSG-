@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_MA_Collectilble_Lightinings
-  m_Shader: {fileID: 4800000, guid: c7bc9b28a8374aa44b1681eb8b7d29f4, type: 3}
+  m_Name: FX_MA_Collectible_Feedbaack
+  m_Shader: {fileID: 4800000, guid: 833e1555ed2c53f4cadf93b4ec8e3360, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -19,8 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: e9566ec56f037a249bcb6c9ca067df9d, type: 3}
+    - _FX_TX_Collectible_Feedbaack:
+        m_Texture: {fileID: 2800000, guid: 222d2611cd451204094d6313ff1628e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -29,5 +29,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EmissivPower: 5
+    - _Float0: 0.02
     - __dirty: 0
     m_Colors: []
