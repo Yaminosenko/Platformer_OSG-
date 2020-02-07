@@ -169,6 +169,7 @@ public partial class CharacterController : InputListener
     [Header("COMBAT")]
     [Space(10)]
     [SerializeField] private bool hit = false;
+    public bool _recallDisableHit = false;
     [Space]
     [SerializeField] private bool _isDead = false;
     public bool isDead { get { return _isDead; } }
@@ -1047,11 +1048,14 @@ public partial class CharacterController : InputListener
 
     public void Hit(float hitLagDuration = 0.2f)
     {
-        if (hitCoroutine != null)
-            StopCoroutine(hitCoroutine);
-        hitCoroutine = StartCoroutine(CoHit(hitLagDuration));
+        if (_recallDisableHit == false)
+        {
+            if (hitCoroutine != null)
+                StopCoroutine(hitCoroutine);
+            hitCoroutine = StartCoroutine(CoHit(hitLagDuration));
 
-        OnHit();
+            OnHit();
+        }
     }
 
     private IEnumerator CoHit(float hitLagDuration)

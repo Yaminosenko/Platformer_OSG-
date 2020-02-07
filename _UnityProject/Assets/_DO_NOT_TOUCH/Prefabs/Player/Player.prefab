@@ -18112,6 +18112,7 @@ MonoBehaviour:
   maximumEdgeDetectionDistance: 1.5
   isFrozen: 0
   hit: 0
+  _recallDisableHit: 0
   _isDead: 0
   resurrectDelay: 1
   enableGroundDetection: 1
@@ -18135,12 +18136,13 @@ MonoBehaviour:
   buttonDownInputs: []
   buttonUpInputs: []
   axisInputs: []
-  _ghostTransform: {fileID: 0}
   recallPeriod: 4
   positions: []
   PlayerID: 0
   IsWorking: 0
-  _recalTime: 0.5
+  _recalTime: 3
+  _ghostTransform: {fileID: 3413003305425732307, guid: 4a01a324083dec644ae0253a6523332d,
+    type: 3}
 --- !u!1 &1960416646807306
 GameObject:
   m_ObjectHideFlags: 0
