@@ -5,7 +5,6 @@
 		_A("_RGB", 2D) = "white" {}
 		_B("_RGB", 2D) = "white" {}
 		_C("_RGB", 2D) = "white" {}
-		_D ("_RGB", 2D) = "white" {}
 		_UseTileScale("_UseTileScale", Float) = 0
 		_TileScale ("_TileScale", Int) = 1
 		_MinkowskiPower("_MinkowskiPower", Float) = 0
@@ -13,7 +12,6 @@
 		_MethodType("_MethodType", Int) = 0
 		_SearchQuality("_SearchQuality", Int) = 1
 		_Octaves("_Octaves", Int) = 1
-		_UseSmoothness("_UseSmoothness", Int ) = 0
 	}
 	SubShader
 	{
@@ -22,7 +20,6 @@
 		sampler2D _A;
 		sampler2D _B;
 		sampler2D _C;
-		sampler2D _D;
 		float _UseTileScale = 0;
 		int _TileScale = 1;
 		float _MinkowskiPower = 1;
@@ -31,7 +28,6 @@
 		int _SearchQuality = 0;
 		int _Octaves = 1;
 		int _PreviewID = 0;
-		int _UseSmoothness = 0;
 
 		float2 VoronoiHash( float2 p )
 		{
@@ -40,7 +36,7 @@
 			return frac (sin (p) *43758.5453);
 		}
 
-		float Voronoi( float2 v, float time, inout float2 id , float smoothness )
+		float Voronoi( float2 v, float time, inout float2 id )
 		{
 			float2 n = floor(v);
 			float2 f = frac(v);
@@ -82,26 +78,15 @@
 						d = (1 / pow(2, 1 / _MinkowskiPower))  * pow( ( pow( abs( r.x ), _MinkowskiPower) + pow( abs( r.y ), _MinkowskiPower) ),  (1 / _MinkowskiPower));
 					}
 
-					if (_MethodType == 0 && _UseSmoothness == 1)
+					if (d < F1) 
 					{
-						float h = smoothstep (0.0, 1.0, 0.5 + 0.5 * (F1 - d) / smoothness);
-						F1 = lerp (F1, d, h) - smoothness * h * (1.0 - h);
-						mg = g; mr = r; id = o;
+						F2 = F1;
+						F1 = d; mg = g; mr = r; id = o;
 					}
-					else
+					else if (d < F2) 
 					{
-						if (d < F1)
-						{
-							F2 = F1;
-							F1 = d; mg = g; mr = r; id = o;
-						}
-						else if (d < F2)
-						{
-							F2 = d;
-						}
-						
+						F2 = d;
 					}
-
 				}
 			}
 
@@ -215,10 +200,8 @@
 				float2 uvValue = tex2D (_A, i.uv).rg;
 				float time = tex2D (_B, i.uv).r;
 				float scale = tex2D (_C, i.uv).r;
-				float smoothness = tex2D (_D, i.uv).r;
-				
 				float2 id = 0;
-				float voronoiVal = Voronoi( uvValue*scale,time, id, smoothness );
+				float voronoiVal = Voronoi(uvValue*scale,time, id );
 				if (_Octaves == 1)
 				{
 					if( _PreviewID == 1)
@@ -233,7 +216,7 @@
 					float rest = 0;
 					for (int it = 0; it < _Octaves; it++)
 					{
-						voroi += fade * Voronoi( uvValue*scale, time, id, smoothness);
+						voroi += fade * Voronoi(uvValue*scale, time, id );
 						rest += fade;
 						uvValue *= 2;
 						fade *= 0.5;

@@ -41,18 +41,9 @@ namespace AmplifyShaderEditor
 
 		[SerializeField]
 		private List<TemplateOptionPortItem> m_passCustomOptionsPorts = new List<TemplateOptionPortItem>();
-
 		public TemplateOptionsUIHelper( bool isSubShader )
 		{
 			m_isSubShader = isSubShader;
-		}
-
-		public void CopyOptionsValuesFrom( TemplateOptionsUIHelper origin )
-		{
-			for( int i = 0; i < origin.PassCustomOptionsUI.Count; i++ )
-			{
-				m_passCustomOptionsUI[ i ].CopyValuesFrom( origin.PassCustomOptionsUI[ i ] );
-			}
 		}
 
 		public void Destroy()
@@ -75,8 +66,7 @@ namespace AmplifyShaderEditor
 		public void DrawCustomOptions( TemplateMultiPassMasterNode owner )
 		{
 			m_owner = owner;
-			
-			if( m_passCustomOptionsUI.Count > 0 )
+			if( m_passCustomOptionsSizeCheck > 0 )
 			{
 				NodeUtils.DrawNestedPropertyGroup( ref m_passCustomOptionsFoldout, m_passCustomOptionsLabel, DrawCustomOptionsBlock );
 			}
@@ -186,7 +176,7 @@ namespace AmplifyShaderEditor
 						TemplateMultiPassMasterNode passMasterNode = owner;
 						if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName,owner.LODIndex );
+							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 						}
 
 						if( passMasterNode != null )
@@ -227,7 +217,7 @@ namespace AmplifyShaderEditor
 						TemplateMultiPassMasterNode passMasterNode = owner;
 						if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 						}
 
 						if( passMasterNode != null )
@@ -265,7 +255,7 @@ namespace AmplifyShaderEditor
 						TemplateMultiPassMasterNode passMasterNode = owner;
 						if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 						}
 
 						if( passMasterNode != null )
@@ -312,7 +302,7 @@ namespace AmplifyShaderEditor
 							{
 								owner.ContainerGraph.ParentWindow.TemplatesManagerInstance.SetOptionsValue( defineValue, true );
 							}
-							List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.GetMultiPassMasterNodes( owner.LODIndex );
+							List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.MultiPassMasterNodes.NodesList;
 							int count = nodes.Count;
 							for( int nodeIdx = 0; nodeIdx < count; nodeIdx++ )
 							{
@@ -321,7 +311,7 @@ namespace AmplifyShaderEditor
 						}
 						else if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 							if( passMasterNode != null )
 							{
 								string actionData = validActions[ i ].ActionData;
@@ -376,7 +366,7 @@ namespace AmplifyShaderEditor
 
 							if( !flag )
 							{
-								List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.GetMultiPassMasterNodes( owner.LODIndex );
+								List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.MultiPassMasterNodes.NodesList;
 								int count = nodes.Count;
 								for( int nodeIdx = 0; nodeIdx < count; nodeIdx++ )
 								{
@@ -386,7 +376,7 @@ namespace AmplifyShaderEditor
 						}
 						else if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 							if( passMasterNode != null )
 							{
 								string actionData = validActions[ i ].ActionData;
@@ -436,7 +426,7 @@ namespace AmplifyShaderEditor
 							{
 								owner.ContainerGraph.ParentWindow.TemplatesManagerInstance.SetOptionsValue( defineValue, true );
 							}
-							List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.GetMultiPassMasterNodes(owner.LODIndex);
+							List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.MultiPassMasterNodes.NodesList;
 							int count = nodes.Count;
 							for( int nodeIdx = 0; nodeIdx < count; nodeIdx++ )
 							{
@@ -445,7 +435,7 @@ namespace AmplifyShaderEditor
 						}
 						else if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 							if( passMasterNode != null )
 							{
 								string defineValue = "#undef " + validActions[ i ].ActionData;
@@ -480,7 +470,7 @@ namespace AmplifyShaderEditor
 
 							if( !flag )
 							{
-								List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.GetMultiPassMasterNodes( owner.LODIndex );
+								List<TemplateMultiPassMasterNode> nodes = owner.ContainerGraph.MultiPassMasterNodes.NodesList;
 								int count = nodes.Count;
 								for( int nodeIdx = 0; nodeIdx < count; nodeIdx++ )
 								{
@@ -490,7 +480,7 @@ namespace AmplifyShaderEditor
 						}
 						else if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 							if( passMasterNode != null )
 							{
 								bool flag = false;
@@ -545,7 +535,7 @@ namespace AmplifyShaderEditor
 
 						if( !string.IsNullOrEmpty( validActions[ i ].PassName ) )
 						{
-							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName, owner.LODIndex );
+							TemplateMultiPassMasterNode passMasterNode = owner.ContainerGraph.GetMasterNodeOfPass( validActions[ i ].PassName );
 							if( passMasterNode != null )
 							{
 								passMasterNode.SetPropertyActionFromItem( passMasterNode.PassModule, validActions[ i ] );
@@ -791,6 +781,7 @@ namespace AmplifyShaderEditor
 			}
 		}
 
+		public bool HasCustomOptions { get { return m_passCustomOptionsSizeCheck > 0; } }
 		public List<TemplateOptionUIItem> PassCustomOptionsUI { get { return m_passCustomOptionsUI; } }
 
 	}

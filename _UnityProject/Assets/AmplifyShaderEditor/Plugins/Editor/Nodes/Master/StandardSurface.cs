@@ -757,7 +757,7 @@ namespace AmplifyShaderEditor
 				m_sizeIsDirty = true;
 			}
 
-			ShaderLOD = Mathf.Clamp( EditorGUILayoutIntField( ShaderLODContent, ShaderLOD ), 0, Shader.globalMaximumLOD );
+			m_shaderLOD = Mathf.Clamp( EditorGUILayoutIntField( ShaderLODContent, m_shaderLOD ), 0, Shader.globalMaximumLOD );
 			////m_lodCrossfade = EditorGUILayoutToggle( LODCrossfadeContent, m_lodCrossfade );
 			m_fallbackHelper.Draw( this );
 			DrawInspectorProperty();
@@ -1920,7 +1920,7 @@ namespace AmplifyShaderEditor
 					}
 
 					AddRenderTags( ref ShaderBody, tags );
-					AddShaderLOD( ref ShaderBody, ShaderLOD );
+					AddShaderLOD( ref ShaderBody, m_shaderLOD );
 					AddRenderState( ref ShaderBody, "Cull", m_inlineCullMode.GetValueOrProperty( m_cullMode.ToString() ) );
 					m_customBlendAvailable = ( m_alphaMode == AlphaMode.Custom || m_alphaMode == AlphaMode.Opaque );
 					if( ( m_zBufferHelper.IsActive && m_customBlendAvailable ) || m_outlineHelper.UsingZWrite || m_outlineHelper.UsingZTest )
@@ -3027,7 +3027,7 @@ namespace AmplifyShaderEditor
 
 				if( UIUtils.CurrentShaderVersion() > 6102 )
 				{
-					ShaderLOD = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
+					m_shaderLOD = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
 					m_fallbackHelper.ReadFromString( ref m_currentReadParamIdx, ref nodeParams );
 				}
 
@@ -3170,7 +3170,7 @@ namespace AmplifyShaderEditor
 			m_outlineHelper.WriteToString( ref nodeInfo );
 			m_billboardOpHelper.WriteToString( ref nodeInfo );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_vertexMode );
-			IOUtils.AddFieldValueToString( ref nodeInfo, ShaderLOD );
+			IOUtils.AddFieldValueToString( ref nodeInfo, m_shaderLOD );
 			m_fallbackHelper.WriteToString( ref nodeInfo );
 			IOUtils.AddFieldValueToString( ref nodeInfo, ( m_maskClipReorder != null ) ? m_maskClipReorder.OrderIndex : -1 );
 			IOUtils.AddFieldValueToString( ref nodeInfo, ( m_translucencyReorder != null ) ? m_translucencyReorder.OrderIndex : -1 );

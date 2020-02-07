@@ -50,9 +50,6 @@ namespace AmplifyShaderEditor
 		[SerializeField]
 		private bool m_normalizeVectors = false;
 
-		[SerializeField]
-		private bool m_safePower = false;
-
 		private InputPort m_normalVecPort;
 		private InputPort m_viewVecPort;
 		private InputPort m_biasPort;
@@ -132,7 +129,6 @@ namespace AmplifyShaderEditor
 				m_powerPort.FloatInternalData = EditorGUILayoutFloatField( m_powerPort.Name, m_powerPort.FloatInternalData );
 
 			m_normalizeVectors = EditorGUILayoutToggle( "Normalize Vectors", m_normalizeVectors );
-			m_safePower = EditorGUILayoutToggle(  PowerNode.SafePowerLabel, m_safePower );
 		}
 
 		private void UpdatePort()
@@ -306,32 +302,22 @@ namespace AmplifyShaderEditor
 				default:
 				case FresnelType.Standard:
 				{
-					string powOp = m_safePower?	string.Format( "pow( max( 1.0 - {0} , 0.0001 ), {1} )", fresnelNDotVLocalVar, power ):
-												string.Format( "pow( 1.0 - {0}, {1} )", fresnelNDotVLocalVar, power );
-					result = string.Format( "( {0} + {1} * {2} )", bias, scale, powOp );
+					result = string.Format( "( {0} + {1} * pow( 1.0 - {2}, {3} ) )", bias, scale, fresnelNDotVLocalVar, power );
 				}
 				break;
 				case FresnelType.Schlick:
 				{
 					string f0VarName = "f0" + OutputId;
 					dataCollector.AddLocalVariable( UniqueId, CurrentPrecisionType, WirePortDataType.FLOAT, f0VarName, bias );
-					string powOp = m_safePower? string.Format( "pow( max( 1.0 - {0} , 0.0001 ), 5 )", fresnelNDotVLocalVar ) :
-												string.Format( "pow( 1.0 - {0}, 5 )", fresnelNDotVLocalVar );
-					result = string.Format( "( {0} + ( 1.0 - {0} ) * {1} )", f0VarName, powOp );
+					result = string.Format( "( {0} + ( 1.0 - {0} ) * pow( 1.0 - {1}, 5 ) )", f0VarName, fresnelNDotVLocalVar );
 				}
 				break;
 				case FresnelType.SchlickIOR:
 				{
 					string iorVarName = "ior" + OutputId;
 					dataCollector.AddLocalVariable( UniqueId, CurrentPrecisionType, WirePortDataType.FLOAT, iorVarName, scale );
-					string iorPowOp = m_safePower?	string.Format( "pow( max( ( 1 - {0} ) / ( 1 + {0} ) , 0.0001 ), 2 )", iorVarName ):
-													string.Format( "pow( ( 1 - {0} ) / ( 1 + {0} ), 2 )", iorVarName );
-
-					dataCollector.AddLocalVariable( UniqueId, iorVarName +" = "+ iorPowOp + ";");
-
-					string fresnelPowOp = m_safePower?	string.Format( "pow( max( 1.0 - {0} , 0.0001 ), 5 )", fresnelNDotVLocalVar ):
-														string.Format( "pow( 1.0 - {0}, 5 )", fresnelNDotVLocalVar );
-					result = string.Format( "( {0} + ( 1.0 - {0} ) * {1} )", iorVarName, fresnelPowOp );
+					dataCollector.AddLocalVariable( UniqueId, iorVarName +" = pow( ( 1-"+ iorVarName +" )/( 1+"+iorVarName+" ), 2 );");
+					result = string.Format( "( {0} + ( 1.0 - {0} ) * pow( 1.0 - {1}, 5 ) )", iorVarName, fresnelNDotVLocalVar );
 				}
 				break;
 			}
@@ -357,8 +343,6 @@ namespace AmplifyShaderEditor
 				m_normalType = (NormalType)Enum.Parse( typeof( NormalType ), GetCurrentParam( ref nodeParams ) );
 				m_viewType = (ViewType)Enum.Parse( typeof( ViewType ), GetCurrentParam( ref nodeParams ) );
 				m_normalizeVectors = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
-				if( UIUtils.CurrentShaderVersion() > 15702 )
-					m_safePower = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
 			}
 			else
 			{
@@ -387,7 +371,6 @@ namespace AmplifyShaderEditor
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_normalType );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_viewType );
 			IOUtils.AddFieldValueToString( ref nodeInfo, m_normalizeVectors );
-			IOUtils.AddFieldValueToString( ref nodeInfo, m_safePower );
 		}
 	}
 }

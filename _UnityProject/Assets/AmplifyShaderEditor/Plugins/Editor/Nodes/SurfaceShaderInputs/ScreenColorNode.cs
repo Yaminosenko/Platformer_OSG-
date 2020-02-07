@@ -116,18 +116,6 @@ namespace AmplifyShaderEditor
 			base.OnUniqueIDAssigned();
 			if( m_referenceType == TexReferenceType.Object )
 				UIUtils.RegisterScreenColorNode( this );
-
-			if( UniqueId > -1 )
-				ContainerGraph.ScreenColorNodes.OnReorderEventComplete += OnReorderEventComplete;
-
-		}
-
-		private void OnReorderEventComplete()
-		{
-			if( m_referenceType == TexReferenceType.Instance && m_referenceNode != null )
-			{
-				m_referenceArrayId = ContainerGraph.ScreenColorNodes.GetNodeRegisterIdx( m_referenceNode.UniqueId );
-			}
 		}
 
 		void UpdateHeaderColor()
@@ -347,7 +335,7 @@ namespace AmplifyShaderEditor
 #if !UNITY_2018_3_OR_NEWER
 			if( dataCollector.IsTemplate && dataCollector.CurrentSRPType == TemplateSRPType.HD )
 			{
-				UIUtils.ShowMessage( UniqueId, "GrabPasses are not supported on Unity HD Scriptable Rendering Pipeline old versions." );
+				UIUtils.ShowMessage( "GrabPasses are not supported on Unity HD Scriptable Rendering Pipeline old versions." );
 				return GetOutputColorItem( 0, outputId, "(0).xxxx" );
 			}
 #endif
@@ -389,21 +377,13 @@ namespace AmplifyShaderEditor
 				base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
 				string propertyName = CurrentPropertyReference;
 				OnPropertyNameChanged();
-				//bool emptyName = string.IsNullOrEmpty( m_propertyInspectorName ) || propertyName == GrabTextureDefault;
-				bool emptyName = string.IsNullOrEmpty( m_propertyInspectorName ) || !m_useCustomGrab;
+				bool emptyName = string.IsNullOrEmpty( m_propertyInspectorName ) || propertyName == GrabTextureDefault;
 				dataCollector.AddGrabPass( emptyName ? string.Empty : propertyName );
 				valueName = SetFetchedData( ref dataCollector, ignoreLocalVar );
 			}
 
 			m_outputPorts[ 0 ].SetLocalValue( valueName, dataCollector.PortCategory );
 			return GetOutputColorItem( 0, outputId, valueName );
-		}
-
-
-		public override void OnPropertyNameChanged()
-		{
-			base.OnPropertyNameChanged();
-			UIUtils.UpdateScreenColorDataNode( UniqueId, DataToArray );
 		}
 
 		public string SetFetchedData( ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
@@ -476,8 +456,6 @@ namespace AmplifyShaderEditor
 			{
 				UIUtils.UnregisterScreenColorNode( this );
 			}
-			if( UniqueId > -1 )
-				ContainerGraph.ScreenColorNodes.OnReorderEventComplete -= OnReorderEventComplete;
 		}
 
 		public bool SoftValidReference
@@ -561,11 +539,6 @@ namespace AmplifyShaderEditor
 			if( UIUtils.CurrentShaderVersion() > 14102 )
 			{
 				m_normalize = Convert.ToBoolean( GetCurrentParam( ref nodeParams ) );
-			}
-			
-			if( !m_isNodeBeingCopied && m_referenceType == TexReferenceType.Object )
-			{
-				ContainerGraph.ScreenColorNodes.UpdateDataOnNode( UniqueId, DataToArray );
 			}
 		}
 

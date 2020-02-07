@@ -469,7 +469,7 @@ namespace AmplifyShaderEditor
 
 			if( UIUtils.CurrentShaderVersion() > 6101 )
 			{
-				ShaderLOD = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
+				m_shaderLOD = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
 			}
 
 			if( UIUtils.CurrentShaderVersion() >= 13001 )
@@ -596,12 +596,7 @@ namespace AmplifyShaderEditor
 					if( m_currentMaterial.shader != m_currentShader )
 						m_currentMaterial.shader = m_currentShader;
 
-					//m_currentDataCollector.UpdateMaterialOnPropertyNodes( m_currentMaterial );
-					//This master node UpdateMaterial is needed on Standard Surface node to update its internal properties
-					UpdateMaterial( m_currentMaterial );
-
-					UIUtils.CurrentWindow.OutsideGraph.UpdateMaterialOnPropertyNodes( m_currentMaterial );
-
+					m_currentDataCollector.UpdateMaterialOnPropertyNodes( m_currentMaterial );
 					FireMaterialChangedEvt();
 					// need to always get asset datapath because a user can change and asset location from the project window
 					//AssetDatabase.ImportAsset( AssetDatabase.GetAssetPath( m_currentMaterial ) );
@@ -953,13 +948,5 @@ namespace AmplifyShaderEditor
 		public ReorderableList PropertyReordableList { get { return m_propertyReordableList; } }
 		public int ReordableListLastCount { get { return m_lastCount; } }
 		public MasterNodeCategoriesData CurrentCategoriesData { get { return m_availableCategories[ m_masterNodeCategory ]; } }
-		public int ShaderLOD
-		{
-			get { return m_shaderLOD; }
-			set
-			{
-				m_shaderLOD = Mathf.Max( 0, value );
-			}
-		}
 	}
 }

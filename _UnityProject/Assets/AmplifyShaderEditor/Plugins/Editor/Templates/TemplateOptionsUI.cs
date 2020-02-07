@@ -40,15 +40,6 @@ namespace AmplifyShaderEditor
 			m_invertActionOnDeselection = options.Setup == AseOptionItemSetup.InvertActionOnDeselection;
 		}
 
-		public void CopyValuesFrom( TemplateOptionUIItem origin )
-		{
-			m_isVisible = origin.IsVisible;
-			m_wasVisible = origin.WasVisible;
-			m_currentOption = origin.CurrentOption;
-			m_checkOnExecute = origin.CheckOnExecute;
-			m_invertActionOnDeselection = origin.InvertActionOnDeselection;
-		}
-
 		public void Draw( UndoParentNode owner )
 		{
 			if( m_isVisible )
@@ -78,6 +69,7 @@ namespace AmplifyShaderEditor
 						OnActionPerformedEvt( false, false, this, m_options.ActionsPerOption[ m_currentOption ] );
 					}
 				}
+
 			}
 		}
 
@@ -217,6 +209,5 @@ namespace AmplifyShaderEditor
 				return m_options.ActionsPerOption.Rows[m_currentOption];
 			}
 		}
-		public bool InvertActionOnDeselection { get { return m_invertActionOnDeselection; } }
 	}
 }

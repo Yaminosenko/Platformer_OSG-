@@ -368,7 +368,7 @@ namespace AmplifyShaderEditor
 						hasEmptyConnections = true;
 					}
 					if( showError )
-						m_containerGraph.ParentWindow.ShowMessage( UniqueId, "Matrix operations are only valid for the first two inputs to prevent errors" );
+						m_containerGraph.ParentWindow.ShowMessage( "Matrix operations are only valid for the first two inputs to prevent errors" );
 				}
 				else
 				{
@@ -376,7 +376,7 @@ namespace AmplifyShaderEditor
 					{
 						if( m_inputPorts[ i ].DataType == WirePortDataType.FLOAT3x3 || m_inputPorts[ i ].DataType == WirePortDataType.FLOAT4x4 )
 						{
-							m_containerGraph.ParentWindow.ShowMessage( UniqueId, "Matrix operations are only valid for the first two inputs to prevent errors" );
+							m_containerGraph.ParentWindow.ShowMessage( "Matrix operations are only valid for the first two inputs to prevent errors" );
 							m_inputPorts[ i ].FullDeleteConnections();
 							hasEmptyConnections = true;
 						}

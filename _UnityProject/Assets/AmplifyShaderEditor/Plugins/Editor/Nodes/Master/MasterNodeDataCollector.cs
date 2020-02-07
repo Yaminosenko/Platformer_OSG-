@@ -125,7 +125,6 @@ namespace AmplifyShaderEditor
 		private Dictionary<string, PropertyDataCollector> m_propertiesDict;
 		private Dictionary<string, PropertyDataCollector> m_instancedPropertiesDict;
 		private Dictionary<string, PropertyDataCollector> m_uniformsDict;
-		private Dictionary<string, PropertyDataCollector> m_softRegisteredUniformsDict;
 		private Dictionary<string, PropertyDataCollector> m_includesDict;
 		private Dictionary<string, PropertyDataCollector> m_additionalDirectivesDict;
 		private Dictionary<string, string> m_includesExclusionDict;
@@ -270,7 +269,6 @@ namespace AmplifyShaderEditor
 			m_propertiesDict = new Dictionary<string, PropertyDataCollector>();
 			m_instancedPropertiesDict = new Dictionary<string, PropertyDataCollector>();
 			m_uniformsDict = new Dictionary<string, PropertyDataCollector>();
-			m_softRegisteredUniformsDict = new Dictionary<string, PropertyDataCollector>();
 			m_includesDict = new Dictionary<string, PropertyDataCollector>();
 			m_additionalDirectivesDict = new Dictionary<string, PropertyDataCollector>();
 			m_includesExclusionDict = new Dictionary<string, string>();
@@ -776,49 +774,15 @@ namespace AmplifyShaderEditor
 		//	}
 		//}
 
-		public string GenerateInstanced(PrecisionType precisionType, WirePortDataType dataType,string propertyName )
-		{
-			if( IsSRP )
-			{
-				return string.Format( IOUtils.LWSRPInstancedPropertiesElement, UIUtils.PrecisionWirePortToCgType( precisionType, dataType ), propertyName );
-			}
-			else
-			{
-				return string.Format( IOUtils.InstancedPropertiesElement, UIUtils.PrecisionWirePortToCgType( precisionType, dataType ), propertyName );
-			}
-		}
-
-		public bool CheckIfSoftRegistered( string name )
-		{
-			return m_softRegisteredUniformsDict.ContainsKey( name );
-		}
-
 		public void SoftRegisterUniform( TemplateShaderPropertyData data )
 		{
+
 			bool excludeUniformKeyword = ( data.PropertyType == PropertyType.InstancedProperty ) || IsSRP;
 
 			string uniformName = UIUtils.GenerateUniformName( excludeUniformKeyword, data.PropertyDataType, data.PropertyName );
 			if( !m_uniformsDict.ContainsKey( uniformName ) )
 			{
-				PropertyDataCollector newEntry = new PropertyDataCollector( -1, uniformName );
-				m_uniformsDict.Add( uniformName, newEntry );
-				m_softRegisteredUniformsDict.Add( uniformName, newEntry );
-			}
-
-			string instancedUniform = GenerateInstanced( PrecisionType.Float, data.PropertyDataType, data.PropertyName );
-			if( !m_uniformsDict.ContainsKey( instancedUniform ) )
-			{
-				PropertyDataCollector newEntry = new PropertyDataCollector( -1, instancedUniform );
-				m_uniformsDict.Add( instancedUniform, newEntry );
-				m_softRegisteredUniformsDict.Add( instancedUniform, newEntry );
-			}
-
-			instancedUniform = GenerateInstanced( PrecisionType.Half, data.PropertyDataType, data.PropertyName );
-			if( !m_uniformsDict.ContainsKey( instancedUniform ) )
-			{
-				PropertyDataCollector newEntry = new PropertyDataCollector( -1, instancedUniform );
-				m_uniformsDict.Add( instancedUniform, newEntry );
-				m_softRegisteredUniformsDict.Add( instancedUniform, newEntry );
+				m_uniformsDict.Add( uniformName, new PropertyDataCollector( -1, uniformName ) );
 			}
 		}
 
@@ -1619,9 +1583,6 @@ namespace AmplifyShaderEditor
 
 			m_uniformsDict.Clear();
 			m_uniformsDict = null;
-
-			m_softRegisteredUniformsDict.Clear();
-			m_softRegisteredUniformsDict = null;
 
 			m_includesDict.Clear();
 			m_includesDict = null;

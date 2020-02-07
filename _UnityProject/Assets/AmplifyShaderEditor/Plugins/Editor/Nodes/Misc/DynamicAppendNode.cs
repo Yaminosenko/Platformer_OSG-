@@ -22,7 +22,7 @@ namespace AmplifyShaderEditor
 	}
 
 	[Serializable]
-	[NodeAttributes( "Append", "Vector Operators", "Append channels to create a new component", null, KeyCode.V, tags: "combine" )]
+	[NodeAttributes( "Append", "Vector Operators", "Append channels to create a new component", null, KeyCode.V )]
 	public sealed class DynamicAppendNode : ParentNode
 	{
 		private const string OutputTypeStr = "Output type";
@@ -455,7 +455,7 @@ namespace AmplifyShaderEditor
 				m_previewMaterialPassId = 0;
 				if( DebugConsoleWindow.DeveloperMode )
 				{
-					UIUtils.ShowMessage( UniqueId, "Could not find pass ID for append" , MessageSeverity.Error );
+					UIUtils.ShowMessage( "Could not find pass ID for append" , MessageSeverity.Error );
 				}
 			}
 		}
