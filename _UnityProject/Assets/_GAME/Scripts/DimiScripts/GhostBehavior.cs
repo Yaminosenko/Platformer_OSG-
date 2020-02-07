@@ -11,11 +11,14 @@ public class GhostBehavior : InputListener
     public Rewired.Player player;
     public int PlayerID = 0;
     public bool IsWorking = false;
+    private bool _freezeTimeRecall;
     private CharacterController _characterController;
     private CapsuleCollider _capsuleCharacter;
     private Vector3 _RecallPosition;
     private float _distanceGhostPlayer;
+    private Vector3 _getPos;
 
+    public float _freezeTime = 0.1f;
     public float _recalTime = 0.5f;
     public Transform _ghostTransform;
 
@@ -37,8 +40,22 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
-        TrackPositions();
-        _ghostTransform.position = positions[0];
+        if(_freezeTimeRecall == false)
+        {
+            TrackPositions();
+            _ghostTransform.position = positions[0];
+        }
+        else
+        {
+            
+            transform.position = _getPos;
+        }
+
+
+
+
+
+
 
 
 
@@ -74,17 +91,29 @@ public class GhostBehavior : InputListener
     }
     public void Recall()
     {
+        StartCoroutine(FreezeTime());
+     
+        
+
+      
+
+    }
+
+
+    IEnumerator FreezeTime()
+    {
+        _getPos = transform.position;
+        _freezeTimeRecall = true;
+        yield return new WaitForSeconds(_freezeTime);
+        _freezeTimeRecall = false;
         startTime = Time.time;
         Debug.Log(this.gameObject);
-
         _RecallPosition = _ghostTransform.position;
         _distanceGhostPlayer = Vector3.Distance(transform.position, _RecallPosition);
         _capsuleCharacter.isTrigger = true;
         _characterController._recallDisableHit = true;
         IsWorking = true;
-
     }
-
 
     IEnumerator DelayRecall()
     {
