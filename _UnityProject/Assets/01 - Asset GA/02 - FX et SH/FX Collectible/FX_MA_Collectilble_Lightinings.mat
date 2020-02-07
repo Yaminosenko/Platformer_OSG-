@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_MA_Collectilble_Rect
+  m_Name: FX_MA_Collectilble_Lightinings
   m_Shader: {fileID: 4800000, guid: c7bc9b28a8374aa44b1681eb8b7d29f4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: b2b7d9a12a9d17e4588c33a3f569cf5c, type: 3}
+        m_Texture: {fileID: 2800000, guid: e9566ec56f037a249bcb6c9ca067df9d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
