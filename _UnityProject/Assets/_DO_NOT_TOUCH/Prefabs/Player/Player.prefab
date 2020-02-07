@@ -18140,7 +18140,8 @@ MonoBehaviour:
   positions: []
   PlayerID: 0
   IsWorking: 0
-  _recalTime: 3
+  _freezeTime: 0.25
+  _recalTime: 4
   _ghostTransform: {fileID: 3413003305425732307, guid: 4a01a324083dec644ae0253a6523332d,
     type: 3}
 --- !u!1 &1960416646807306
