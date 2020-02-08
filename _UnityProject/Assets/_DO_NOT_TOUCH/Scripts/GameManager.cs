@@ -11,6 +11,8 @@ public class GameManager : InputListener {
     public GhostBehavior _Ghost;
     public PolygonTrigger2D _Polygontrigger2D;
 
+    public PolygonTrigger2D[] _PolygonColliderArray;
+
 	private static GameManager _Instance;
 	public static GameManager Instance { get { return _Instance; } }
 
@@ -155,6 +157,13 @@ public class GameManager : InputListener {
             characterControllersArray[i] = newCharacterController;
             newCharacterController.gameObject.name = "Player" + (i + 1);
 
+            if (_PolygonColliderArray.Length != 0)
+            {
+                for (int e = 0; e < _PolygonColliderArray.Length; e++)
+                {
+                    _PolygonColliderArray[e].transforms[0] = newCharacterController.transform;
+                }
+            }
 
             _Polygontrigger2D.transforms[0] = newCharacterController.transform;
 
