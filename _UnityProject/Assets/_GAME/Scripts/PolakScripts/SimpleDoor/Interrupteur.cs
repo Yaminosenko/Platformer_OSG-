@@ -5,24 +5,14 @@ using UnityEngine;
 public class Interrupteur : MonoBehaviour
 {
     public SimpleDoor _linkedObject;
-    [SerializeField] private int _count = 0; 
+    [SerializeField] private int _count = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone")
+        Debug.Log("hi");
+        if (other.gameObject.layer == 9 || other.gameObject.layer == 13)
         {
             _count++;
 

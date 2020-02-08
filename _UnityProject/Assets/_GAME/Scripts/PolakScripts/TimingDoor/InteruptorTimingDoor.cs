@@ -20,7 +20,8 @@ public class InteruptorTimingDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone")
+        Debug.Log("hi");
+        if (other.gameObject.layer == 9 || other.gameObject.layer == 13)
         {
             _linkedObject.Open();
         }
