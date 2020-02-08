@@ -18143,7 +18143,7 @@ MonoBehaviour:
   IsWorking: 0
   _freezeTime: 0.25
   _recalTime: 4
-  _ghostTransform: {fileID: 3413003305425732307, guid: 4a01a324083dec644ae0253a6523332d,
+  _ghostTransform: {fileID: 5968187441789930148, guid: 014cf06871ee7f24f83d11683260b812,
     type: 3}
 --- !u!1 &1960416646807306
 GameObject:
