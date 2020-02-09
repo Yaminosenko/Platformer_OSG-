@@ -54,6 +54,7 @@ MonoBehaviour:
   _virtualCamera2D: {fileID: 0}
   _Ghost: {fileID: 0}
   _Polygontrigger2D: {fileID: 0}
+  _PolygonColliderArray: []
   victoryOnCollectiblesAllCollected: 0
   startPlayersCount: 1
   playersCount: 1
