@@ -93,6 +93,10 @@ public class GhostBehavior : InputListener
             transform.position = ArrayFreeze[_index];
             _index = _index-5;
         }
+        else
+        {
+            Debug.Log("ta0");
+        }
      
     }
 
