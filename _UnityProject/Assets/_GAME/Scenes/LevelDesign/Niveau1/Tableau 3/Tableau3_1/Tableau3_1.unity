@@ -5112,26 +5112,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SystemeTimingDoor
       objectReference: {fileID: 0}
-    - target: {fileID: 2995564414090362936, guid: 341071b8177772c479dbe9661158787c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995564414090362936, guid: 341071b8177772c479dbe9661158787c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995564415394966528, guid: 341071b8177772c479dbe9661158787c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 2995564415394966528, guid: 341071b8177772c479dbe9661158787c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341071b8177772c479dbe9661158787c, type: 3}
 --- !u!1 &1865690343

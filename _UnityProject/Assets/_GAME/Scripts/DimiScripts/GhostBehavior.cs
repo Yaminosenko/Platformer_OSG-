@@ -47,6 +47,7 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
+        
         if(_freezeGhost == false)
         {
             //Track de la position du joueur et deplacement du ghost
@@ -112,7 +113,8 @@ public class GhostBehavior : InputListener
     }
     public void Recall()
     {
-        if(_recallWithoutTrail == true)
+        Debug.Log("hi");
+        if (_recallWithoutTrail == true)
         {
             StartCoroutine(FreezeTime());
             TimeTravel = 0f;

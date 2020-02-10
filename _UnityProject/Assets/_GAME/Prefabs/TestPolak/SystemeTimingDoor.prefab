@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2995564414090362936}
   - component: {fileID: 2995564414090362937}
   - component: {fileID: 2995564414090362942}
+  - component: {fileID: 1386750003485146061}
   m_Layer: 0
   m_Name: TimigDoor
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995564414090362939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.4, y: 2.54, z: 0}
+  m_LocalPosition: {x: 18.5, y: 7.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2995564414538251020}
@@ -73,7 +74,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995564414090362939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f441c7e15efd0264b953905e36ba9751, type: 2}
   m_CullingMode: 0
@@ -97,6 +98,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2995564414090362937}
+--- !u!111 &1386750003485146061
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995564414090362939}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4e209e220cb84cb4d81fcebcda55b668, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2995564414373596689
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkedObject: {fileID: 2995564414090362942}
+  _Ghost: {fileID: 0}
 --- !u!1 &2995564414538251023
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2995564415394966531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.58, y: -1.02, z: 0}
+  m_LocalPosition: {x: 0.62, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2995564415167500072}
