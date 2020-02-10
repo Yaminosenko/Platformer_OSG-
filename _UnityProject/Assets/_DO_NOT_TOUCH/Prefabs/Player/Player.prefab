@@ -18144,7 +18144,7 @@ MonoBehaviour:
   buttonDownInputs: []
   buttonUpInputs: []
   axisInputs: []
-  _recallWithoutTrail: 1
+  _recallWithoutTrail: 0
   _enabledRecall: 1
   recallPeriod: 4
   positions: []

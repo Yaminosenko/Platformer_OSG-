@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
 public class GhostBehavior : InputListener
 {
     float timer = 0;
@@ -92,10 +97,12 @@ public class GhostBehavior : InputListener
         {
             transform.position = ArrayFreeze[_index];
             _index = _index-5;
+
         }
         else
         {
-            Debug.Log("ta0");
+          
+           // Debug.Log("ta0");
         }
      
     }
@@ -163,5 +170,13 @@ public class GhostBehavior : InputListener
         _characterController._recallDisableHit = false;
         _recallEnabled = false;
     }
- 
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.magenta;
+        if(_recallEnabled)
+        Handles.SphereHandleCap(-1, _RecallPosition, Quaternion.identity, 1, EventType.Repaint);
+    }
+#endif
 }
