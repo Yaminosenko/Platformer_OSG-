@@ -20,5 +20,6 @@ public class TimingDoor : MonoBehaviour
     public void Open()
     {
         _animator.SetTrigger("Activate");
+        //_animator.Play();
     }
 }
