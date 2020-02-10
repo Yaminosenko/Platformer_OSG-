@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
 public class GhostBehavior : InputListener
 {
     float timer = 0;
     public bool _recallWithoutTrail = true;
     public bool _enabledRecall = true;
     [SerializeField] float recallPeriod = 2.0f;
-    public List<Vector3> positions = new List<Vector3>();
+    public List<Vector3> _positionGhost = new List<Vector3>();
+    public List<Vector3> _positionPlayer = new List<Vector3>();
     public Rewired.Player player;
     public int PlayerID = 0;
     public bool _recallEnabled = false;
@@ -21,6 +27,7 @@ public class GhostBehavior : InputListener
     private float _distanceGhostPlayer;
     private Vector3 _getPos;
 
+    public int _recallIndex = 5;
     public float _freezeTime = 0.1f;
     public float _recalTime = 0.5f;
     public Transform _ghostTransform;
@@ -47,12 +54,13 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
-        
+        TrackPositionsPlayer();
+
         if(_freezeGhost == false)
         {
             //Track de la position du joueur et deplacement du ghost
-            TrackPositions();
-            _ghostTransform.position = positions[0];
+            TrackPositionsGhost();
+            _ghostTransform.position = _positionGhost[0];
         }
         if (_freezeCharacter == true)
         {
@@ -91,27 +99,47 @@ public class GhostBehavior : InputListener
         if(_index > 0)
         {
             transform.position = ArrayFreeze[_index];
-            _index = _index-5;
+            _index = _index-_recallIndex;
+
         }
         else
         {
+            _freezeGhost = false;
+            _capsuleCharacter.isTrigger = false;
+            _characterController._recallDisableHit = false;
+            _recallEnabled = false;
             Debug.Log("ta0");
         }
-     
+
     }
 
     //Track de la position du joueur
-    void TrackPositions()
+    void TrackPositionsGhost()
     {
         //Debug.Log(positions);
         if (timer > recallPeriod)
         {
-            positions.RemoveAt(0);
-            positions.Add(transform.position);
+            _positionGhost.RemoveAt(0);
+            _positionGhost.Add(transform.position);
         }
         else
         {
-            positions.Add(transform.position);
+            _positionGhost.Add(transform.position);
+            timer += Time.deltaTime;
+        }
+    }
+
+    void TrackPositionsPlayer()
+    {
+        //Debug.Log(positions);
+        if (timer > recallPeriod)
+        {
+            _positionPlayer.RemoveAt(0);
+            _positionPlayer.Add(transform.position);
+        }
+        else
+        {
+            _positionPlayer.Add(transform.position);
             timer += Time.deltaTime;
         }
     }
@@ -127,7 +155,7 @@ public class GhostBehavior : InputListener
         {
             StartCoroutine(FreezeTime());
             List<Vector3> FreezeList = new List<Vector3>();
-            FreezeList = positions;
+            FreezeList = _positionPlayer;
             ArrayFreeze = FreezeList.ToArray();
             _index = ArrayFreeze.Length - 1;
             Debug.Log(ArrayFreeze.Length);
@@ -156,12 +184,20 @@ public class GhostBehavior : InputListener
     //Temps durant lequel le character est en mode recall
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(TimeTravel + 0.5f);
+        yield return new WaitForSeconds(1.5f);
         Debug.Log(TimeTravel);
-        _freezeGhost = false;
-        _capsuleCharacter.isTrigger = false;
-        _characterController._recallDisableHit = false;
-        _recallEnabled = false;
+        //_freezeGhost = false;
+        //_capsuleCharacter.isTrigger = false;
+        //_characterController._recallDisableHit = false;
+        //_recallEnabled = false;
     }
- 
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.magenta;
+        if(_recallEnabled)
+        Handles.SphereHandleCap(-1, _RecallPosition, Quaternion.identity, 1, EventType.Repaint);
+    }
+#endif
 }
