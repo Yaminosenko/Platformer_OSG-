@@ -8,6 +8,7 @@ public partial class CharacterController : InputListener
 {
 
     public GhostBehavior _ghostBehavior;
+    public LaserInstantiate _laserInstantiate;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -283,6 +284,7 @@ public partial class CharacterController : InputListener
 #if UNITY_EDITOR
         OnJump += CheatJumpCallback;
         _ghostBehavior = GetComponent<GhostBehavior>();
+        _laserInstantiate = GetComponent<LaserInstantiate>();
 #endif
     }
 
@@ -385,6 +387,9 @@ public partial class CharacterController : InputListener
             case "Recall":
                 _ghostBehavior.Recall();
                 break;
+            case "Laser":
+                _laserInstantiate.LaserBehavior();
+                break;
         }
 
         base.GetButtonDown(data);
@@ -401,6 +406,8 @@ public partial class CharacterController : InputListener
             case "Jump":
                 buttonA = true;
                 break;
+   
+
         }
 
         base.GetButton(data);
@@ -438,6 +445,7 @@ public partial class CharacterController : InputListener
             case "Vertical":
                 _leftStickAxis.y = data.GetAxis();
                 break;
+
         }
 
         base.GetAxis(data);

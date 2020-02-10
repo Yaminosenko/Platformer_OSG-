@@ -17933,6 +17933,7 @@ GameObject:
   - component: {fileID: 54513473031665224}
   - component: {fileID: 114180980099792672}
   - component: {fileID: 4427175655523834960}
+  - component: {fileID: 1964581860404298764}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -18010,12 +18011,14 @@ MonoBehaviour:
   - Jump
   - Die
   - Recall
+  - Laser
   buttonUpInputs:
   - Jump
   axisInputs:
   - Horizontal
   - Vertical
   _ghostBehavior: {fileID: 4427175655523834960}
+  _laserInstantiate: {fileID: 0}
   _playerID: 0
   _characterBehaviour: {fileID: 114661623838467906}
   _leftStickAxis: {x: 0, y: 0}
@@ -18151,6 +18154,25 @@ MonoBehaviour:
   _recalTime: 4
   _ghostTransform: {fileID: 5968187441789930148, guid: 014cf06871ee7f24f83d11683260b812,
     type: 3}
+--- !u!114 &1964581860404298764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934258854783536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221f7f9f6d96b9543820efd268485de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonUnpressedInputs: []
+  buttonInputs: []
+  buttonDownInputs: []
+  buttonUpInputs: []
+  axisInputs: []
+  _startLaserPosition: {fileID: 0}
+  _LaserDirection: {x: 0, y: 0}
 --- !u!1 &1960416646807306
 GameObject:
   m_ObjectHideFlags: 0
@@ -18339,8 +18361,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6727358058565172745, guid: a684727406af11a41a6204cd564cb3f0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a684727406af11a41a6204cd564cb3f0, type: 3}
 --- !u!4 &6345909446151095561 stripped
 Transform:
