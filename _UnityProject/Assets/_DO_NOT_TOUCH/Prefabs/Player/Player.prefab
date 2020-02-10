@@ -18150,6 +18150,7 @@ MonoBehaviour:
   positions: []
   PlayerID: 0
   _recallEnabled: 0
+  _recallIndex: 5
   _freezeTime: 0.25
   _recalTime: 4
   _ghostTransform: {fileID: 5968187441789930148, guid: 014cf06871ee7f24f83d11683260b812,
@@ -18161,7 +18162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934258854783536}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 221f7f9f6d96b9543820efd268485de7, type: 3}
   m_Name: 
