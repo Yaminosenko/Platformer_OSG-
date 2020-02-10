@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public partial class CharacterController : InputListener
 {
-
+    //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
     public LaserInstantiate _laserInstantiate;
 
@@ -56,6 +56,7 @@ public partial class CharacterController : InputListener
     [Space(10)]
     [SerializeField] private CharacterBehaviour _characterBehaviour;
     public CharacterBehaviour characterBehaviour { get { return _characterBehaviour; } }
+    public GhostController _ghostAnim;
 
     [Header("INPUTS")]
     [Space(10)]
@@ -578,6 +579,11 @@ public partial class CharacterController : InputListener
         }
 
         characterBehaviour.transform.rotation = Quaternion.Slerp(characterBehaviour.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
+
+        //if (_ghostBehavior != null)
+        //{
+        //    //_ghostAnim.transform.rotation = Quaternion.Slerp(_ghostAnim.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
+        //}
     }
 
     private void GroundDetection()
