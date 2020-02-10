@@ -13,7 +13,7 @@ public class GhostBehavior : InputListener
     float timer = 0;
     public bool _recallWithoutTrail = true;
     public bool _enabledRecall = true;
-    [SerializeField] float recallPeriod = 2.0f;
+    public float recallPeriod = 2.0f;
     public List<Vector3> _positionGhost = new List<Vector3>();
     public List<Vector3> _positionPlayer = new List<Vector3>();
     public Rewired.Player player;
@@ -46,8 +46,13 @@ public class GhostBehavior : InputListener
         _characterController = GetComponent<CharacterController>();
         _capsuleCharacter = GetComponent<CapsuleCollider>();
 
-        Transform _testIns = Instantiate(_ghostTransform);
-        _ghostTransform = _testIns;
+        Transform _ghostInstantaite = Instantiate(_ghostTransform);
+        _ghostTransform = _ghostInstantaite;
+
+        //_ghostInstantaite.gameObject.GetComponentInChildren<GhostController>().characterController = _characterController;
+        //_characterController._ghostAnim = _ghostInstantaite.gameObject.GetComponentInChildren<GhostController>();
+
+
         player = ReInput.players.GetPlayer(PlayerID);
         startTime = Time.time;
 
@@ -108,7 +113,7 @@ public class GhostBehavior : InputListener
             _capsuleCharacter.isTrigger = false;
             _characterController._recallDisableHit = false;
             _recallEnabled = false;
-            Debug.Log("ta0");
+
         }
 
     }
@@ -126,6 +131,7 @@ public class GhostBehavior : InputListener
         {
             _positionGhost.Add(transform.position);
             timer += Time.deltaTime;
+            //Debug.Log(timer);
         }
     }
 
@@ -143,9 +149,10 @@ public class GhostBehavior : InputListener
             timer += Time.deltaTime;
         }
     }
+
     public void Recall()
     {
-        Debug.Log("hi");
+        //Debug.Log("hi");
         if (_recallWithoutTrail == true)
         {
             StartCoroutine(FreezeTime());
@@ -178,18 +185,19 @@ public class GhostBehavior : InputListener
         _capsuleCharacter.isTrigger = true;
         _characterController._recallDisableHit = true;
         _recallEnabled = true;
-        StartCoroutine(DelayRecall());
-
+        if(_recallWithoutTrail == true)
+        {
+            StartCoroutine(DelayRecall());
+        }
     }
     //Temps durant lequel le character est en mode recall
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(1.5f);
-        Debug.Log(TimeTravel);
-        //_freezeGhost = false;
-        //_capsuleCharacter.isTrigger = false;
-        //_characterController._recallDisableHit = false;
-        //_recallEnabled = false;
+        yield return new WaitForSeconds(TimeTravel + 0.5f);
+        _freezeGhost = false;
+        _capsuleCharacter.isTrigger = false;
+        _characterController._recallDisableHit = false;
+        _recallEnabled = false;
     }
 
 #if UNITY_EDITOR
