@@ -6,12 +6,15 @@ using Rewired;
 public class GhostBehavior : InputListener
 {
     float timer = 0;
+    public bool _recallWithoutTrail = true;
+    public bool _enabledRecall = true;
     [SerializeField] float recallPeriod = 2.0f;
     public List<Vector3> positions = new List<Vector3>();
     public Rewired.Player player;
     public int PlayerID = 0;
-    public bool IsWorking = false;
-    private bool _freezeTimeRecall;
+    public bool _recallEnabled = false;
+    private bool _freezeCharacter = false;
+    private bool _freezeGhost = false;
     private CharacterController _characterController;
     private CapsuleCollider _capsuleCharacter;
     private Vector3 _RecallPosition;
@@ -44,46 +47,39 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
-        if(_freezeTimeRecall == false)
+        if(_freezeGhost == false)
         {
+            //Track de la position du joueur et deplacement du ghost
             TrackPositions();
             _ghostTransform.position = positions[0];
         }
-        else
+        if (_freezeCharacter == true)
         {
-            
+            //freeze au moment du recall
             transform.position = _getPos;
         }
-
-
         //Debug.Log(TimeTravel);
         TimeTravel += Time.deltaTime;
-
-
-
-
-
         distCovered = (Time.time - startTime) * _recalTime;
 
         // Fraction of journey completed equals current distance divided by total distance.
          fractionOfJourney = distCovered / _distanceGhostPlayer;
 
-        if (IsWorking == true)
+        if (_recallEnabled == true)
         {
-            //transform.position = Vector3.Lerp(transform.position, _RecallPosition, fractionOfJourney);
-
-            //StartCoroutine(DelayRecall());
-
-            RecallPosition();
-            //IsWorking = false;
-
+            if(_recallWithoutTrail == true)
+            {
+                transform.position = Vector3.Lerp(transform.position, _RecallPosition, fractionOfJourney);
+            }
+            else
+            {
+                RecallPosition();
+                //_recallEnabled = false;
+            }
         }
-
-
-
-
     }
 
+    //Recall en suivant le trail
     void RecallPosition()
     {
 
@@ -94,12 +90,12 @@ public class GhostBehavior : InputListener
         if(_index > 0)
         {
             transform.position = ArrayFreeze[_index];
-            _index--;
+            _index = _index-5;
         }
      
     }
 
-
+    //Track de la position du joueur
     void TrackPositions()
     {
         //Debug.Log(positions);
@@ -116,42 +112,50 @@ public class GhostBehavior : InputListener
     }
     public void Recall()
     {
-       // StartCoroutine(FreezeTime());
-        TimeTravel = 0f;
-
-        List<Vector3> FreezeList = new List<Vector3>();
-        FreezeList = positions;
-        ArrayFreeze = FreezeList.ToArray();
-        _index = ArrayFreeze.Length - 1;
-        Debug.Log(ArrayFreeze.Length);
-
-   
-        IsWorking = true;
+        if(_recallWithoutTrail == true)
+        {
+            StartCoroutine(FreezeTime());
+            TimeTravel = 0f;
+        }
+        else
+        {
+            StartCoroutine(FreezeTime());
+            List<Vector3> FreezeList = new List<Vector3>();
+            FreezeList = positions;
+            ArrayFreeze = FreezeList.ToArray();
+            _index = ArrayFreeze.Length - 1;
+            Debug.Log(ArrayFreeze.Length);
+            //_recallEnabled = true;
+        }
     }
 
-
+    //Freeze du joueur en appuyant sur l'input recall
     IEnumerator FreezeTime()
     {
         _getPos = transform.position;
-        _freezeTimeRecall = true;
+        _freezeGhost = true;
+        _freezeCharacter = true;
         yield return new WaitForSeconds(_freezeTime);
-        _freezeTimeRecall = false;
+        _freezeCharacter = false;
+        _freezeGhost = false;
         startTime = Time.time;
-        Debug.Log(this.gameObject);
         _RecallPosition = _ghostTransform.position;
         _distanceGhostPlayer = Vector3.Distance(transform.position, _RecallPosition);
         _capsuleCharacter.isTrigger = true;
         _characterController._recallDisableHit = true;
-        IsWorking = true;
+        _recallEnabled = true;
+        StartCoroutine(DelayRecall());
 
     }
-
+    //Temps durant lequel le character est en mode recall
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(TimeTravel);
+        yield return new WaitForSeconds(TimeTravel + 0.5f);
+        Debug.Log(TimeTravel);
+        _freezeGhost = false;
         _capsuleCharacter.isTrigger = false;
         _characterController._recallDisableHit = false;
-        IsWorking = false;
+        _recallEnabled = false;
     }
  
 }
