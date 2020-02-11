@@ -18595,10 +18595,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Recall_Mesh03
       objectReference: {fileID: 0}
+    - target: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -18618,7 +18628,7 @@ PrefabInstance:
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -18643,7 +18653,7 @@ PrefabInstance:
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.9112549
+      value: 0.49423218
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -18815,10 +18825,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Recall_Mesh02
       objectReference: {fileID: 0}
+    - target: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0.08
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -18838,7 +18858,7 @@ PrefabInstance:
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -18859,6 +18879,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].outWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
+      value: 0.8485718
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
@@ -19125,6 +19150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FX_Recall_Mesh01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
