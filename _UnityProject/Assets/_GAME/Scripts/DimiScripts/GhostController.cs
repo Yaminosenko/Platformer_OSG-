@@ -176,7 +176,7 @@ public class GhostController : MonoBehaviour
     private void PlayJumpAnim(int jumpCount)
     {
 
-        //StartCoroutine(JumpGhost(jumpCount));
+        StartCoroutine(JumpGhost(jumpCount));
         animator.Play(jumpCount == 0 ? "Jump" : (characterController.leftStickAxisLerped.x * characterController.leftRight >= 0f ? "DoubleJump_Front" : "DoubleJump_Back"), 0, 0);
 
         // CreateAndSetFX(jumpSmokePrefab, characterController.transform.position);
@@ -207,6 +207,7 @@ public class GhostController : MonoBehaviour
         GetGroundTilt(true);
     }
 
+    //when die reset anim
     private void ResetAnimator()
     {
         animator.SetBool(ap_isMoving, false);
@@ -221,16 +222,16 @@ public class GhostController : MonoBehaviour
         animator.Play("Ilde", 0, 0);
     }
 
-    private void PlayAnimNextFrame(string animName)
-    {
-        StartCoroutine(CoPlayAnimNextFrame(animName));
-    }
+    //private void PlayAnimNextFrame(string animName)
+    //{
+    //    StartCoroutine(CoPlayAnimNextFrame(animName));
+    //}
 
-    private IEnumerator CoPlayAnimNextFrame(string animName)
-    {
-        yield return new WaitForEndOfFrame();
-        animator.Play(animName, 0, 0);
-    }
+    //private IEnumerator CoPlayAnimNextFrame(string animName)
+    //{
+    //    yield return new WaitForEndOfFrame();
+    //    animator.Play(animName, 0, 0);
+    //}
 
     //private void CreateAndSetFX(ParticleSystem fx, Vector3 pos)
     //{
@@ -245,6 +246,7 @@ public class GhostController : MonoBehaviour
     //    instantiatedFX.rotation = Quaternion.LookRotation(lookForward);
     //}
 
+        //Start get hit
     private void StartHitLag()
     {
         hit = true;
@@ -254,6 +256,7 @@ public class GhostController : MonoBehaviour
         //CreateAndSetFX(hitFXPrefab, characterController.characterCenter);
     }
 
+    //end get hit
     private void EndHitLag()
     {
         transform.localPosition = Vector3.zero;
@@ -261,6 +264,7 @@ public class GhostController : MonoBehaviour
         hit = false;
     }
 
+    //get hit
     private void HitLag()
     {
         if (!hit)
