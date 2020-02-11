@@ -17935,6 +17935,7 @@ GameObject:
   - component: {fileID: 114180980099792672}
   - component: {fileID: 4427175655523834960}
   - component: {fileID: 1964581860404298764}
+  - component: {fileID: 9188718686528122719}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -18148,7 +18149,7 @@ MonoBehaviour:
   axisInputs: []
   _recallWithoutTrail: 0
   _enabledRecall: 1
-  recallPeriod: 4
+  recallPeriod: 7
   _positionGhost: []
   _positionPlayer: []
   PlayerID: 0
@@ -18179,6 +18180,25 @@ MonoBehaviour:
   axisInputs: []
   _startLaserPosition: {fileID: 0}
   _LaserDirection: {x: 0, y: 0}
+--- !u!114 &9188718686528122719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934258854783536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa6453b5f509b8e4ea58a42b728cabd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonUnpressedInputs: []
+  buttonInputs: []
+  buttonDownInputs: []
+  buttonUpInputs: []
+  axisInputs: []
+  PlayerID: 0
+  _radiusOffset: 2.02
 --- !u!1 &1960416646807306
 GameObject:
   m_ObjectHideFlags: 0
