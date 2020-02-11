@@ -39,12 +39,20 @@ public class GhostBehavior : InputListener
     private float TimeTravel;
     private Vector3[] ArrayFreeze;
     private int _index;
+    [SerializeField] private TrailRenderer _mtrailVFX;
+
+    private bool _isOnTravel = false;
+
+    private SkinnedMeshRenderer _mrenderer;
+    [SerializeField] private GameObject _skeleton;
 
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         _capsuleCharacter = GetComponent<CapsuleCollider>();
+        _mrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+
 
         Transform _ghostInstantaite = Instantiate(_ghostTransform);
         _ghostTransform = _ghostInstantaite;
@@ -59,6 +67,23 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
+
+        if(_isOnTravel == true)
+        {
+            _mrenderer.gameObject.SetActive(false);
+        _mtrailVFX.emitting = false;
+            _skeleton.SetActive(false);
+        }
+        if (_isOnTravel == false)
+        {
+            _mrenderer.gameObject.SetActive(true);
+            _mtrailVFX.emitting = true;
+            _skeleton.SetActive(true);
+        }
+
+
+
+
         TrackPositionsPlayer();
 
         if(_freezeGhost == false)
@@ -113,7 +138,7 @@ public class GhostBehavior : InputListener
             _capsuleCharacter.isTrigger = false;
             _characterController._recallDisableHit = false;
             _recallEnabled = false;
-
+            _isOnTravel = false;
         }
 
     }
@@ -179,6 +204,7 @@ public class GhostBehavior : InputListener
         yield return new WaitForSeconds(_freezeTime);
         _freezeCharacter = false;
         _freezeGhost = false;
+        _isOnTravel = true;
         startTime = Time.time;
         _RecallPosition = _ghostTransform.position;
         _distanceGhostPlayer = Vector3.Distance(transform.position, _RecallPosition);
