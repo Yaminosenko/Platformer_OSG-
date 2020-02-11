@@ -4988,7 +4988,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8af09ca01729f5c4aacbc57d84dcbac1, type: 2}
+  - {fileID: 2100000, guid: a0e4d37c3e460e0469b9562e27821542, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5237,7 +5237,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 68b431f3e6250044b87e72c8df746aa0, type: 2}
+  - {fileID: 2100000, guid: 4530f93ee5bd7ed4da5e8b1ec5d86265, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12716,7 +12716,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8af09ca01729f5c4aacbc57d84dcbac1, type: 2}
+  - {fileID: 2100000, guid: a0e4d37c3e460e0469b9562e27821542, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -17659,7 +17659,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8af09ca01729f5c4aacbc57d84dcbac1, type: 2}
+  - {fileID: 2100000, guid: a0e4d37c3e460e0469b9562e27821542, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -18157,6 +18157,10 @@ MonoBehaviour:
   _recalTime: 4
   _ghostTransform: {fileID: 5968187441789930148, guid: 014cf06871ee7f24f83d11683260b812,
     type: 3}
+  _mtrailVFX: {fileID: 2932124411450771476}
+  _isOnTravel: 0
+  _mrenderer: {fileID: 0}
+  _skeleton: {fileID: 1157990244681250}
 --- !u!114 &1964581860404298764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18438,7 +18442,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 68b431f3e6250044b87e72c8df746aa0, type: 2}
+      objectReference: {fileID: 2100000, guid: 4530f93ee5bd7ed4da5e8b1ec5d86265, type: 2}
     - target: {fileID: -927199367670048503, guid: b48bc63a6ede2e241991b998301ef231,
         type: 3}
       propertyPath: m_Name
@@ -18599,6 +18603,12 @@ PrefabInstance:
 --- !u!4 &2932124411450771467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8215790538008597848, guid: 8ecd434f58ce55544836d6ad671c17a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6536031937356815699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &2932124411450771476 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 8215790538008597831, guid: 8ecd434f58ce55544836d6ad671c17a0,
     type: 3}
   m_PrefabInstance: {fileID: 6536031937356815699}
   m_PrefabAsset: {fileID: 0}
