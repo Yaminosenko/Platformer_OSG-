@@ -10,10 +10,6 @@ public class LaserInstantiate : InputListener
     private PlayerMouse _myMouseControler;
 
 
-    private void Awake()
-    {
-        _myMouseControler = GetComponent<PlayerMouse>();
-    }
     void Update()
     {
         _LaserDirection = _myMouseControler.screenPosition;
