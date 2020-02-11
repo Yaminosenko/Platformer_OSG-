@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PiegeClone : MonoBehaviour
+public class PiegeJoueur : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
+        if (other.gameObject.layer == 9)
+        {
+            Die();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Die()
+        {
+
+        }
     }
 }
