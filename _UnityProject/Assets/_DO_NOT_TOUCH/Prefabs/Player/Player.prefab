@@ -18147,7 +18147,7 @@ MonoBehaviour:
   axisInputs: []
   _recallWithoutTrail: 0
   _enabledRecall: 1
-  recallPeriod: 4
+  recallPeriod: 7
   _positionGhost: []
   _positionPlayer: []
   PlayerID: 0
