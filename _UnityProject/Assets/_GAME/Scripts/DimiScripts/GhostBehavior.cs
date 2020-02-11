@@ -40,8 +40,10 @@ public class GhostBehavior : InputListener
     private Vector3[] ArrayFreeze;
     private int _index;
     [SerializeField] private TrailRenderer _mtrailVFX;
-
-    private bool _isOnTravel = false;
+    [SerializeField] private GameObject _RecallTrailmesh;
+    
+ 
+    public bool _isOnTravel = false;
 
     private SkinnedMeshRenderer _mrenderer;
     [SerializeField] private GameObject _skeleton;
@@ -70,12 +72,14 @@ public class GhostBehavior : InputListener
 
         if(_isOnTravel == true)
         {
+            _RecallTrailmesh.SetActive(true);
             _mrenderer.gameObject.SetActive(false);
-        _mtrailVFX.emitting = false;
+            _mtrailVFX.emitting = false;
             _skeleton.SetActive(false);
         }
         if (_isOnTravel == false)
         {
+            _RecallTrailmesh.SetActive(false);
             _mrenderer.gameObject.SetActive(true);
             _mtrailVFX.emitting = true;
             _skeleton.SetActive(true);
