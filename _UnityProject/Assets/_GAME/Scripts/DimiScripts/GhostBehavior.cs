@@ -69,7 +69,7 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
-
+        #region VFX On Travel
         if(_isOnTravel == true)
         {
             _RecallTrailmesh.SetActive(true);
@@ -85,10 +85,8 @@ public class GhostBehavior : InputListener
             _skeleton.SetActive(true);
         }
 
-
-
-
-        TrackPositionsPlayer();
+        #endregion
+         TrackPositionsPlayer();
 
         if(_freezeGhost == false)
         {
@@ -223,7 +221,7 @@ public class GhostBehavior : InputListener
     //Temps durant lequel le character est en mode recall
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(TimeTravel + 0.5f);
+        yield return new WaitForSeconds(TimeTravel + 0.25f);
         _freezeGhost = false;
         _capsuleCharacter.isTrigger = false;
         _characterController._recallDisableHit = false;
