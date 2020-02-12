@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_MA_Collectibles_FeedBack_Cubes
-  m_Shader: {fileID: 4800000, guid: bc51ef7327223ea4cb34826a2ebf511a, type: 3}
+  m_Name: FX_MA_Recall_CubesUnlit
+  m_Shader: {fileID: 4800000, guid: 51e0277a16e17ee4ca5f5b20b4fa5803, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -20,9 +20,6 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - _EmissivPower: 5
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.1509434, g: 0, b: 0, a: 0}
-    - _Color1: {r: 1, g: 0, b: 0, a: 0}
-    - _FresnelScaleandPower: {r: 1000000, g: 30, b: 0, a: 0}
+    - _Color0: {r: 2.9960785, g: 0, b: 0, a: 0}
