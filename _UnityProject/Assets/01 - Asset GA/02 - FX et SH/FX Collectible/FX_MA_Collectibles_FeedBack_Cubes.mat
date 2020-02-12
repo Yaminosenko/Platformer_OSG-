@@ -23,6 +23,6 @@ Material:
     - _EmissivPower: 5
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.1509434, g: 0, b: 0, a: 0}
+    - _Color0: {r: 1, g: 0.15566039, b: 0.15566039, a: 0}
     - _Color1: {r: 1, g: 0, b: 0, a: 0}
     - _FresnelScaleandPower: {r: 1000000, g: 30, b: 0, a: 0}
