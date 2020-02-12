@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_MA_Sparkz
-  m_Shader: {fileID: 4800000, guid: c7bc9b28a8374aa44b1681eb8b7d29f4, type: 3}
+  m_Name: FX_MA_Lazer_Rings
+  m_Shader: {fileID: 4800000, guid: 34c403fefd5565b409b1006b07c8d112, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -56,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: b2e0bf4b215adb244bb8c39eacff0afb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 15ffe2dbcf0dee04abcad9e5e3fcc693, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -68,7 +68,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissivPower: 1.5
+    - _EmissivPower: 3
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
