@@ -20,9 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _ASEOutlineWidth: 1
     - _EmissivPower: 1
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.4528302, g: 0, b: 0, a: 0}
-    - _Color1: {r: 1, g: 0, b: 0, a: 0}
-    - _FresnelScaleandPower: {r: 10000, g: 30, b: 0, a: 0}
+    - _ASEOutlineColor: {r: 1, g: 0, b: 0, a: 0}
+    - _Color0: {r: 0.33962262, g: 0, b: 0, a: 0}
+    - _Color1: {r: 4, g: 0, b: 0, a: 0}
+    - _FresnelScaleandPower: {r: 10000, g: 13, b: 0, a: 0}
