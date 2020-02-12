@@ -23,6 +23,7 @@ public class CharacterBehaviour : MonoBehaviour {
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Renderer characterMeshRenderer;
     [SerializeField] private Animator ghostAnimator;
+    public GhostBehavior _ghostBehaviour;
 
 
     [Header("BEHAVIOUR")]
@@ -109,8 +110,13 @@ public class CharacterBehaviour : MonoBehaviour {
         InitEvents();
 
         skeletonJoints = skeletonRoot.GetComponentsInChildren<Transform>();
+        StartCoroutine(DeleteAnim());
     }
-
+    private IEnumerator DeleteAnim()
+    {
+        yield return new WaitForSeconds(_ghostBehaviour.recallPeriod);
+        ghostAnimator.enabled = false;
+    }
     private void Update()
 	{
 		GetValuesFromController();
@@ -137,7 +143,7 @@ public class CharacterBehaviour : MonoBehaviour {
         }
         jointsInfos.Add(ji);
 
-        jointsInfos.RemoveAll(e => e.time < Time.time - 1);
+        jointsInfos.RemoveAll(e => e.time < Time.time - _ghostBehaviour.recallPeriod);
     }
 
     private void Init ()

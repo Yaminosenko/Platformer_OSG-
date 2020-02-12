@@ -7511,6 +7511,7 @@ MonoBehaviour:
     type: 3}
   skeletonRoot: {fileID: 4399625345710756}
   skeletonJoints: []
+  jointsInfos: []
 --- !u!1 &1658065972294884
 GameObject:
   m_ObjectHideFlags: 0
@@ -18154,8 +18155,7 @@ MonoBehaviour:
   axisInputs: []
   _recallWithoutTrail: 0
   _enabledRecall: 1
-  recallPeriod: 7
-  _positionGhost: []
+  recallPeriod: 4
   _positionPlayer: []
   PlayerID: 0
   _recallEnabled: 0
@@ -18166,6 +18166,7 @@ MonoBehaviour:
   _recalTime: 4
   _ghostTransform: {fileID: 5968187441789930148, guid: 014cf06871ee7f24f83d11683260b812,
     type: 3}
+  skeletonJointsGhost: []
   _mtrailVFX: {fileID: 2932124411450771476}
   _RecallTrailmesh: {fileID: 7474870909556471959}
   _isOnTravel: 0
@@ -19515,15 +19516,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a826e9e03af98f4db519a3e55dc4d57, type: 3}
---- !u!1 &7474870909556471959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-    type: 3}
-  m_PrefabInstance: {fileID: 8777949969506007388}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2666466302906429560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+    type: 3}
+  m_PrefabInstance: {fileID: 8777949969506007388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7474870909556471959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
     type: 3}
   m_PrefabInstance: {fileID: 8777949969506007388}
   m_PrefabAsset: {fileID: 0}

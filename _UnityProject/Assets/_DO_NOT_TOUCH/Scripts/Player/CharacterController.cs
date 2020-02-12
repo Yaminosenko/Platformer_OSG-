@@ -577,11 +577,18 @@ public partial class CharacterController : InputListener
         }
 
         characterBehaviour.transform.rotation = Quaternion.Slerp(characterBehaviour.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
-
+        //StartCoroutine(UturnGhost(forceOrientation));
         //if (_ghostBehavior != null)
         //{
         //    //_ghostAnim.transform.rotation = Quaternion.Slerp(_ghostAnim.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
         //}
+    }
+
+    IEnumerator UturnGhost(bool forceOrientation)
+    {
+        yield return new WaitForSeconds(_ghostBehavior.recallPeriod);
+        //Debug.Log("00000000000000000000000000000");
+        _ghostBehavior.transform.rotation = Quaternion.Slerp(_ghostBehavior.transform.rotation, Quaternion.Euler(0, _leftRight * 90.1f, 0), forceOrientation ? 1 : 10f * gameManager.fixedDeltaTime);
     }
 
     private void GroundDetection()

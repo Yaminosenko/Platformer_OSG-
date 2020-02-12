@@ -7774,6 +7774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114556676604193896, guid: a7b15b1abe1825740ac7ab6cb195a6ea,
         type: 3}
+      propertyPath: _PolygonColliderArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114556676604193896, guid: a7b15b1abe1825740ac7ab6cb195a6ea,
+        type: 3}
       propertyPath: playerGroup
       value: 
       objectReference: {fileID: 943853133}

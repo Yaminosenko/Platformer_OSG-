@@ -14,8 +14,25 @@ public class GhostBehavior : InputListener
     public bool _recallWithoutTrail = true;
     public bool _enabledRecall = true;
     public float recallPeriod = 2.0f;
-    public List<Vector3> _positionGhost = new List<Vector3>();
-    public List<Vector3> _positionPlayer = new List<Vector3>();
+    public List<GhostPosition> _positionGhost = new List<GhostPosition>(500);
+    public List<GhostPosition> _positionPlayer = new List<GhostPosition>(500);
+
+
+    public struct GhostPosition
+    {
+       public Vector3 _positions;
+       public float _time;
+    }
+
+    public List<GhostRotation> _rotationGhost = new List<GhostRotation>(500);
+    [System.Serializable]
+    public struct GhostRotation
+    {
+        public Quaternion _rotation;
+        public float _time;
+    }
+
+
     public Rewired.Player player;
     public int PlayerID = 0;
     public bool _recallEnabled = false;
@@ -37,15 +54,8 @@ public class GhostBehavior : InputListener
     private float startTime;
 
     public Transform[] skeletonJointsGhost;
-    public List<JointsInfoGhost> jointsInfosGhost = new List<JointsInfoGhost>(500);
-    [System.Serializable]
-    public struct JointsInfoGhost
-    {
-        public Vector3[] localPositionsGhost;
-        public Quaternion[] localRotationsGhost;
-        public float timeGhost;
-    }
     private CharacterBehaviour _characterBehivour;
+    private Transform _character;
 
 
     private float fractionOfJourney;
@@ -66,22 +76,23 @@ public class GhostBehavior : InputListener
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _characterController._ghostBehavior = GetComponent<GhostBehavior>();
         _capsuleCharacter = GetComponent<CapsuleCollider>();
         _mrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         _characterBehivour = _characterController.characterBehaviour;
+        _characterBehivour._ghostBehaviour = GetComponent<GhostBehavior>();
 
         Transform _ghostInstantaite = Instantiate(_ghostTransform);
         _ghostTransform = _ghostInstantaite;
         _skeleton = _ghostTransform.GetComponentInChildren <Test>().gameObject;
         skeletonJointsGhost = _skeleton.GetComponentsInChildren<Transform>();
-        
+
+        _characterBehivour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
+        _character = _ghostInstantaite.GetComponentInChildren<Animator>().transform;
 
 
 
 
-        //_characterController.characterBehaviour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
-        //_ghostInstantaite.gameObject.GetComponentInChildren<GhostController>().characterController = _characterController;
-        //_characterController._ghostAnim = _ghostInstantaite.gameObject.GetComponentInChildren<GhostController>();
 
 
         player = ReInput.players.GetPlayer(PlayerID);
@@ -133,7 +144,9 @@ public class GhostBehavior : InputListener
         {
             //Track de la position du joueur et deplacement du ghost
             TrackPositionsGhost();
-            _ghostTransform.position = _positionGhost[0];
+            //_ghostTransform.position = _positionGhost[0];
+            _ghostTransform.position = _positionGhost[0]._positions;
+            _character.rotation = _rotationGhost[0]._rotation;
         }
         if (_freezeCharacter == true)
         {
@@ -166,6 +179,7 @@ public class GhostBehavior : InputListener
         }
     }
 
+    
     //Recall en suivant le trail
     void RecallPosition()
     {
@@ -190,34 +204,44 @@ public class GhostBehavior : InputListener
     //Track de la position du joueur
     void TrackPositionsGhost()
     {
-        //Debug.Log(positions);
-        if (timer > recallPeriod)
-        {
-            _positionGhost.RemoveAt(0);
-            SetSkeletonPos();
-            _positionGhost.Add(transform.position);
-        }
-        else
-        {
-            _positionGhost.Add(transform.position);
-            timer += Time.deltaTime;
-            //Debug.Log(timer);
-        }
+        GhostRotation gr = new GhostRotation();
+        gr._rotation = _characterBehivour.transform.rotation;
+        gr._time = Time.time;
+        _rotationGhost.Add(gr);
+        _rotationGhost.RemoveAll(e => e._time < Time.time - recallPeriod);
+        
+
+
+        GhostPosition gp = new GhostPosition();
+        gp._time = Time.time;
+        gp._positions = transform.position;
+        _positionGhost.Add(gp);
+
+        _positionGhost.RemoveAll(e => e._time < Time.time - recallPeriod);
+        SetSkeletonPos();
     }
 
     void TrackPositionsPlayer()
     {
         //Debug.Log(positions);
-        if (timer > recallPeriod)
-        {
-            _positionPlayer.RemoveAt(0);
-            _positionPlayer.Add(transform.position);
-        }
-        else
-        {
-            _positionPlayer.Add(transform.position);
-            timer += Time.deltaTime;
-        }
+        //if (timer > recallPeriod)
+        //{
+        //    _positionPlayer.RemoveAt(0);
+        //    _positionPlayer.Add(transform.position);
+        //}
+        //else
+        //{
+        //    _positionPlayer.Add(transform.position);
+        //    timer += Time.deltaTime;
+        //}
+        GhostPosition gp = new GhostPosition();
+        gp._time = Time.time;
+        gp._positions = transform.position;
+        _positionPlayer.Add(gp);
+
+        _positionPlayer.RemoveAll(e => e._time < Time.time - recallPeriod);
+        SetSkeletonPos();
+
     }
 
     public void Recall()
@@ -233,12 +257,18 @@ public class GhostBehavior : InputListener
             if(_recallCount == 0)
             {
                 StartCoroutine(FreezeTime());
-                List<Vector3> FreezeList = new List<Vector3>();
-                FreezeList = _positionPlayer;
+                List<Vector3> FreezeList = new List<Vector3>(500);
+                for (int i = 0; i < _positionPlayer.ToArray().Length; i++)
+                {
+                    FreezeList.Add(_positionPlayer[i]._positions);
+                }
+               
                 ArrayFreeze = FreezeList.ToArray();
                 _index = ArrayFreeze.Length - 1;
                 Debug.Log(ArrayFreeze.Length);
                 _recallCount++;
+
+
                 //_recallEnabled = true;
             }
             else
