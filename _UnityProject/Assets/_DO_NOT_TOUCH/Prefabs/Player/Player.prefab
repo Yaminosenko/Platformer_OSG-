@@ -7465,6 +7465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 114180980099792672}
   characterMeshRenderer: {fileID: 137585998141537850}
+  ghostAnimator: {fileID: 0}
   fastRunThresold: 0.5
   heavyLandingFallVelocity: -4
   groundTiltCurve:
@@ -7506,6 +7507,8 @@ MonoBehaviour:
     type: 3}
   resurrectFXPrefab: {fileID: 6727358058565172747, guid: a684727406af11a41a6204cd564cb3f0,
     type: 3}
+  skeletonRoot: {fileID: 4399625345710756}
+  skeletonJoints: []
 --- !u!1 &1658065972294884
 GameObject:
   m_ObjectHideFlags: 0
@@ -18154,6 +18157,8 @@ MonoBehaviour:
   _positionPlayer: []
   PlayerID: 0
   _recallEnabled: 0
+  _recallCount: 0
+  _indexDebug: 0
   _recallIndex: 5
   _freezeTime: 0.25
   _recalTime: 4
@@ -19402,15 +19407,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a826e9e03af98f4db519a3e55dc4d57, type: 3}
---- !u!4 &2666466302906429560 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-    type: 3}
-  m_PrefabInstance: {fileID: 8777949969506007388}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7474870909556471959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+    type: 3}
+  m_PrefabInstance: {fileID: 8777949969506007388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2666466302906429560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
     type: 3}
   m_PrefabInstance: {fileID: 8777949969506007388}
   m_PrefabAsset: {fileID: 0}
