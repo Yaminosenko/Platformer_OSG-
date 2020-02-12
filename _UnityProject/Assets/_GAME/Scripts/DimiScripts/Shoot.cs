@@ -25,6 +25,10 @@ public class Shoot : InputListener
     private Vector3 _transformShoot;
     private Vector3 directionOnly;
     public GameObject _offsetBlaster;
+    public Transform _offsetLaser;
+
+    private GameObject _MyTarget;
+    private EnergieCharge _myCurrentEnergieCharge;
 
 
     private void OnEnable()
@@ -33,7 +37,6 @@ public class Shoot : InputListener
         player = ReInput.players.GetPlayer(PlayerID);
         cameraVirt = GameObject.Find("CameraController2D");
         camera = cameraVirt.GetComponent<Camera>();
-        Debug.Log(camera);
     }
 
     private void Update()
@@ -41,9 +44,10 @@ public class Shoot : InputListener
         UpdateOffset();
         UpdateMousePosition();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            SpawnProjectile();
+            // SpawnProjectile();
+            LaserInstantiate();
         }
     }
 
@@ -74,6 +78,22 @@ public class Shoot : InputListener
         }
     }
 
+    void LaserInstantiate()
+    {
+        Ray ray = new Ray(_offsetShoot, _mousePos);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            if(hit.collider.gameObject.layer == 17)
+            {
+                _MyTarget = hit.collider.gameObject;
+
+                _myCurrentEnergieCharge = _MyTarget.GetComponent<EnergieCharge>();
+                _myCurrentEnergieCharge.chargerecieve();
+
+            }
+        }
+    }
 
     void SpawnProjectile()
     {
