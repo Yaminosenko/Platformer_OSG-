@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FX_MA_Collectibles_FeedBack_Cubes
+  m_Name: FX_MA_Collectibles_FeedBack_Cubes 1
   m_Shader: {fileID: 4800000, guid: bc51ef7327223ea4cb34826a2ebf511a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -23,6 +23,6 @@ Material:
     - _EmissivPower: 5
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.1509434, g: 0, b: 0, a: 0}
+    - _Color0: {r: 0.9716981, g: 0, b: 0, a: 0}
     - _Color1: {r: 1, g: 0, b: 0, a: 0}
-    - _FresnelScaleandPower: {r: 1000000, g: 30, b: 0, a: 0}
+    - _FresnelScaleandPower: {r: 1, g: 0, b: 0, a: 0}

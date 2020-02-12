@@ -10,7 +10,7 @@ Material:
   m_Name: FX_MA_Recall_Unlit
   m_Shader: {fileID: 4800000, guid: f315211191a1bb34d99613262ee19189, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,6 +20,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _Float0: 0.25
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.7075472, g: 0, b: 0, a: 0}
+    - _Color0: {r: 0.46226418, g: 0, b: 0, a: 0}
+    - _Color1: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0}
+    - _Opacity: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0}
+    - _Vector0: {r: 50, g: 1, b: 0, a: 0}
