@@ -26,6 +26,8 @@ public class GhostBehavior : InputListener
     private Vector3 _RecallPosition;
     private float _distanceGhostPlayer;
     private Vector3 _getPos;
+    [SerializeField]private int _recallCount;
+    [SerializeField] private int _indexDebug;
 
     public int _recallIndex = 5;
     public float _freezeTime = 0.1f;
@@ -33,6 +35,18 @@ public class GhostBehavior : InputListener
     public Transform _ghostTransform;
 
     private float startTime;
+
+    public Transform[] skeletonJointsGhost;
+    public List<JointsInfoGhost> jointsInfosGhost = new List<JointsInfoGhost>(500);
+    [System.Serializable]
+    public struct JointsInfoGhost
+    {
+        public Vector3[] localPositionsGhost;
+        public Quaternion[] localRotationsGhost;
+        public float timeGhost;
+    }
+    private CharacterBehaviour _characterBehivour;
+
 
     private float fractionOfJourney;
     private float distCovered;
@@ -54,23 +68,50 @@ public class GhostBehavior : InputListener
         _characterController = GetComponent<CharacterController>();
         _capsuleCharacter = GetComponent<CapsuleCollider>();
         _mrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
-
+        _characterBehivour = _characterController.characterBehaviour;
 
         Transform _ghostInstantaite = Instantiate(_ghostTransform);
         _ghostTransform = _ghostInstantaite;
+        _skeleton = _ghostTransform.GetComponentInChildren <Test>().gameObject;
+        skeletonJointsGhost = _skeleton.GetComponentsInChildren<Transform>();
+        
 
+
+
+
+        //_characterController.characterBehaviour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
         //_ghostInstantaite.gameObject.GetComponentInChildren<GhostController>().characterController = _characterController;
         //_characterController._ghostAnim = _ghostInstantaite.gameObject.GetComponentInChildren<GhostController>();
 
 
         player = ReInput.players.GetPlayer(PlayerID);
         startTime = Time.time;
-
     }
+
+
+
+    void SetSkeletonPos()
+    {
+        for (int i = 0; i < skeletonJointsGhost.Length; i++)
+        {
+            skeletonJointsGhost[i].localPosition = _characterBehivour.jointsInfos[0].localPositions[i];
+            skeletonJointsGhost[i].localRotation = _characterBehivour.jointsInfos[0].localRotations[i];
+        }
+    }
+
+
+
+
+
+
+
+
     private void Update()
     {
+        
 
-        if(_isOnTravel == true)
+        #region VFX On Travel
+        if (_isOnTravel == true)
         {
             _RecallTrailmesh.SetActive(true);
             _mrenderer.gameObject.SetActive(false);
@@ -85,10 +126,8 @@ public class GhostBehavior : InputListener
             _skeleton.SetActive(true);
         }
 
-
-
-
-        TrackPositionsPlayer();
+        #endregion
+         TrackPositionsPlayer();
 
         if(_freezeGhost == false)
         {
@@ -120,16 +159,16 @@ public class GhostBehavior : InputListener
                 //_recallEnabled = false;
             }
         }
+
+        if (_recallCount != 0)
+        {
+            RecallWaiting();
+        }
     }
 
     //Recall en suivant le trail
     void RecallPosition()
     {
-
-        //for (int i = ArrayFreeze.Length-1; i > 0; i--)
-        //{
-        //    transform.position = ArrayFreeze[i];
-        //}
         if(_index > 0)
         {
             transform.position = ArrayFreeze[_index];
@@ -138,6 +177,7 @@ public class GhostBehavior : InputListener
         }
         else
         {
+            transform.position = _RecallPosition;
             _freezeGhost = false;
             _capsuleCharacter.isTrigger = false;
             _characterController._recallDisableHit = false;
@@ -154,6 +194,7 @@ public class GhostBehavior : InputListener
         if (timer > recallPeriod)
         {
             _positionGhost.RemoveAt(0);
+            SetSkeletonPos();
             _positionGhost.Add(transform.position);
         }
         else
@@ -181,7 +222,7 @@ public class GhostBehavior : InputListener
 
     public void Recall()
     {
-        //Debug.Log("hi");
+        
         if (_recallWithoutTrail == true)
         {
             StartCoroutine(FreezeTime());
@@ -189,15 +230,41 @@ public class GhostBehavior : InputListener
         }
         else
         {
-            StartCoroutine(FreezeTime());
-            List<Vector3> FreezeList = new List<Vector3>();
-            FreezeList = _positionPlayer;
-            ArrayFreeze = FreezeList.ToArray();
-            _index = ArrayFreeze.Length - 1;
-            Debug.Log(ArrayFreeze.Length);
-            //_recallEnabled = true;
+            if(_recallCount == 0)
+            {
+                StartCoroutine(FreezeTime());
+                List<Vector3> FreezeList = new List<Vector3>();
+                FreezeList = _positionPlayer;
+                ArrayFreeze = FreezeList.ToArray();
+                _index = ArrayFreeze.Length - 1;
+                Debug.Log(ArrayFreeze.Length);
+                _recallCount++;
+                //_recallEnabled = true;
+            }
+            else
+            {
+                _recallWithoutTrail = true;
+            }
         }
     }
+
+    void RecallWaiting()
+    {
+        if(_indexDebug > ArrayFreeze.Length)
+        {
+            _indexDebug++;
+        }
+        else
+        {
+            _recallCount = 0;
+            _recallWithoutTrail = false;
+        }
+    } 
+
+    //IEnumerator RecallWaiting()
+    //{
+    //    yield return new WaitForSeconds(5);
+    //}
 
     //Freeze du joueur en appuyant sur l'input recall
     IEnumerator FreezeTime()
@@ -223,11 +290,12 @@ public class GhostBehavior : InputListener
     //Temps durant lequel le character est en mode recall
     IEnumerator DelayRecall()
     {
-        yield return new WaitForSeconds(TimeTravel + 0.5f);
+        yield return new WaitForSeconds(TimeTravel + 0.25f);
         _freezeGhost = false;
         _capsuleCharacter.isTrigger = false;
         _characterController._recallDisableHit = false;
         _recallEnabled = false;
+        _isOnTravel = false;
     }
 
 #if UNITY_EDITOR

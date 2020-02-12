@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,7 @@ public class CharacterBehaviour : MonoBehaviour {
 	[Space(10)]
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Renderer characterMeshRenderer;
+    [SerializeField] private Animator ghostAnimator;
 
 
     [Header("BEHAVIOUR")]
@@ -47,6 +49,10 @@ public class CharacterBehaviour : MonoBehaviour {
     [SerializeField] private ParticleSystem hitFXPrefab;
     [SerializeField] private ParticleSystem deathFXPrefab;
     [SerializeField] private ParticleSystem resurrectFXPrefab;
+
+    [Header("RECALL")]
+    [Space(10)]
+    [SerializeField] private Transform skeletonRoot;
 
     // Singletons
     private GameManager _gameManager;
@@ -81,6 +87,17 @@ public class CharacterBehaviour : MonoBehaviour {
     private int ap_isGrounded = Animator.StringToHash("isGrounded");
     private int ap_isJumping = Animator.StringToHash("isJumping");
 
+    // Recall
+    public Transform[] skeletonJoints;
+    public List<JointsInfo> jointsInfos = new List<JointsInfo>(500);
+    [System.Serializable]
+    public struct JointsInfo
+    {
+        public Vector3[] localPositions;
+        public Quaternion[] localRotations;
+        public float time;
+    }
+
     private void Awake()
     {
         InitEvents();
@@ -90,6 +107,8 @@ public class CharacterBehaviour : MonoBehaviour {
     {
         Init();
         InitEvents();
+
+        skeletonJoints = skeletonRoot.GetComponentsInChildren<Transform>();
     }
 
     private void Update()
@@ -99,7 +118,27 @@ public class CharacterBehaviour : MonoBehaviour {
 
         UpdateFX();
         HitLag();
-	}
+
+        ArrayOfDoom();
+
+    }
+    
+
+    private void ArrayOfDoom()
+    {
+        JointsInfo ji = new JointsInfo();
+        ji.time = Time.time;
+        ji.localPositions = new Vector3[skeletonJoints.Length];
+        ji.localRotations = new Quaternion[skeletonJoints.Length];
+        for (int i = 0; i < skeletonJoints.Length; i++)
+        {
+            ji.localPositions[i] = skeletonJoints[i].localPosition;
+            ji.localRotations[i] = skeletonJoints[i].localRotation;
+        }
+        jointsInfos.Add(ji);
+
+        jointsInfos.RemoveAll(e => e.time < Time.time - 1);
+    }
 
     private void Init ()
     {
@@ -144,9 +183,14 @@ public class CharacterBehaviour : MonoBehaviour {
         groundTilt = Mathf.Lerp(groundTilt, groundTiltCurve.Evaluate(tiltLerp), instantLerp ? 1 : 8 * gameManager.deltaTime);
     }
 
-	private void ApplyAnimatorParameters ()
-	{
-		animator.SetBool(ap_isMoving, characterController.isMoving);
+    public void SetGhostAnimator(Animator animator)
+    {
+        ghostAnimator = animator;
+    }
+
+    private void ApplyAnimatorParameters()
+    {
+        animator.SetBool(ap_isMoving, characterController.isMoving);
         animator.SetBool(ap_isGrounded, characterController.isGrounded);
         animator.SetBool(ap_isJumping, characterController.isJumping);
 
@@ -155,6 +199,39 @@ public class CharacterBehaviour : MonoBehaviour {
         animator.SetFloat(ap_airDirection, airDirection);
         animator.SetFloat(ap_yVelocity, velocity.y);
         animator.SetFloat(ap_groundTilt, groundTilt);
+
+        //StartCoroutine(CoApplyAnimatorParameters(
+        //    characterController.isMoving,
+        //    characterController.isGrounded,
+        //    characterController.isJumping,
+        //    runSpeedFactor,
+        //    characterController.speedLerp,
+        //    airDirection,
+        //    velocity.y,
+        //    groundTilt));
+    }
+
+    private IEnumerator CoApplyAnimatorParameters(
+        bool isMoving,
+        bool isGrounded,
+        bool isJumping,
+        float runSpeedFactor,
+        float speedLerp,
+        float airDirection,
+        float yVelocity,
+        float groundTilt)
+    {
+        yield return new WaitForSeconds(7);
+
+        ghostAnimator.SetBool(ap_isMoving, isMoving);
+        ghostAnimator.SetBool(ap_isGrounded, isGrounded);
+        ghostAnimator.SetBool(ap_isJumping, isJumping);
+
+        ghostAnimator.SetFloat(ap_runSpeedFactor, runSpeedFactor);
+        ghostAnimator.SetFloat(ap_speedLerp, speedLerp);
+        ghostAnimator.SetFloat(ap_airDirection, airDirection);
+        ghostAnimator.SetFloat(ap_yVelocity, yVelocity);
+        ghostAnimator.SetFloat(ap_groundTilt, groundTilt);
     }
 
     private void UpdateFX ()
@@ -171,9 +248,18 @@ public class CharacterBehaviour : MonoBehaviour {
         uTurnSmokeRightEM.enabled = characterController.uTurn && uTurnDirection == 1;
     }
 
+    private IEnumerator PlayGhostAnimDelayed(string animName)
+    {
+        yield return new WaitForSeconds(7);
+
+        ghostAnimator.Play(animName, 0, 0);
+    }
+
     private void PlayJumpAnim(int jumpCount)
     {
-        animator.Play(jumpCount == 0 ? "Jump" : (characterController.leftStickAxisLerped.x * characterController.leftRight >= 0f ? "DoubleJump_Front" : "DoubleJump_Back"), 0, 0);
+        string animName = jumpCount == 0 ? "Jump" : (characterController.leftStickAxisLerped.x * characterController.leftRight >= 0f ? "DoubleJump_Front" : "DoubleJump_Back");
+        animator.Play(animName, 0, 0);
+        //StartCoroutine(PlayGhostAnimDelayed(animName));
 
         CreateAndSetFX(jumpSmokePrefab, characterController.transform.position);
     }

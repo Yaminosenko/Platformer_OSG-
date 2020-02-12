@@ -8,6 +8,6 @@ public class BlasterScript : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(0, 0, speedVelocity, Space.Self);
+        transform.Translate(Vector3.forward * speedVelocity, Space.Self);
     }
 }
