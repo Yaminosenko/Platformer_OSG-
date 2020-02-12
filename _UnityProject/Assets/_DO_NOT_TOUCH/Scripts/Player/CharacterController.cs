@@ -8,7 +8,6 @@ public partial class CharacterController : InputListener
 {
     //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
-    public LaserInstantiate _laserInstantiate;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -285,7 +284,6 @@ public partial class CharacterController : InputListener
 #if UNITY_EDITOR
         OnJump += CheatJumpCallback;
         _ghostBehavior = GetComponent<GhostBehavior>();
-        _laserInstantiate = GetComponent<LaserInstantiate>();
 #endif
     }
 
@@ -389,7 +387,7 @@ public partial class CharacterController : InputListener
                 _ghostBehavior.Recall();
                 break;
             case "Laser":
-                _laserInstantiate.LaserBehavior();
+
                 break;
         }
 
