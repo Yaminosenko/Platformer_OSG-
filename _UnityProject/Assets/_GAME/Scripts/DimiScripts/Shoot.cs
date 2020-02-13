@@ -80,11 +80,13 @@ public class Shoot : InputListener
 
     void LaserInstantiate()
     {
+        Debug.DrawLine(_offsetShoot, _mousePos, Color.red);
         Ray ray = new Ray(_offsetShoot, _mousePos);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            if(hit.collider.gameObject.layer == 17)
+            Debug.Log(hit.collider.name);
+            if(hit.collider.gameObject.name == "CatalyseurDeLaser")
             {
                 _MyTarget = hit.collider.gameObject;
 

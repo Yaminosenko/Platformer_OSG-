@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using FigmentGames;
 public class GameManager : InputListener {
 
-
-
     public VirtualCamera2D _virtualCamera2D;
     public GhostBehavior _Ghost;
     public PolygonTrigger2D _Polygontrigger2D;
