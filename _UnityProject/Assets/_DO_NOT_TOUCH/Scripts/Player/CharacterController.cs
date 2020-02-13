@@ -8,6 +8,7 @@ public partial class CharacterController : InputListener
 {
     //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
+    public Shoot _Shoot;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -284,6 +285,7 @@ public partial class CharacterController : InputListener
 #if UNITY_EDITOR
         OnJump += CheatJumpCallback;
         _ghostBehavior = GetComponent<GhostBehavior>();
+        _Shoot = GetComponent<Shoot>();
 #endif
     }
 
@@ -358,9 +360,19 @@ public partial class CharacterController : InputListener
 
     protected override void GetButtonUnpressed(InputActionEventData data)
     {
+
+
         // All inputs locked
         if (lockAllInputs)
             return;
+
+        switch (data.actionName)
+        {
+            case "Laser":
+                _Shoot._laserVFX.gameObject.SetActive(false);
+                break;
+
+        }
 
         base.GetButtonUnpressed(data);
     }
@@ -386,9 +398,8 @@ public partial class CharacterController : InputListener
             case "Recall":
                 _ghostBehavior.Recall();
                 break;
-            case "Laser":
 
-                break;
+
         }
 
         base.GetButtonDown(data);
@@ -405,7 +416,12 @@ public partial class CharacterController : InputListener
             case "Jump":
                 buttonA = true;
                 break;
-   
+            case "Laser":
+                _Shoot.LaserInstantiate();
+                _Shoot._laserVFX.gameObject.SetActive(true);
+                _Shoot._LaserIsActive = true;
+                break;
+
 
         }
 
@@ -423,6 +439,11 @@ public partial class CharacterController : InputListener
             case "Jump":
                 buttonA = false;
                 //CancelJumpDosage();
+                break;
+
+            case "Laser":
+                _Shoot._LaserIsActive = false;
+                _Shoot._laserVFX.gameObject.SetActive(false);
                 break;
         }
 
@@ -444,6 +465,13 @@ public partial class CharacterController : InputListener
             case "Vertical":
                 _leftStickAxis.y = data.GetAxis();
                 break;
+            case "VerticalAxisRight":
+               _Shoot._rightStickAxis.y = data.GetAxis();
+                break;
+            case "HorizontalAxisRight":
+              _Shoot._rightStickAxis.x = data.GetAxis();
+                break;
+
 
         }
 

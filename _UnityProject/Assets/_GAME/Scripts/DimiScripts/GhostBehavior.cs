@@ -10,6 +10,25 @@ using UnityEditor;
 
 public class GhostBehavior : InputListener
 {
+    //LASER
+
+    public float _radiusOffset = 1;
+    private Vector3 _offsetShoot;
+    private Vector3 _distance;
+    private Vector3 _transformShoot;
+    private Vector3 _dronePos;
+    public Transform _drone;
+    private EnergieCharge _myCurrentEnergieCharge;
+    private GameObject _MyTarget;
+
+    public LineRenderer _laserVFX;
+
+    private Vector3 _LserLookAt;
+
+    public bool _LaserIsActive = false;
+
+
+    private Shoot _Shootref;
     float timer = 0;
     public bool _recallWithoutTrail = true;
     public bool _enabledRecall = true;
@@ -90,9 +109,11 @@ public class GhostBehavior : InputListener
         _characterBehivour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
         _character = _ghostInstantaite.GetComponentInChildren<Animator>().transform;
 
+        _Shootref = GetComponent<Shoot>();
 
+        _drone = _ghostInstantaite.GetComponentInChildren<GhostDroneref>().transform;
 
-
+        _laserVFX = _drone.GetComponentInChildren<LineRenderer>();
 
 
         player = ReInput.players.GetPlayer(PlayerID);
@@ -109,17 +130,9 @@ public class GhostBehavior : InputListener
             skeletonJointsGhost[i].localRotation = _characterBehivour.jointsInfos[0].localRotations[i];
         }
     }
-
-
-
-
-
-
-
-
     private void Update()
     {
-        
+        _SetDroneAndLAserPOstition();
 
         #region VFX On Travel
         if (_isOnTravel == true)
@@ -289,7 +302,33 @@ public class GhostBehavior : InputListener
             _recallCount = 0;
             _recallWithoutTrail = false;
         }
-    } 
+    }
+
+    public void LaserInstantiate()
+    {
+        _laserVFX.transform.LookAt(_LserLookAt);
+        Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
+
+        //Ray ray = new Ray(_drone.position, _transformShoot - (_drone.position));
+        RaycastHit hit;
+        if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
+            Debug.Log(hit.collider.name);
+            if (hit.collider.gameObject.name == "CatalyseurDeLaser")
+            {
+                _MyTarget = hit.collider.gameObject;
+
+                _myCurrentEnergieCharge = _MyTarget.GetComponent<EnergieCharge>();
+                _myCurrentEnergieCharge.chargerecieve();
+
+            }
+        }
+        else
+        {
+            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
+        }
+    }
 
     //IEnumerator RecallWaiting()
     //{
@@ -328,6 +367,23 @@ public class GhostBehavior : InputListener
         _isOnTravel = false;
     }
 
+
+    private void _SetDroneAndLAserPOstition()
+    {
+        _drone.position = _Shootref._DroneInformations[0]._positionDrone;
+        _drone.rotation = _Shootref._DroneInformations[0]._rotationDrone;
+        _LserLookAt = _Shootref._DroneInformations[0]._LookAtLaserDrone;
+        bool _laserISActive = _Shootref._DroneInformations[0]._laserActivate;
+        if (_laserISActive == true)
+        {
+            _laserVFX.gameObject.SetActive(true);
+            LaserInstantiate();
+        }
+        else
+        {
+            _laserVFX.gameObject.SetActive(false);
+        }
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
