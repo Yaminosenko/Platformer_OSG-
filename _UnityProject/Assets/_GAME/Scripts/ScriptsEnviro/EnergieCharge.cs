@@ -88,6 +88,7 @@ public class EnergieCharge : MonoBehaviour
     IEnumerator DelaiIncrement()
     {
         DelaiIsActivateIncrement = true;
+        StopCoroutine(DelaiDecrement());
         yield return new WaitForSeconds(0.3f);
         DelaiIsActivateIncrement = false;
         _currentCharge++;
