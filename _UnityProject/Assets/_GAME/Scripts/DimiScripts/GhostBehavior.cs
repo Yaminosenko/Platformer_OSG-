@@ -91,6 +91,9 @@ public class GhostBehavior : InputListener
     private SkinnedMeshRenderer _mrenderer;
     [SerializeField] private GameObject _skeleton;
 
+    public GameObject _skinRenderer;
+    public GameObject[] _meshToDisabe;
+
 
     private void Awake()
     {
@@ -138,16 +141,30 @@ public class GhostBehavior : InputListener
         if (_isOnTravel == true)
         {
             _RecallTrailmesh.SetActive(true);
-            _mrenderer.gameObject.SetActive(false);
+            //_mrenderer.gameObject.SetActive(false);
             _mtrailVFX.emitting = false;
-            _skeleton.SetActive(false);
+            if (_skinRenderer != null)
+            {
+                _skinRenderer.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                for (int i = 0; i < _meshToDisabe.Length; i++)
+                {
+                    _meshToDisabe[i].GetComponent<MeshRenderer>().enabled = false;
+                }
+            }
         }
         if (_isOnTravel == false)
         {
             _RecallTrailmesh.SetActive(false);
-            _mrenderer.gameObject.SetActive(true);
+            //_mrenderer.gameObject.SetActive(true);
             _mtrailVFX.emitting = true;
-            _skeleton.SetActive(true);
+            if (_skinRenderer != null)
+            {
+                _skinRenderer.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                for (int i = 0; i < _meshToDisabe.Length; i++)
+                {
+                    _meshToDisabe[i].GetComponent<MeshRenderer>().enabled = true;
+                }
+            }
         }
 
         #endregion
@@ -339,8 +356,8 @@ public class GhostBehavior : InputListener
     IEnumerator FreezeTime()
     {
         _getPos = transform.position;
-        _freezeGhost = true;
-        _freezeCharacter = true;
+      //  _freezeGhost = true;
+      //  _freezeCharacter = true;
         yield return new WaitForSeconds(_freezeTime);
         _freezeCharacter = false;
         _freezeGhost = false;
