@@ -21,7 +21,16 @@ public class trap_clone : MonoBehaviour
         if(other.gameObject.layer == 13)
         {
             CharacterController _character = FindObjectOfType<CharacterController>();
-            _character.Hit();
+            if(_character._recallDisableHit == true)
+            {
+                _character._recallDisableHit = false;
+                _character.Hit();
+                _character._recallDisableHit = true;
+            }
+            else
+            {
+                _character.Hit();
+            }
         }
     }
 }

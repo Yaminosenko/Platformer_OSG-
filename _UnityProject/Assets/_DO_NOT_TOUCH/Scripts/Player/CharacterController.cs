@@ -1186,7 +1186,8 @@ public partial class CharacterController : InputListener
     public void Resurrect()
     {
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
-
+        _ghostBehavior._positionGhost.Clear();
+        _ghostBehavior._positionPlayer.Clear();
         _isDead = false;
         capsuleCollider.enabled = true;
 
