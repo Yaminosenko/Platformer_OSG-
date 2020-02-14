@@ -37,10 +37,12 @@ public class Shoot : InputListener
     public Vector2 _rightStickAxis;
 
     public LineRenderer _laserVFX;
+    public ParticleSystem _lazerHit;
 
     private Vector3 _LserLookAt;
 
     public bool _LaserIsActive = false;
+    private float _distanceBetweenLaser;
 
     public List<DroneInfos> _DroneInformations = new List<DroneInfos>(500);
     [System.Serializable]
@@ -139,11 +141,16 @@ public class Shoot : InputListener
         Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
 
         //Ray ray = new Ray(_drone.position, _transformShoot - (_drone.position));
+        _laserVFX.useWorldSpace = false;
         RaycastHit hit;
-        if(Physics.Raycast(_drone.position,_drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
+        if (Physics.Raycast(_drone.position,_drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
-            Debug.Log(hit.collider.name);
+            _lazerHit.transform.position = hit.point - new Vector3(0,0,-0.12f);
+            _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
+            Debug.Log(_distanceBetweenLaser);
+
+            _laserVFX.SetPosition(1,new Vector3(0,0, _distanceBetweenLaser));
+
             if(hit.collider.gameObject.name == "CatalyseurDeLaser")
             {
                 _MyTarget = hit.collider.gameObject;
