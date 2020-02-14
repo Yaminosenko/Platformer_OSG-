@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class trap_clone : MonoBehaviour
 {
-   
+
+    public GameObject _firstTrap;
+    public GameObject _secondTrap;
+
     // Start is called before the first frame update
     void Start()
     {
-     
+        _firstTrap.SetActive(true);
+        _secondTrap.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,6 +34,9 @@ public class trap_clone : MonoBehaviour
             else
             {
                 _character.Hit();
+
+                _firstTrap.SetActive(true);
+                _secondTrap.SetActive(false);
             }
         }
     }
