@@ -215,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 4938428611188826836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.845972, y: 12.9, z: -1.55}
-  m_LocalScale: {x: 2.6512918, y: 2.6512918, z: 2.6512918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3312188643203302751}
   - {fileID: 2107411202691520683}
@@ -296,12 +296,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c757ca001e6c7784482e9ca8bfb1f6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _linkedObject: {fileID: 0}
+  _linkedObject2: {fileID: 0}
   _currentCharge: 0
   _LedChargement1: {fileID: 8369401371501730421}
   _LedChargement2: {fileID: 1734725829404387954}
   _LedChargement3: {fileID: 1259705604094978420}
   _LedMatActive: {fileID: 2100000, guid: c917a0eb0eafa4345a4294487f58d559, type: 2}
   _LedMatDesactive: {fileID: 2100000, guid: a5d40897a4493d44c846a7e719d01ee4, type: 2}
+  _TimerDesincrementation: 4
+  _TimerIncrementation: 0.3
 --- !u!1 &8369401371501730421
 GameObject:
   m_ObjectHideFlags: 0
