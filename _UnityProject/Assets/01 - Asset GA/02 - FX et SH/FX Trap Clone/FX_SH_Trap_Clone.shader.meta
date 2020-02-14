@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 149cceb164e7abc4dae132f775d682d6
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _TextureTrapClone: {fileID: 2800000, guid: aeafe206e543b8141a2c5a61a0db15fc, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
