@@ -18769,25 +18769,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4168978914459005924, guid: 9028143f540610c4da4bc1ce4d52c8e0,
-        type: 3}
-      propertyPath: stopAction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168978914459005925, guid: 9028143f540610c4da4bc1ce4d52c8e0,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 58e8bc2b2f664ba46a8bb3eef05fcf35, type: 2}
     - target: {fileID: 4168978914459005926, guid: 9028143f540610c4da4bc1ce4d52c8e0,
         type: 3}
       propertyPath: m_Name
       value: FX_RecallStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 4168978914459005926, guid: 9028143f540610c4da4bc1ce4d52c8e0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9028143f540610c4da4bc1ce4d52c8e0, type: 3}
@@ -18865,25 +18850,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2915497685723361244, guid: b0a30e2fa75a230408b7dcc823aa41bf,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 58e8bc2b2f664ba46a8bb3eef05fcf35, type: 2}
-    - target: {fileID: 2915497685723361245, guid: b0a30e2fa75a230408b7dcc823aa41bf,
-        type: 3}
-      propertyPath: stopAction
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2915497685723361247, guid: b0a30e2fa75a230408b7dcc823aa41bf,
         type: 3}
       propertyPath: m_Name
       value: FX_RecallEND
-      objectReference: {fileID: 0}
-    - target: {fileID: 2915497685723361247, guid: b0a30e2fa75a230408b7dcc823aa41bf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a30e2fa75a230408b7dcc823aa41bf, type: 3}
@@ -19141,92 +19111,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Recall_Mesh02
       objectReference: {fileID: 0}
-    - target: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: startDelay.scalar
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: scalingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: InitialModule.startRotationY.scalar
-      value: -1.5707963
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.minMaxState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].inSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].outSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[0].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].time
-      value: 0.8485718
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4076927977206527269, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.maxCurve.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289105838497727389, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289105838497727389, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 246556258779787704, guid: b3d15749a95b540488ab0b5554e7c0c5,
-        type: 3}
     - target: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
         type: 3}
       propertyPath: m_LocalPosition.x
