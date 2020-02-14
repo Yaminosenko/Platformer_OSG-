@@ -96,8 +96,9 @@ public class GhostBehavior : InputListener
     public GameObject _skinRenderer;
     public GameObject[] _meshToDisabe;
 
-    public ParticleSystem _FXStartRecall;
+
     public ParticleSystem _FXEndRecall;
+    public GameObject _strt;
 
 
     private void Awake()
@@ -237,7 +238,7 @@ public class GhostBehavior : InputListener
             _recallEnabled = false;
             _isOnTravel = false;
             _FXEndRecall.gameObject.SetActive(true);
-            _FXStartRecall.gameObject.SetActive(false);
+            
         }
 
     }
@@ -374,7 +375,8 @@ public class GhostBehavior : InputListener
        //_freezeCharacter = true;
         yield return new WaitForSeconds(0);
         _FXEndRecall.gameObject.SetActive(false);
-        _FXStartRecall.gameObject.SetActive(true);
+        //.gameObject.SetActive(true);
+        GameObject _fxStart = Instantiate(_strt, transform.position, Quaternion.identity);
         _freezeCharacter = false;
         _freezeGhost = false;
         _isOnTravel = true;
