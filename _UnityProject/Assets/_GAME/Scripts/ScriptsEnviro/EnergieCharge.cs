@@ -17,6 +17,9 @@ public class EnergieCharge : MonoBehaviour
     [SerializeField] private Material _LedMatActive;
     [SerializeField] private Material _LedMatDesactive;
 
+    [SerializeField] private float _TimerDesincrementation = 4f;
+    [SerializeField] private float _TimerIncrementation = 0.3f;
+
     
 
     void Update()
@@ -50,7 +53,7 @@ public class EnergieCharge : MonoBehaviour
             _linkedObject.Open();
             if(_linkedObject2 != null)
             {
-            _linkedObject.Open();
+            _linkedObject2.Open();
 
             }
         }
@@ -81,7 +84,7 @@ public class EnergieCharge : MonoBehaviour
     {
         Debug.Log("why");
         DelaiIsActivate = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(_TimerDesincrementation);
         DelaiIsActivate = false;
         _currentCharge --;
     }
@@ -89,7 +92,7 @@ public class EnergieCharge : MonoBehaviour
     {
         DelaiIsActivateIncrement = true;
         StopCoroutine(DelaiDecrement());
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(_TimerIncrementation);
         DelaiIsActivateIncrement = false;
         _currentCharge++;
     }

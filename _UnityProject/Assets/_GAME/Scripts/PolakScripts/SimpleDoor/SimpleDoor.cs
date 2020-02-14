@@ -7,7 +7,7 @@ public class SimpleDoor : MonoBehaviour
     [SerializeField] private Transform _openPos;
     [SerializeField] private Transform _closePos;
 
-    [SerializeField] private bool _isOpen = false;
+    //[SerializeField] private bool _isOpen = false;
 
 
     // Start is called before the first frame update
@@ -29,9 +29,9 @@ public class SimpleDoor : MonoBehaviour
 
     public void Close()
     {
-        if (_isOpen == false)
-        {
             transform.position = _closePos.position;
-        }
+        //if (_isOpen == false)
+        //{
+        //}
     }
 }
