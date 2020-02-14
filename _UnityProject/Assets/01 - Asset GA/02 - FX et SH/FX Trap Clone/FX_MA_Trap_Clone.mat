@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: FX_MA_Trap_Clone
   m_Shader: {fileID: 4800000, guid: 149cceb164e7abc4dae132f775d682d6, type: 3}
-  m_ShaderKeywords: _SWITCHTRUESTEPINFALSESTEPOUT_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -55,7 +55,7 @@ Material:
     - _StepValueOut: 1.2
     - _StepValueOutMAXtoMIN: 0
     - _SwitchTrueINFalseOut: 0
-    - _SwitchTrueStepINFalseStepOut: 1
+    - _SwitchTrueStepINFalseStepOut: 0
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 1, g: 0, b: 0, a: 0}
