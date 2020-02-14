@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.12839003, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.10015053, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4785,7 +4785,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cb7953fb6d052c459c2bb737a521efc, type: 2}
+  - {fileID: 2100000, guid: 0c21416e9dcbf73448abebcbf6d7da41, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 9006911539760151070}
   - component: {fileID: 2155280496604226887}
   m_Layer: 0
-  m_Name: FX_Sparkz
+  m_Name: FX_Sparkz_Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4856,7 +4856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391644713155721960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.54, y: 5.05, z: -1.1426389}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1308301795776814226}
@@ -6136,8 +6136,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.45740873, b: 0, a: 0}
-        key1: {r: 0.6415094, g: 0.1427222, b: 0, a: 1}
+        key0: {r: 1, g: 0.2843354, b: 0, a: 0}
+        key1: {r: 0, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -6165,7 +6165,7 @@ ParticleSystem:
         m_NumAlphaKeys: 3
       minGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.58040833, b: 0, a: 0}
+        key0: {r: 1, g: 0.0670706, b: 0, a: 0}
         key1: {r: 1, g: 0.3115185, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -9542,7 +9542,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cb7953fb6d052c459c2bb737a521efc, type: 2}
+  - {fileID: 2100000, guid: 0c21416e9dcbf73448abebcbf6d7da41, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14563,7 +14563,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.405365, b: 0, a: 0.65882355}
+      maxColor: {r: 1, g: 0.2712018, b: 0, a: 0.65882355}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
