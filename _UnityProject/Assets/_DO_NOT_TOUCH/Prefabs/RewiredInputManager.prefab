@@ -408,7 +408,7 @@ MonoBehaviour:
     - _id: 28
       _name: Laser
       _type: 1
-      _descriptiveName: Action0
+      _descriptiveName: lase
       _positiveDescriptiveName: 
       _negativeDescriptiveName: 
       _behaviorId: 0
