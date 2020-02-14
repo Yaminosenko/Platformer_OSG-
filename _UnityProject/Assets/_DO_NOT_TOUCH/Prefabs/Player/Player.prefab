@@ -18172,6 +18172,7 @@ MonoBehaviour:
   _recallEnabled: 0
   _recallCount: 0
   _indexDebug: 0
+  _lazerHit: {fileID: 0}
   _recallIndex: 5
   _freezeTime: 0.25
   _recalTime: 4

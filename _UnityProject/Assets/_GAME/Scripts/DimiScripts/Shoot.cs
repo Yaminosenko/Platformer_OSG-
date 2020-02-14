@@ -29,6 +29,7 @@ public class Shoot : InputListener
     private Vector3 _dronePos;
     public float _deadZone = 0.5f;
     public Transform _drone;
+    public bool _disableLaser = false;
 
 
     private GameObject _MyTarget;
@@ -73,6 +74,10 @@ public class Shoot : InputListener
         UpdateMousePosition();
         ArrawIncrementation();
 
+        if(_disableLaser == true)
+        {
+            _laserVFX.gameObject.SetActive(false);
+        }
 
     }
 
@@ -101,12 +106,9 @@ public class Shoot : InputListener
 
         if (_rightStickAxis.x > _deadZone  || _rightStickAxis.x < -_deadZone || _rightStickAxis.y >_deadZone || _rightStickAxis.y<-_deadZone)
         {
-
-
+            _disableLaser = false;
             _dronePos = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * _radiusOffset + _transformShoot;
             var dirJoystick = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0);
-
-
 
             Vector3 difference = _dronePos - _transformShoot;
             float distance = difference.magnitude;
@@ -115,6 +117,10 @@ public class Shoot : InputListener
 
             _dronePos = pointAlongDirection;
 
+        }
+        else
+        {
+            _disableLaser = true;
         }
         _drone.transform.LookAt(new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot);
         _drone.position = Vector3.Lerp(_drone.position, _dronePos, 0.5f);

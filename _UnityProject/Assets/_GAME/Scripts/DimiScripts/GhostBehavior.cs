@@ -64,6 +64,8 @@ public class GhostBehavior : InputListener
     private Vector3 _getPos;
     [SerializeField]private int _recallCount;
     [SerializeField] private int _indexDebug;
+    public ParticleSystem _lazerHit;
+    private float _distanceBetweenLaser;
 
     public int _recallIndex = 5;
     public float _freezeTime = 0.1f;
@@ -104,26 +106,30 @@ public class GhostBehavior : InputListener
         _characterBehivour = _characterController.characterBehaviour;
         _characterBehivour._ghostBehaviour = GetComponent<GhostBehavior>();
 
-        Transform _ghostInstantaite = Instantiate(_ghostTransform);
-        _ghostTransform = _ghostInstantaite;
-        _skeleton = _ghostTransform.GetComponentInChildren <Test>().gameObject;
-        skeletonJointsGhost = _skeleton.GetComponentsInChildren<Transform>();
+        InstentiateGhostVariable();
 
-        _characterBehivour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
-        _character = _ghostInstantaite.GetComponentInChildren<Animator>().transform;
+
+
 
         _Shootref = GetComponent<Shoot>();
-
-        _drone = _ghostInstantaite.GetComponentInChildren<GhostDroneref>().transform;
-
-        _laserVFX = _drone.GetComponentInChildren<LineRenderer>();
 
 
         player = ReInput.players.GetPlayer(PlayerID);
         startTime = Time.time;
     }
 
-
+    void InstentiateGhostVariable()
+    {
+        Transform _ghostInstantaite = Instantiate(_ghostTransform);
+        _ghostTransform = _ghostInstantaite;
+        _skeleton = _ghostTransform.GetComponentInChildren<Test>().gameObject;
+        skeletonJointsGhost = _skeleton.GetComponentsInChildren<Transform>();
+        _characterBehivour.SetGhostAnimator(_ghostInstantaite.GetComponentInChildren<Animator>());
+        _character = _ghostInstantaite.GetComponentInChildren<Animator>().transform;
+        _drone = _ghostInstantaite.GetComponentInChildren<GhostDroneref>().transform;
+        _lazerHit = _ghostInstantaite.GetComponentInChildren<LzrHitRef>().GetComponent<ParticleSystem>();
+        _laserVFX = _drone.GetComponentInChildren<LineRenderer>();
+    }
 
     void SetSkeletonPos()
     {
@@ -330,6 +336,11 @@ public class GhostBehavior : InputListener
         RaycastHit hit;
         if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
         {
+            _lazerHit.transform.position = hit.point - new Vector3(0, 0, -0.12f);
+            _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
+
+            _laserVFX.SetPosition(1, new Vector3(0, 0, _distanceBetweenLaser));
+
             if (hit.collider.gameObject.name == "CatalyseurDeLaser")
             {
                 _MyTarget = hit.collider.gameObject;

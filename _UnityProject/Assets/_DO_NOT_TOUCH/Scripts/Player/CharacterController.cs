@@ -369,7 +369,7 @@ public partial class CharacterController : InputListener
         switch (data.actionName)
         {
             case "Laser":
-                _Shoot._laserVFX.gameObject.SetActive(false);
+               // _Shoot._laserVFX.gameObject.SetActive(false);
                 break;
 
         }
@@ -417,9 +417,12 @@ public partial class CharacterController : InputListener
                 buttonA = true;
                 break;
             case "Laser":
-                _Shoot.LaserInstantiate();
-                _Shoot._laserVFX.gameObject.SetActive(true);
-                _Shoot._LaserIsActive = true;
+                if(_Shoot._disableLaser == false)
+                {
+                    _Shoot.LaserInstantiate();
+                    _Shoot._laserVFX.gameObject.SetActive(true);
+                    _Shoot._LaserIsActive = true;
+                }
                 break;
 
 
