@@ -330,8 +330,6 @@ public class GhostBehavior : InputListener
         RaycastHit hit;
         if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
-            Debug.Log(hit.collider.name);
             if (hit.collider.gameObject.name == "CatalyseurDeLaser")
             {
                 _MyTarget = hit.collider.gameObject;

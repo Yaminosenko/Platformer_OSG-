@@ -147,7 +147,6 @@ public class Shoot : InputListener
         {
             _lazerHit.transform.position = hit.point - new Vector3(0,0,-0.12f);
             _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
-            Debug.Log(_distanceBetweenLaser);
 
             _laserVFX.SetPosition(1,new Vector3(0,0, _distanceBetweenLaser));
 

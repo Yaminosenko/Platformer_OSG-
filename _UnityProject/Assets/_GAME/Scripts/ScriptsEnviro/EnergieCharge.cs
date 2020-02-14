@@ -16,6 +16,7 @@ public class EnergieCharge : MonoBehaviour
     [SerializeField] private GameObject _LedChargement3;
     [SerializeField] private Material _LedMatActive;
     [SerializeField] private Material _LedMatDesactive;
+
     
 
     void Update()
@@ -49,7 +50,7 @@ public class EnergieCharge : MonoBehaviour
             _linkedObject.Open();
             if(_linkedObject2 != null)
             {
-            _linkedObject2.Open();
+            _linkedObject.Open();
 
             }
         }
@@ -60,7 +61,7 @@ public class EnergieCharge : MonoBehaviour
                 _linkedObject2.Close();
 
             }
-            _linkedObject2.Close();
+            _linkedObject.Close();
         }
 
         if (_currentCharge > 0 && DelaiIsActivate == false)
@@ -78,6 +79,7 @@ public class EnergieCharge : MonoBehaviour
     }
     IEnumerator DelaiDecrement()
     {
+        Debug.Log("why");
         DelaiIsActivate = true;
         yield return new WaitForSeconds(2);
         DelaiIsActivate = false;
