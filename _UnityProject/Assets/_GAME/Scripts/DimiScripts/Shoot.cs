@@ -8,6 +8,7 @@ using UnityEditor;
 #endif
 public class Shoot : InputListener
 {
+    public GhostBehavior _GhostBehaviorRef;
     private CharacterController _characterControler;
     public Rewired.Player player;
     public int PlayerID = 0;
@@ -25,10 +26,33 @@ public class Shoot : InputListener
     private Vector3 _transformShoot;
     private Vector3 directionOnly;
     public GameObject _offsetBlaster;
-    public Transform _offsetLaser;
+    private Vector3 _dronePos;
+    public float _deadZone = 0.5f;
+    public Transform _drone;
+
 
     private GameObject _MyTarget;
     private EnergieCharge _myCurrentEnergieCharge;
+
+    public Vector2 _rightStickAxis;
+
+    public LineRenderer _laserVFX;
+
+    private Vector3 _LserLookAt;
+
+    public bool _LaserIsActive = false;
+
+    public List<DroneInfos> _DroneInformations = new List<DroneInfos>(500);
+    [System.Serializable]
+
+    public struct DroneInfos
+    {
+        public Vector3 _positionDrone;
+        public Quaternion _rotationDrone;
+        public bool _laserActivate;
+        public float _TimeDrone;
+        public Vector3 _LookAtLaserDrone;
+    }
 
 
     private void OnEnable()
@@ -37,18 +61,17 @@ public class Shoot : InputListener
         player = ReInput.players.GetPlayer(PlayerID);
         cameraVirt = GameObject.Find("CameraController2D");
         camera = cameraVirt.GetComponent<Camera>();
+        _GhostBehaviorRef = GetComponent<GhostBehavior>();
     }
 
     private void Update()
     {
+        DronePosition();
         UpdateOffset();
         UpdateMousePosition();
+        ArrawIncrementation();
 
-        if (Input.GetMouseButton(0))
-        {
-            // SpawnProjectile();
-            LaserInstantiate();
-        }
+
     }
 
     void UpdateOffset()
@@ -63,9 +86,37 @@ public class Shoot : InputListener
         _offsetShoot = pointAlongDirection;
 
         _offsetBlaster.transform.position = _offsetShoot;
-        _offsetBlaster.transform.LookAt(_mousePos) ;
+        _offsetBlaster.transform.LookAt(_mousePos);
+        //_offsetBlaster.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         
+    }
+
+
+    private void DronePosition()
+    {
+        _dronePos = _transformShoot;
+
+        if (_rightStickAxis.x > _deadZone  || _rightStickAxis.x < -_deadZone || _rightStickAxis.y >_deadZone || _rightStickAxis.y<-_deadZone)
+        {
+
+
+            _dronePos = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * _radiusOffset + _transformShoot;
+            var dirJoystick = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0);
+
+
+
+            Vector3 difference = _dronePos - _transformShoot;
+            float distance = difference.magnitude;
+            Vector3 directionOnly = difference.normalized;
+            Vector3 pointAlongDirection = _transformShoot + (directionOnly * _radiusOffset);
+
+            _dronePos = pointAlongDirection;
+
+        }
+        _drone.transform.LookAt(new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot);
+        _drone.position = Vector3.Lerp(_drone.position, _dronePos, 0.5f);
+
     }
 
     void UpdateMousePosition()
@@ -78,13 +129,20 @@ public class Shoot : InputListener
         }
     }
 
-    void LaserInstantiate()
+    public void LaserInstantiate()
     {
-        Debug.DrawLine(_offsetShoot, _mousePos, Color.red);
-        Ray ray = new Ray(_offsetShoot, _mousePos);
+
+        _LserLookAt = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot;
+        //Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.forward);
+
+        _laserVFX.transform.LookAt(_LserLookAt);
+        Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
+
+        //Ray ray = new Ray(_drone.position, _transformShoot - (_drone.position));
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(_drone.position,_drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
         {
+            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
             Debug.Log(hit.collider.name);
             if(hit.collider.gameObject.name == "CatalyseurDeLaser")
             {
@@ -94,6 +152,10 @@ public class Shoot : InputListener
                 _myCurrentEnergieCharge.chargerecieve();
 
             }
+        }
+        else
+        {
+            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
         }
     }
 
@@ -105,8 +167,38 @@ public class Shoot : InputListener
         
     }
 
+    //protected override void GetAxis(InputActionEventData data)
+    //{
+    //    // All inputs locked
+    //    if (lockAllInputs)
+    //        return;
+
+    //    switch (data.actionName)
+    //    {
+
+    //    }
+
+    //    base.GetAxis(data);
+    //}
+
+        void ArrawIncrementation()
+    {
+        DroneInfos Di = new DroneInfos();
+
+        Di._positionDrone = _drone.position;
+        Di._rotationDrone = _drone.rotation;
+        Di._TimeDrone = Time.time;
+        Di._LookAtLaserDrone = _LserLookAt;
+        Di._laserActivate = _LaserIsActive;
+        _DroneInformations.Add(Di);
+
+        _DroneInformations.RemoveAll(e => e._TimeDrone < Time.time - _GhostBehaviorRef.recallPeriod );
+    }
+
+
+
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+        private void OnDrawGizmos()
     {
         Handles.color = Color.red;
         Handles.SphereHandleCap(-1, _mousePos, Quaternion.identity, 1, EventType.Repaint);
@@ -116,8 +208,7 @@ public class Shoot : InputListener
         Handles.DrawLine(_offsetShoot, _mousePos);
         Handles.SphereHandleCap(-1, _offsetShoot, Quaternion.identity, 1, EventType.Repaint);
         Handles.color = Color.cyan;
-
-        Handles.ArrowHandleCap(-1, _offsetShoot, _offsetBlaster.transform.rotation, 5, EventType.Repaint);
+        Handles.SphereHandleCap(-1, new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset*2) + _transformShoot, Quaternion.identity, 1, EventType.Repaint);
     }
 #endif
 

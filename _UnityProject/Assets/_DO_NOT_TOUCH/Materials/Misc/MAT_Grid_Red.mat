@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: MAT_Grid_Red
   m_Shader: {fileID: 4800000, guid: 7d8004e4ae7d4e34da79f18be02dbb20, type: 3}
   m_ShaderKeywords: 
@@ -78,5 +79,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.2864149, b: 0.2117647, a: 1}
+    - _Color: {r: 1, g: 0.09452737, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

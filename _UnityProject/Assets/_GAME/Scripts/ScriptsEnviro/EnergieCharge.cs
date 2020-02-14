@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnergieCharge : MonoBehaviour
 {
-   [SerializeField] private int _currentCharge = 0;
+    public SimpleDoor _linkedObject;
+    public SimpleDoor _linkedObject2;
+    [SerializeField] private int _currentCharge = 0;
     private bool DelaiIsActivate = false;
     private bool DelaiIsActivateIncrement = false;
 
@@ -42,8 +44,24 @@ public class EnergieCharge : MonoBehaviour
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
                 break;
         }
+        if(_currentCharge >= 3)
+        {
+            _linkedObject.Open();
+            if(_linkedObject2 != null)
+            {
+            _linkedObject2.Open();
 
+            }
+        }
+        else
+        {
+            if (_linkedObject2 != null)
+            {
+                _linkedObject2.Close();
 
+            }
+            _linkedObject2.Close();
+        }
 
         if (_currentCharge > 0 && DelaiIsActivate == false)
         {

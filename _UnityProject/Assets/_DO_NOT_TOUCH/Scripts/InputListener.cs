@@ -77,6 +77,7 @@ public class InputListener : MonoBehaviour
         foreach (string inputName in axisInputs)
         {
             player.AddInputEventDelegate(GetAxis, UpdateLoopType.Update, InputActionEventType.Update, inputName);
+
         }
     }
 
