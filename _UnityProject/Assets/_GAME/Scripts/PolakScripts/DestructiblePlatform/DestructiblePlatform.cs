@@ -27,14 +27,14 @@ public class DestructiblePlatform : MonoBehaviour
 
     IEnumerator Timetodestroy()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         platform.SetActive(false);
         StartCoroutine("Timetorespawn");
     }
 
     IEnumerator Timetorespawn()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         platform.SetActive(true);
     }
 }
