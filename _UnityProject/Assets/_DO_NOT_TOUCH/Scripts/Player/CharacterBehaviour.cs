@@ -112,7 +112,7 @@ public class CharacterBehaviour : MonoBehaviour {
         skeletonJoints = skeletonRoot.GetComponentsInChildren<Transform>();
         StartCoroutine(DeleteAnim());
     }
-    private IEnumerator DeleteAnim()
+    public IEnumerator DeleteAnim()
     {
         yield return new WaitForSeconds(_ghostBehaviour.recallPeriod);
         ghostAnimator.enabled = false;
