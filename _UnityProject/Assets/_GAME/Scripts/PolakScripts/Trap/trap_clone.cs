@@ -11,8 +11,8 @@ public class trap_clone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _firstTrap.SetActive(true);
-        _secondTrap.SetActive(false);
+       // _firstTrap.SetActive(true);
+       // _secondTrap.SetActive(false);
     }
 
     // Update is called once per frame
