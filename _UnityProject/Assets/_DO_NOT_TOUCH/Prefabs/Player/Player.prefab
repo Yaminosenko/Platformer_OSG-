@@ -18224,6 +18224,7 @@ MonoBehaviour:
   _deadZone: 0.8
   _drone: {fileID: 3148927726232491694}
   _disableLaser: 0
+  _instantiateLaser: 1
   _rightStickAxis: {x: 0, y: 0}
   _laserVFX: {fileID: 2901153742718746248}
   _lazerHit: {fileID: 1165727168360189419}
