@@ -18164,6 +18164,7 @@ MonoBehaviour:
   _drone: {fileID: 0}
   _laserVFX: {fileID: 0}
   _LaserIsActive: 0
+  _Shootref: {fileID: 0}
   _lazerHit: {fileID: 0}
   _enabledLaser: 0
   _recallWithoutTrail: 0
@@ -18171,7 +18172,8 @@ MonoBehaviour:
   recallPeriod: 4
   _rotationGhost: []
   PlayerID: 0
-  _recallEnabled: 0
+  _InstanciateRecall: 0
+  _recallIsActive2: 0
   _recallCount: 0
   _indexDebug: 0
   _recallIndex: 5
@@ -18191,6 +18193,10 @@ MonoBehaviour:
   _FXEndRecall: {fileID: 1422584154587927811}
   _strt: {fileID: 4168978914459005926, guid: 9028143f540610c4da4bc1ce4d52c8e0, type: 3}
   _FXtrail: {fileID: 2932124411450771477}
+  _ghostSkin: {fileID: 0}
+  _ghostMesh: []
+  _droneMesh: {fileID: 0}
+  _FXGhost: []
 --- !u!114 &510227553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18774,6 +18780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FX_RecallEND
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915497685723361247, guid: b0a30e2fa75a230408b7dcc823aa41bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0a30e2fa75a230408b7dcc823aa41bf, type: 3}

@@ -12,21 +12,13 @@ public class TriggerGhostLaser : MonoBehaviour
         {
             if(_ghost == true)
             {
-                //col.GetComponent<GhostBehavior>().InstentiateGhostVariable();
-                //col.GetComponent<GhostBehavior>()._enabledRecall = true;
-
-                //col.GetComponent<GhostBehavior>()._ghostRenderer.enabled = true;
-                //for (int i = 0; i < 2; i++)
-                //{
-                //    col.GetComponent<GhostBehavior>()._ghostMesh[i].enabled = true;
-                //}
-
-                //StartCoroutine(col.GetComponent<GhostBehavior>()._characterBehivour.DeleteAnim());
-                //Destroy(gameObject);
+                col.GetComponent<GhostBehavior>()._InstanciateRecall = true;
+                col.GetComponent<GhostBehavior>().GhostMeshInstanciate();
+                Destroy(gameObject);
             }
             else
             {
-                col.GetComponent<GhostBehavior>()._enabledLaser = true;
+                col.GetComponent<Shoot>()._instantiateLaser = true;
                 Destroy(gameObject);
             }
         }
