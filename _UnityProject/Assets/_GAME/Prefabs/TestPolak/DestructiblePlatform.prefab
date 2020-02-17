@@ -58,7 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa09d6775883a4e45978a7c2e2b95fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: {fileID: 3228635976135174305}
+  child: {fileID: 3228635976135174305}
+  _timeBeforeDestruction: 2
+  _timeReconstruction: 4
 --- !u!1 &3228635976135174305
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +72,7 @@ GameObject:
   - component: {fileID: 3228635976135174304}
   - component: {fileID: 3228635976135174301}
   - component: {fileID: 3228635976135174302}
-  - component: {fileID: 3228635976135174303}
+  - component: {fileID: 8083648612465043274}
   m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
@@ -139,7 +141,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3228635976135174303
+--- !u!65 &8083648612465043274
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
