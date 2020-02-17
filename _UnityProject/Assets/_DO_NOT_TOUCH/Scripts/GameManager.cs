@@ -8,6 +8,8 @@ public class GameManager : InputListener {
     public VirtualCamera2D _virtualCamera2D;
     public GhostBehavior _Ghost;
     public PolygonTrigger2D _Polygontrigger2D;
+    public ResetScene _resetSceneRef;
+    [SerializeField] private bool _ResetSceneActivate = false;
 
     public PolygonTrigger2D[] _PolygonColliderArray;
 
@@ -152,6 +154,12 @@ public class GameManager : InputListener {
                 break;
 
             CharacterController newCharacterController = Instantiate(characterControllerPrefab, playerGroup);
+           if(_ResetSceneActivate == true)
+            {
+            newCharacterController._ResetSceneRef = _resetSceneRef;
+
+            }
+
             characterControllersArray[i] = newCharacterController;
             newCharacterController.gameObject.name = "Player" + (i + 1);
 

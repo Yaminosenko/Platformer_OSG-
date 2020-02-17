@@ -4,23 +4,10 @@ using UnityEngine;
 
 public class SimpleDoor : MonoBehaviour
 {
-    [SerializeField] private Transform _openPos;
-    [SerializeField] private Transform _closePos;
+    public Transform _openPos;
+    public Transform _closePos;
 
-    //[SerializeField] private bool _isOpen = false;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+ 
 
     public void Open()
     {

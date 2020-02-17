@@ -6,8 +6,8 @@ public class DestructiblePlatform : MonoBehaviour
 {
      private GameObject platform;
      private MeshRenderer mesh;
-    [SerializeField] private GameObject child;
-     private BoxCollider collider;
+     public GameObject child;
+     public BoxCollider collider;
     
     [SerializeField] private float _timeBeforeDestruction = 2;
     [SerializeField] private float _timeReconstruction = 4;
@@ -20,12 +20,6 @@ public class DestructiblePlatform : MonoBehaviour
         //child = GetComponentInChildren<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 9)
@@ -33,6 +27,7 @@ public class DestructiblePlatform : MonoBehaviour
             StartCoroutine("Timetodestroy");
         }
     }
+
 
     IEnumerator Timetodestroy()
     {

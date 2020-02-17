@@ -8,6 +8,7 @@ using UnityEditor;
 #endif
 public class Shoot : InputListener
 {
+    public bool ThereIsSomthingBetwinDroneAndPlayer = false;
     public GhostBehavior _GhostBehaviorRef;
     private CharacterController _characterControler;
     public Rewired.Player player;
@@ -29,6 +30,7 @@ public class Shoot : InputListener
     private Vector3 _dronePos;
     public float _deadZone = 0.5f;
     public Transform _drone;
+    public Collider _DroneCollider;
     public bool _disableLaser = false;
     public bool _instantiateLaser = false;
 
@@ -70,10 +72,13 @@ public class Shoot : InputListener
 
     private void Update()
     {
+        RecastDeSecurité();
         DronePosition();
         UpdateOffset();
         UpdateMousePosition();
         ArrawIncrementation();
+
+        Debug.Log(ThereIsSomthingBetwinDroneAndPlayer);
 
         if(_disableLaser == true)
         {
@@ -156,7 +161,7 @@ public class Shoot : InputListener
             RaycastHit hit;
             if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
             {
-                _lazerHit.transform.position = hit.point - new Vector3(0, 0, -0.12f);
+                _lazerHit.transform.position = hit.point - new Vector3(0, 0,0);
                 _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
 
                 _laserVFX.SetPosition(1, new Vector3(0, 0, _distanceBetweenLaser));
@@ -177,6 +182,28 @@ public class Shoot : InputListener
         }
 
        
+    }
+    public void RecastDeSecurité()
+    {
+        Vector3 difference = _dronePos - _transformShoot;
+        float distance = difference.magnitude;
+        RaycastHit hit;
+        Debug.DrawRay(_transformShoot, _drone.TransformDirection(Vector3.forward), Color.red);
+        if (Physics.Raycast(_transformShoot, _drone.TransformDirection(Vector3.forward), out hit, distance +0.8f))
+        {
+            if(hit.collider != _DroneCollider && hit.collider.gameObject.layer != 13)
+            {
+                Debug.Log(hit.collider);
+                ThereIsSomthingBetwinDroneAndPlayer = true;
+
+            }
+
+        }
+        else
+        {
+            ThereIsSomthingBetwinDroneAndPlayer = false;
+        }
+
     }
 
     void SpawnProjectile()

@@ -9,6 +9,7 @@ public partial class CharacterController : InputListener
     //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
     public Shoot _Shoot;
+    public ResetScene _ResetSceneRef;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -286,6 +287,7 @@ public partial class CharacterController : InputListener
         OnJump += CheatJumpCallback;
         _ghostBehavior = GetComponent<GhostBehavior>();
         _Shoot = GetComponent<Shoot>();
+        _ResetSceneRef = GetComponentInChildren<ResetScene>();
 #endif
     }
 
@@ -423,9 +425,19 @@ public partial class CharacterController : InputListener
             case "Laser":
                 if(_Shoot._disableLaser == false)
                 {
+
+                    if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+                    {
                     _Shoot.LaserInstantiate();
                     _Shoot._laserVFX.gameObject.SetActive(true);
                     _Shoot._LaserIsActive = true;
+                    }
+                    else
+                    {
+                        _Shoot._laserVFX.gameObject.SetActive(false);
+                        _Shoot._LaserIsActive = false;
+                    }
+               
                 }
                 break;
 
@@ -1192,6 +1204,7 @@ public partial class CharacterController : InputListener
 
     public void Resurrect()
     {
+        _ResetSceneRef.SceneReset();
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();
         _ghostBehavior._positionPlayer.Clear();
