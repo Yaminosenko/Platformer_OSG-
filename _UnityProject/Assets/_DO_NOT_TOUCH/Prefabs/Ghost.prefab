@@ -3869,10 +3869,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4530f93ee5bd7ed4da5e8b1ec5d86265, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 062338aaa1934a34ba0fcc0923237cfa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 062338aaa1934a34ba0fcc0923237cfa,
         type: 3}
       propertyPath: m_Name
       value: SM_Chara_Module_Clone
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 062338aaa1934a34ba0fcc0923237cfa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062338aaa1934a34ba0fcc0923237cfa, type: 3}
@@ -4219,6 +4229,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4530f93ee5bd7ed4da5e8b1ec5d86265, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 1e93bd2f8eb83a14794238329392a64e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 1e93bd2f8eb83a14794238329392a64e,
         type: 3}
       propertyPath: m_Name

@@ -12,6 +12,8 @@ public class GhostBehavior : InputListener
 {
     //LASER
 
+    [Header("LASER")]
+    [Space(10)]
     public float _radiusOffset = 1;
     private Vector3 _offsetShoot;
     private Vector3 _distance;
@@ -20,29 +22,28 @@ public class GhostBehavior : InputListener
     public Transform _drone;
     private EnergieCharge _myCurrentEnergieCharge;
     private GameObject _MyTarget;
-
     public LineRenderer _laserVFX;
-
     private Vector3 _LserLookAt;
-
     public bool _LaserIsActive = false;
-
-
     private Shoot _Shootref;
+    public ParticleSystem _lazerHit;
+    public bool _enabledLaser = false;
+    private bool _setPosDrone = false;
+
+
+    [Header("RECALL")]
+    [Space(10)]
     float timer = 0;
     public bool _recallWithoutTrail = true;
     public bool _enabledRecall = true;
     public float recallPeriod = 2.0f;
     public List<GhostPosition> _positionGhost = new List<GhostPosition>(500);
     public List<GhostPosition> _positionPlayer = new List<GhostPosition>(500);
-
-
     public struct GhostPosition
     {
        public Vector3 _positions;
        public float _time;
     }
-
     public List<GhostRotation> _rotationGhost = new List<GhostRotation>(500);
     [System.Serializable]
     public struct GhostRotation
@@ -50,8 +51,6 @@ public class GhostBehavior : InputListener
         public Quaternion _rotation;
         public float _time;
     }
-
-
     public Rewired.Player player;
     public int PlayerID = 0;
     public bool _recallEnabled = false;
@@ -64,21 +63,15 @@ public class GhostBehavior : InputListener
     private Vector3 _getPos;
     [SerializeField]private int _recallCount;
     [SerializeField] private int _indexDebug;
-    public ParticleSystem _lazerHit;
     private float _distanceBetweenLaser;
-
     public int _recallIndex = 5;
     public float _freezeTime = 0.1f;
     public float _recalTime = 0.5f;
     public Transform _ghostTransform;
-
     private float startTime;
-
     public Transform[] skeletonJointsGhost;
     private CharacterBehaviour _characterBehivour;
     private Transform _character;
-
-
     private float fractionOfJourney;
     private float distCovered;
     private float TimeTravel;
@@ -86,19 +79,18 @@ public class GhostBehavior : InputListener
     private int _index;
     [SerializeField] private TrailRenderer _mtrailVFX;
     [SerializeField] private GameObject _RecallTrailmesh;
-    
- 
     public bool _isOnTravel = false;
-
     private SkinnedMeshRenderer _mrenderer;
     [SerializeField] private GameObject _skeleton;
-
     public GameObject _skinRenderer;
     public GameObject[] _meshToDisabe;
-
-
     public ParticleSystem _FXEndRecall;
     public GameObject _strt;
+
+    public GameObject _FXtrail;
+
+
+
 
 
     private void Awake()
@@ -109,17 +101,12 @@ public class GhostBehavior : InputListener
         _mrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         _characterBehivour = _characterController.characterBehaviour;
         _characterBehivour._ghostBehaviour = GetComponent<GhostBehavior>();
-
-        InstentiateGhostVariable();
-
-
-
-
         _Shootref = GetComponent<Shoot>();
-
-
         player = ReInput.players.GetPlayer(PlayerID);
         startTime = Time.time;
+
+
+        InstentiateGhostVariable();
     }
 
     void InstentiateGhostVariable()
@@ -133,6 +120,8 @@ public class GhostBehavior : InputListener
         _drone = _ghostInstantaite.GetComponentInChildren<GhostDroneref>().transform;
         _lazerHit = _ghostInstantaite.GetComponentInChildren<LzrHitRef>().GetComponent<ParticleSystem>();
         _laserVFX = _drone.GetComponentInChildren<LineRenderer>();
+        _FXtrail.SetActive(true);
+        _setPosDrone = true;
     }
 
     void SetSkeletonPos()
@@ -145,7 +134,11 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
-        _SetDroneAndLAserPOstition();
+        if(_setPosDrone == true)
+        {
+            _SetDroneAndLAserPOstition();
+        }
+        
 
         #region VFX On Travel
         if (_isOnTravel == true)
@@ -179,20 +172,23 @@ public class GhostBehavior : InputListener
 
         #endregion
          TrackPositionsPlayer();
+        if(_enabledRecall == true)
+        {
+            if (_freezeGhost == false)
+            {
 
-        if(_freezeGhost == false)
-        {
-            //Track de la position du joueur et deplacement du ghost
-            TrackPositionsGhost();
-            //_ghostTransform.position = _positionGhost[0];
-            _ghostTransform.position = _positionGhost[0]._positions;
-            _character.rotation = _rotationGhost[0]._rotation;
+                TrackPositionsGhost();
+
+                _ghostTransform.position = _positionGhost[0]._positions;
+                _character.rotation = _rotationGhost[0]._rotation;
+            }
+            if (_freezeCharacter == true)
+            {
+                //freeze au moment du recall
+                transform.position = _getPos;
+            }
         }
-        if (_freezeCharacter == true)
-        {
-            //freeze au moment du recall
-            transform.position = _getPos;
-        }
+     
         //Debug.Log(TimeTravel);
         TimeTravel += Time.deltaTime;
         distCovered = (Time.time - startTime) * _recalTime;
@@ -213,10 +209,10 @@ public class GhostBehavior : InputListener
             }
         }
 
-        if (_recallCount != 0)
-        {
-            RecallWaiting();
-        }
+        //if (_recallCount != 0)
+        //{
+        //    RecallWaiting();
+        //}
     }
 
     
@@ -236,6 +232,7 @@ public class GhostBehavior : InputListener
             _capsuleCharacter.isTrigger = false;
             _characterController._recallDisableHit = false;
             _recallEnabled = false;
+            _enabledRecall = true;
             _isOnTravel = false;
             _FXEndRecall.gameObject.SetActive(true);
             
@@ -288,36 +285,40 @@ public class GhostBehavior : InputListener
 
     public void Recall()
     {
-        
-        if (_recallWithoutTrail == true)
+        if(_enabledRecall == true)
         {
-            StartCoroutine(FreezeTime());
-            TimeTravel = 0f;
-        }
-        else
-        {
-            if(_recallCount == 0)
+            if (_recallWithoutTrail == true)
             {
                 StartCoroutine(FreezeTime());
-                List<Vector3> FreezeList = new List<Vector3>(500);
-                for (int i = 0; i < _positionPlayer.ToArray().Length; i++)
-                {
-                    FreezeList.Add(_positionPlayer[i]._positions);
-                }
-               
-                ArrayFreeze = FreezeList.ToArray();
-                _index = ArrayFreeze.Length - 1;
-                Debug.Log(ArrayFreeze.Length);
-                _recallCount++;
-
-
-                //_recallEnabled = true;
+                TimeTravel = 0f;
             }
             else
             {
-                _recallWithoutTrail = true;
+                if (_recallCount == 0)
+                {
+                    StartCoroutine(FreezeTime());
+                    List<Vector3> FreezeList = new List<Vector3>(500);
+                    for (int i = 0; i < _positionPlayer.ToArray().Length; i++)
+                    {
+                        FreezeList.Add(_positionPlayer[i]._positions);
+                    }
+
+                    ArrayFreeze = FreezeList.ToArray();
+                    _index = ArrayFreeze.Length - 1;
+
+                    _recallCount++;
+
+
+                    _enabledRecall = false;
+                }
+                else
+                {
+                    _recallWithoutTrail = true;
+                }
             }
         }
+        
+      
     }
 
     void RecallWaiting()
@@ -376,13 +377,14 @@ public class GhostBehavior : InputListener
         yield return new WaitForSeconds(0);
         _FXEndRecall.gameObject.SetActive(false);
         //.gameObject.SetActive(true);
-        GameObject _fxStart = Instantiate(_strt, transform.position, Quaternion.identity);
         _freezeCharacter = false;
         _freezeGhost = false;
         _isOnTravel = true;
         startTime = Time.time;
         _RecallPosition = _ghostTransform.position;
         _distanceGhostPlayer = Vector3.Distance(transform.position, _RecallPosition);
+        GameObject _fxStart = Instantiate(_strt, _RecallPosition, Quaternion.identity);
+        GameObject _fxStart2 = Instantiate(_strt, transform.position, Quaternion.identity);
         _capsuleCharacter.isTrigger = true;
         _characterController._recallDisableHit = true;
         _recallEnabled = true;
