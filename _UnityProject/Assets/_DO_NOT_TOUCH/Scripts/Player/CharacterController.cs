@@ -392,11 +392,15 @@ public partial class CharacterController : InputListener
 
             case "Die":
                 if (!hit && !isDead)
-                    Death();
+                    Hit();
                 break;
 
             case "Recall":
                 _ghostBehavior.Recall();
+                break;
+
+            case "BoutonX":
+                
                 break;
 
 
@@ -1103,7 +1107,7 @@ public partial class CharacterController : InputListener
             if (hitCoroutine != null)
                 StopCoroutine(hitCoroutine);
             hitCoroutine = StartCoroutine(CoHit(hitLagDuration));
-
+            _ghostBehavior._enabledRecall = false;
             OnHit();
         }
     }
@@ -1191,6 +1195,9 @@ public partial class CharacterController : InputListener
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();
         _ghostBehavior._positionPlayer.Clear();
+        _Shoot._DroneInformations.Clear();
+        _characterBehaviour.jointsInfos.Clear();
+        _ghostBehavior._enabledRecall = true;
         _isDead = false;
         capsuleCollider.enabled = true;
 

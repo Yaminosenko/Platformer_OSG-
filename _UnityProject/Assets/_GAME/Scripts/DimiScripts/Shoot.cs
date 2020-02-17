@@ -30,6 +30,7 @@ public class Shoot : InputListener
     public float _deadZone = 0.5f;
     public Transform _drone;
     public bool _disableLaser = false;
+    public bool _instantiateLaser = false;
 
 
     private GameObject _MyTarget;
@@ -104,27 +105,30 @@ public class Shoot : InputListener
     {
         _dronePos = _transformShoot;
 
-        if (_rightStickAxis.x > _deadZone  || _rightStickAxis.x < -_deadZone || _rightStickAxis.y >_deadZone || _rightStickAxis.y<-_deadZone)
+        if(_instantiateLaser == true)
         {
-            _disableLaser = false;
-            _dronePos = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * _radiusOffset + _transformShoot;
-            var dirJoystick = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0);
+            if (_rightStickAxis.x > _deadZone || _rightStickAxis.x < -_deadZone || _rightStickAxis.y > _deadZone || _rightStickAxis.y < -_deadZone)
+            {
+                _disableLaser = false;
+                _dronePos = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * _radiusOffset + _transformShoot;
+                var dirJoystick = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0);
 
-            Vector3 difference = _dronePos - _transformShoot;
-            float distance = difference.magnitude;
-            Vector3 directionOnly = difference.normalized;
-            Vector3 pointAlongDirection = _transformShoot + (directionOnly * _radiusOffset);
+                Vector3 difference = _dronePos - _transformShoot;
+                float distance = difference.magnitude;
+                Vector3 directionOnly = difference.normalized;
+                Vector3 pointAlongDirection = _transformShoot + (directionOnly * _radiusOffset);
 
-            _dronePos = pointAlongDirection;
+                _dronePos = pointAlongDirection;
 
-        }
-        else
-        {
-            _disableLaser = true;
+            }
+            else
+            {
+                _disableLaser = true;
+            }
+          
         }
         _drone.transform.LookAt(new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot);
         _drone.position = Vector3.Lerp(_drone.position, _dronePos, 0.5f);
-
     }
 
     void UpdateMousePosition()
@@ -139,36 +143,40 @@ public class Shoot : InputListener
 
     public void LaserInstantiate()
     {
-
-        _LserLookAt = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot;
-        //Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.forward);
-
-        _laserVFX.transform.LookAt(_LserLookAt);
-        Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
-
-        //Ray ray = new Ray(_drone.position, _transformShoot - (_drone.position));
-        _laserVFX.useWorldSpace = false;
-        RaycastHit hit;
-        if (Physics.Raycast(_drone.position,_drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
+        if(_instantiateLaser == true)
         {
-            _lazerHit.transform.position = hit.point - new Vector3(0,0,-0.12f);
-            _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
+            _LserLookAt = new Vector3(_rightStickAxis.x, _rightStickAxis.y, 0) * (_radiusOffset * 2) + _transformShoot;
+            //Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.forward);
 
-            _laserVFX.SetPosition(1,new Vector3(0,0, _distanceBetweenLaser));
+            _laserVFX.transform.LookAt(_LserLookAt);
+            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
 
-            if(hit.collider.gameObject.name == "CatalyseurDeLaser")
+            //Ray ray = new Ray(_drone.position, _transformShoot - (_drone.position));
+            _laserVFX.useWorldSpace = false;
+            RaycastHit hit;
+            if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
             {
-                _MyTarget = hit.collider.gameObject;
+                _lazerHit.transform.position = hit.point - new Vector3(0, 0, -0.12f);
+                _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
 
-                _myCurrentEnergieCharge = _MyTarget.GetComponent<EnergieCharge>();
-                _myCurrentEnergieCharge.chargerecieve();
+                _laserVFX.SetPosition(1, new Vector3(0, 0, _distanceBetweenLaser));
 
+                if (hit.collider.gameObject.name == "CatalyseurDeLaser")
+                {
+                    _MyTarget = hit.collider.gameObject;
+
+                    _myCurrentEnergieCharge = _MyTarget.GetComponent<EnergieCharge>();
+                    _myCurrentEnergieCharge.chargerecieve();
+
+                }
+            }
+            else
+            {
+                Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
             }
         }
-        else
-        {
-            Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
-        }
+
+       
     }
 
     void SpawnProjectile()
