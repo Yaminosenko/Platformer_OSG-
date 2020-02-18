@@ -427,9 +427,12 @@ public partial class CharacterController : InputListener
             case "Laser":
                 if(_Shoot._disableLaser == false)
                 {
-                    _Shoot.LaserInstantiate();
-                    _Shoot._laserVFX.gameObject.SetActive(true);
-                    _Shoot._LaserIsActive = true;
+                    if(_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+                    {
+                        _Shoot.LaserInstantiate();
+                        _Shoot._laserVFX.gameObject.SetActive(true);
+                        _Shoot._LaserIsActive = true;
+                    }
                 }
                 break;
 
