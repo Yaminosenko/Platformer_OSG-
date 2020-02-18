@@ -6,7 +6,7 @@ public class EnergieCharge : MonoBehaviour
 {
     public SimpleDoor _linkedObject;
     public SimpleDoor _linkedObject2;
-    public int _currentCharge = 0;
+    [SerializeField] private int _currentCharge = 0;
     private bool DelaiIsActivate = false;
     private bool DelaiIsActivateIncrement = false;
     public GameObject _FXTicks;

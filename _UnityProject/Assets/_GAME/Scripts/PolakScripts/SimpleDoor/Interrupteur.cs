@@ -8,6 +8,7 @@ public class Interrupteur : MonoBehaviour
 {
     public SimpleDoor _linkedObject;
     [SerializeField] private int _count = 0;
+    [SerializeField] private GameObject _uxInteractionFeedback;
 
     private bool _isOntrigger = false;
 
@@ -17,6 +18,7 @@ public class Interrupteur : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
         _isOntrigger = true;
+        _uxInteractionFeedback.SetActive(true);
         }
      
         if (other.gameObject.layer == 9 || other.gameObject.layer == 13 )
@@ -46,6 +48,7 @@ public class Interrupteur : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
              _isOntrigger = false;
+            _uxInteractionFeedback.SetActive(false);
         }
     }
 }

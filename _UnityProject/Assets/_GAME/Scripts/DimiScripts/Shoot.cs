@@ -8,7 +8,6 @@ using UnityEditor;
 #endif
 public class Shoot : InputListener
 {
-    public bool ThereIsSomthingBetwinDroneAndPlayer = false;
     public GhostBehavior _GhostBehaviorRef;
     private CharacterController _characterControler;
     public Rewired.Player player;
@@ -30,7 +29,6 @@ public class Shoot : InputListener
     private Vector3 _dronePos;
     public float _deadZone = 0.5f;
     public Transform _drone;
-    public Collider _DroneCollider;
     public bool _disableLaser = false;
     public bool _instantiateLaser = false;
 
@@ -163,7 +161,7 @@ public class Shoot : InputListener
             RaycastHit hit;
             if (Physics.Raycast(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, out hit, Mathf.Infinity))
             {
-                _lazerHit.transform.position = hit.point - new Vector3(0, 0,0);
+                _lazerHit.transform.position = hit.point - new Vector3(0, 0, -0.12f);
                 _distanceBetweenLaser = Vector3.Distance(hit.point, _drone.position);
 
                 _laserVFX.SetPosition(1, new Vector3(0, 0, _distanceBetweenLaser));
