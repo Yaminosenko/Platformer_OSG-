@@ -216,6 +216,7 @@ public class GameManager : InputListener {
         CharacterController newCharacterController = Instantiate(characterControllerPrefab, playerGroup);
         newCharacterController.gameObject.name = "Player" + (playerID + 1);
         if (lastCheckpointID >= 0)
+            
             newCharacterController.SetResurrectCheckpoint(checkpoints[lastCheckpointID]);
         newCharacterController.SetPlayer(playerID);
         newCharacterController.SetStartPosition(newCharacterController.cachedTransform.position);

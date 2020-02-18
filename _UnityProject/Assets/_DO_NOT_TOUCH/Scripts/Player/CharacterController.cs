@@ -287,13 +287,21 @@ public partial class CharacterController : InputListener
         OnJump += CheatJumpCallback;
         _ghostBehavior = GetComponent<GhostBehavior>();
         _Shoot = GetComponent<Shoot>();
+        
         _ResetSceneRef = GetComponentInChildren<ResetScene>();
 #endif
     }
 
+   
+
     private void Update()
     {
         GetInputs();
+        if(_Shoot._resetSceneRef == null)
+        {
+            _Shoot._resetSceneRef = _ResetSceneRef;
+        }
+
     }
 
     private void FixedUpdate()

@@ -18218,7 +18218,7 @@ MonoBehaviour:
   ThereIsSomthingBetwinDroneAndPlayer: 0
   _GhostBehaviorRef: {fileID: 4427175655523834960}
   PlayerID: 0
-  _radiusOffset: 2.5
+  _radiusOffset: 2
   _blasterShot: {fileID: 1026731059600019650, guid: a044df093edaf404082bce14d757f15d,
     type: 3}
   _speedBlaster: 0.2

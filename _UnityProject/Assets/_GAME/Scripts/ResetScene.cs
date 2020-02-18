@@ -8,9 +8,10 @@ public class ResetScene : MonoBehaviour
     [SerializeField] private SimpleDoor[] _doorRef;
     [SerializeField] private DestructiblePlatform[] _destructibleRef;
     [SerializeField] private EnergieCharge[] _CatalyserRef;
+    public GameObject[] _toIgnore;
 
 
-   public void SceneReset()
+    public void SceneReset()
     {
         for (int i = 0; i < _destructibleRef.Length; i++)
         {

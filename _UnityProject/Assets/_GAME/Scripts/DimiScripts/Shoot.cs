@@ -47,6 +47,8 @@ public class Shoot : InputListener
 
     public bool _LaserIsActive = false;
     private float _distanceBetweenLaser;
+    public ResetScene _resetSceneRef;
+    
 
     public List<DroneInfos> _DroneInformations = new List<DroneInfos>(500);
     [System.Serializable]
@@ -72,13 +74,13 @@ public class Shoot : InputListener
 
     private void Update()
     {
-        RecastDeSecurité();
+        RecastDeSecurite();
         DronePosition();
         UpdateOffset();
         UpdateMousePosition();
         ArrawIncrementation();
 
-        Debug.Log(ThereIsSomthingBetwinDroneAndPlayer);
+
 
         if(_disableLaser == true)
         {
@@ -183,7 +185,7 @@ public class Shoot : InputListener
 
        
     }
-    public void RecastDeSecurité()
+    public void RecastDeSecurite()
     {
         Vector3 difference = _dronePos - _transformShoot;
         float distance = difference.magnitude;
@@ -191,11 +193,10 @@ public class Shoot : InputListener
         Debug.DrawRay(_transformShoot, _drone.TransformDirection(Vector3.forward), Color.red);
         if (Physics.Raycast(_transformShoot, _drone.TransformDirection(Vector3.forward), out hit, distance +0.8f))
         {
-            if(hit.collider != _DroneCollider && hit.collider.gameObject.layer != 13)
+            if(hit.collider != _DroneCollider && hit.collider.gameObject.layer != 13 )
             {
-                Debug.Log(hit.collider);
-                ThereIsSomthingBetwinDroneAndPlayer = true;
-
+                        Debug.Log(hit.collider);
+                        ThereIsSomthingBetwinDroneAndPlayer = true;
             }
 
         }
