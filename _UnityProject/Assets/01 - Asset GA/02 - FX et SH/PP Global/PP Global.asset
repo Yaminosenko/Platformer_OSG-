@@ -49,40 +49,6 @@ MonoBehaviour:
   quality:
     overrideState: 0
     value: 2
---- !u!114 &-2318833769832786903
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 10
-  intensityX:
-    overrideState: 1
-    value: 1
-  intensityY:
-    overrideState: 1
-    value: 1
-  centerX:
-    overrideState: 1
-    value: 0
-  centerY:
-    overrideState: 1
-    value: 0
-  scale:
-    overrideState: 1
-    value: 1
 --- !u!114 &-1729593833916173378
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -101,7 +67,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 2
+    value: 3
   threshold:
     overrideState: 1
     value: 1
@@ -145,9 +111,9 @@ MonoBehaviour:
   settings:
   - {fileID: -1729593833916173378}
   - {fileID: 6462848569502050826}
-  - {fileID: -2318833769832786903}
   - {fileID: 1915968449301998097}
   - {fileID: -4008938551185175215}
+  - {fileID: 8684061985677139804}
 --- !u!114 &1915968449301998097
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -160,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1481,7 +1447,51 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.07
+    value: 0.1
   fastMode:
     overrideState: 1
     value: 0
+--- !u!114 &8684061985677139804
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  mode:
+    overrideState: 1
+    value: 0
+  color:
+    overrideState: 1
+    value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    overrideState: 1
+    value: {x: 0.5, y: 0.5}
+  intensity:
+    overrideState: 1
+    value: 0.341
+  smoothness:
+    overrideState: 1
+    value: 0.2
+  roundness:
+    overrideState: 1
+    value: 1
+  rounded:
+    overrideState: 1
+    value: 0
+  mask:
+    overrideState: 1
+    value: {fileID: 0}
+    defaultState: 1
+  opacity:
+    overrideState: 1
+    value: 1
