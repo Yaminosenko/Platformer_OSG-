@@ -20,6 +20,13 @@ public class trap_clone : MonoBehaviour
     {
         
     }
+
+    public void Reset()
+    {
+        _firstTrap.SetActive(true);
+        _secondTrap.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 13)

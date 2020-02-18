@@ -18172,7 +18172,7 @@ MonoBehaviour:
   recallPeriod: 4
   _rotationGhost: []
   PlayerID: 0
-  _InstanciateRecall: 0
+  _InstanciateRecall: 1
   _recallIsActive2: 0
   _recallCount: 0
   _indexDebug: 0
@@ -18216,7 +18216,7 @@ MonoBehaviour:
   axisInputs: []
   _GhostBehaviorRef: {fileID: 4427175655523834960}
   PlayerID: 0
-  _radiusOffset: 2.5
+  _radiusOffset: 2
   _blasterShot: {fileID: 1026731059600019650, guid: a044df093edaf404082bce14d757f15d,
     type: 3}
   _speedBlaster: 0.2
@@ -18225,10 +18225,13 @@ MonoBehaviour:
   _drone: {fileID: 3148927726232491694}
   _disableLaser: 0
   _instantiateLaser: 1
+  ThereIsSomthingBetwinDroneAndPlayer: 0
   _rightStickAxis: {x: 0, y: 0}
   _laserVFX: {fileID: 2901153742718746248}
   _lazerHit: {fileID: 1165727168360189419}
   _LaserIsActive: 0
+  _resetSceneRef: {fileID: 0}
+  _DroneCollider: {fileID: 0}
   _DroneInformations: []
 --- !u!1 &1960416646807306
 GameObject:

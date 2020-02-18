@@ -299,6 +299,8 @@ MonoBehaviour:
   _linkedObject: {fileID: 0}
   _linkedObject2: {fileID: 0}
   _currentCharge: 0
+  _FXTicks: {fileID: 2273766809782827091, guid: bcfc2a14722532a4085c3b908ec3a506,
+    type: 3}
   _LedChargement1: {fileID: 8369401371501730421}
   _LedChargement2: {fileID: 1734725829404387954}
   _LedChargement3: {fileID: 1259705604094978420}

@@ -6,9 +6,10 @@ public class EnergieCharge : MonoBehaviour
 {
     public SimpleDoor _linkedObject;
     public SimpleDoor _linkedObject2;
-    [SerializeField] private int _currentCharge = 0;
+    [SerializeField] public int _currentCharge = 0;
     private bool DelaiIsActivate = false;
     private bool DelaiIsActivateIncrement = false;
+    public GameObject _FXTicks;
 
     //LED
     [SerializeField] private GameObject _LedChargement1;
@@ -93,6 +94,7 @@ public class EnergieCharge : MonoBehaviour
         DelaiIsActivateIncrement = true;
         StopCoroutine(DelaiDecrement());
         yield return new WaitForSeconds(_TimerIncrementation);
+        Instantiate(_FXTicks, transform.position, Quaternion.identity);
         DelaiIsActivateIncrement = false;
         _currentCharge++;
     }
