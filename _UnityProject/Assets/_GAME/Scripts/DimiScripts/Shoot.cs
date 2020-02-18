@@ -186,8 +186,6 @@ public class Shoot : InputListener
                 Debug.DrawRay(_drone.position, _drone.TransformDirection(Vector3.forward).normalized, Color.magenta);
             }
         }
-
-       
     }
     public void RecastDeSecurite()
     {

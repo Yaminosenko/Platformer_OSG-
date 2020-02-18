@@ -7427,7 +7427,7 @@ Transform:
   m_Children:
   - {fileID: 4076864935888052}
   - {fileID: 4399625345710756}
-  - {fileID: 6345909446151095561}
+  - {fileID: 382053379310008782}
   - {fileID: 2666466302906429560}
   - {fileID: 1422584154587927812}
   m_Father: {fileID: 4100234227039268}
@@ -18197,6 +18197,7 @@ MonoBehaviour:
   _ghostMesh: []
   _droneMesh: {fileID: 0}
   _FXGhost: []
+  _coolDownRecall: 2
 --- !u!114 &510227553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18534,7 +18535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a684727406af11a41a6204cd564cb3f0, type: 3}
---- !u!4 &6345909446151095561 stripped
+--- !u!4 &382053379310008782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6727358058565172788, guid: a684727406af11a41a6204cd564cb3f0,
     type: 3}
@@ -19123,7 +19124,7 @@ PrefabInstance:
     - target: {fileID: 8215790538008597831, guid: 8ecd434f58ce55544836d6ad671c17a0,
         type: 3}
       propertyPath: m_Time
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8215790538008597831, guid: 8ecd434f58ce55544836d6ad671c17a0,
         type: 3}

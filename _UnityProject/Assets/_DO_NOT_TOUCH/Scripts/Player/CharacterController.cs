@@ -1168,6 +1168,7 @@ public partial class CharacterController : InputListener
 
     private IEnumerator WaitForResurrect()
     {
+        //_ghostBehavior._FXtrail.SetActive(false);
         yield return new WaitForSeconds(resurrectDelay);
 
         OnWaitForResurrect(this);
@@ -1205,6 +1206,8 @@ public partial class CharacterController : InputListener
         _Shoot._DroneInformations.Clear();
         _characterBehaviour.jointsInfos.Clear();
         _ghostBehavior._enabledRecall = true;
+        
+       // _ghostBehavior._FXtrail.SetActive(true);
         _isDead = false;
         capsuleCollider.enabled = true;
 
@@ -1248,6 +1251,7 @@ public partial class CharacterController : InputListener
         SetRigidbodyPosition(pos);
 
         OnResetCharacter();
+
     }
 
     #endregion
