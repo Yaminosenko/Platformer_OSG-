@@ -294,10 +294,7 @@ public partial class CharacterController : InputListener
     private void Update()
     {
         GetInputs();
-        if(_Shoot._resetSceneRef == null)
-        {
-            _Shoot._resetSceneRef = _ResetSceneRef;
-        }
+      
 
     }
 

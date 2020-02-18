@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DestructiblePlatform : MonoBehaviour
 {
-     private GameObject platform;
-     private MeshRenderer mesh;
-    [SerializeField] private GameObject child;
-     private BoxCollider collider;
+     public GameObject platform;
+     public MeshRenderer mesh;
+     public GameObject child;
+     public BoxCollider collider;
     
     [SerializeField] private float _timeBeforeDestruction = 2;
     [SerializeField] private float _timeReconstruction = 4;

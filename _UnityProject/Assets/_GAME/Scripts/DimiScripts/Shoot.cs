@@ -31,6 +31,7 @@ public class Shoot : InputListener
     public Transform _drone;
     public bool _disableLaser = false;
     public bool _instantiateLaser = false;
+    public bool ThereIsSomthingBetwinDroneAndPlayer;
 
 
     private GameObject _MyTarget;
@@ -46,7 +47,9 @@ public class Shoot : InputListener
     public bool _LaserIsActive = false;
     private float _distanceBetweenLaser;
     public ResetScene _resetSceneRef;
-    
+    public Collider _DroneCollider;
+
+
 
     public List<DroneInfos> _DroneInformations = new List<DroneInfos>(500);
     [System.Serializable]
@@ -68,6 +71,9 @@ public class Shoot : InputListener
         cameraVirt = GameObject.Find("CameraController2D");
         camera = cameraVirt.GetComponent<Camera>();
         _GhostBehaviorRef = GetComponent<GhostBehavior>();
+        _DroneCollider = _drone.GetComponent<Collider>();
+
+
     }
 
     private void Update()
