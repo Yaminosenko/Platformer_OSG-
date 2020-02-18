@@ -26,8 +26,8 @@ public class Box : MonoBehaviour
         if (meshCollider)
             meshCollider.convex = true;
 
-        Undo.RecordObject(meshFilter, "Mesh");
-        Undo.RecordObject(meshCollider, "Mesh");
+        //Undo.RecordObject(meshFilter, "Mesh");
+        //Undo.RecordObject(meshCollider, "Mesh");
 
 
         List<Vector3> vertice3 = new List<Vector3>(vertices.Count * 6);
@@ -120,7 +120,7 @@ public class Box : MonoBehaviour
 
         meshFilter.sharedMesh = mesh;
         meshFilter.mesh = mesh;
-        Undo.RegisterCreatedObjectUndo(mesh, "Mesh");
+        //Undo.RegisterCreatedObjectUndo(mesh, "Mesh");
         if (meshCollider)
             meshCollider.sharedMesh = mesh;
 

@@ -18,7 +18,7 @@ public class Interrupteur : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
         _isOntrigger = true;
-        _uxInteractionFeedback.SetActive(true);
+    
         }
      
         if (other.gameObject.layer == 9 || other.gameObject.layer == 13 )
@@ -48,7 +48,7 @@ public class Interrupteur : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
              _isOntrigger = false;
-            _uxInteractionFeedback.SetActive(false);
+          
         }
     }
 }
