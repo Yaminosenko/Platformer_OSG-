@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Switch_Outline
+  m_Name: M_Switch_Outline Blue
   m_Shader: {fileID: 4800000, guid: 1b27e6a17dbe384439c63f5e711a1247, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
@@ -88,6 +88,6 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _ASEOutlineColor: {r: 0.61333084, g: 0.020870427, b: 0.6320754, a: 1}
+    - _ASEOutlineColor: {r: 0.12941177, g: 0.33911538, b: 0.8392157, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

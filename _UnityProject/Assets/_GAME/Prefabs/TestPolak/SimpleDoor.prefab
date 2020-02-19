@@ -112,6 +112,8 @@ MonoBehaviour:
   _closePos: {fileID: 4052447663665448996}
   _audiosource: {fileID: 2875874458506293197}
   _OpenDoorSound: {fileID: 8300000, guid: e569b87387625084a8c9ea5c4c15bdbd, type: 3}
+  _InteruptOn: {fileID: 4052447662603310797}
+  _InteruptOff: {fileID: 4052447662603310797}
 --- !u!82 &2875874458506293197
 AudioSource:
   m_ObjectHideFlags: 0
