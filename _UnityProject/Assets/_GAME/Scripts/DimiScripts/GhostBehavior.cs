@@ -10,6 +10,7 @@ using UnityEditor;
 
 public class GhostBehavior : InputListener
 {
+
     //LASER
 
     [Header("LASER")]
@@ -175,6 +176,10 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
+
+     
+
+
         if(_setPosDrone == true)
         {
             _SetDroneAndLAserPOstition();

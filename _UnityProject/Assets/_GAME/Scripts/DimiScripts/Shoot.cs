@@ -8,6 +8,14 @@ using UnityEditor;
 #endif
 public class Shoot : InputListener
 {
+    #region sound
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _laserLoop;
+    private bool LaserSoundIsPlying = false;
+
+
+    #endregion
+
     public GhostBehavior _GhostBehaviorRef;
     private CharacterController _characterControler;
     public Rewired.Player player;
@@ -84,6 +92,17 @@ public class Shoot : InputListener
         UpdateMousePosition();
         ArrawIncrementation();
 
+        if(_LaserIsActive == true && LaserSoundIsPlying == false)
+        {
+            LaserSoundIsPlying = true;
+            _audioSource.clip = _laserLoop;
+            _audioSource.Play();
+        }
+       if(ThereIsSomthingBetwinDroneAndPlayer == true || _LaserIsActive == false)
+        {
+            _audioSource.Stop();
+            LaserSoundIsPlying = false;
+        }
 
 
         if(_disableLaser == true)

@@ -6,6 +6,22 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public partial class CharacterController : InputListener
 {
+    #region Sound
+    [SerializeField] private AudioSource __audioSourceLaser;
+    [SerializeField] private AudioClip _LaserON;
+    [SerializeField] private AudioClip _LaserLoop;
+    [SerializeField] private AudioClip _LaserOut;
+
+    [SerializeField] private AudioSource _audiosourcePLayerMouvement;
+    [SerializeField] private AudioClip _Jump, _Jump2, _Jump3, _JumpReception;
+    [SerializeField] private AudioClip _DeathSOund;
+
+
+    [SerializeField] private AudioSource _audiosourceRecall;
+    [SerializeField] private AudioClip _RecallSOund;
+    private bool SoundRecallIsPlaying = false;
+
+    #endregion
     //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
     public Shoot _Shoot;
@@ -401,10 +417,20 @@ public partial class CharacterController : InputListener
 
             case "Recall":
                 _ghostBehavior.Recall();
+                _audiosourcePLayerMouvement.clip = _RecallSOund;
+                _audiosourcePLayerMouvement.Play();
                 break;
 
-            case "BoutonX":
-                
+            case "Laser":
+                if (_Shoot._disableLaser == false)
+                {
+                    if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+                    {
+                        __audioSourceLaser.clip = _LaserON;
+                        __audioSourceLaser.Play();
+
+                    }
+                }
                 break;
 
 
@@ -458,6 +484,8 @@ public partial class CharacterController : InputListener
             case "Laser":
                 _Shoot._LaserIsActive = false;
                 _Shoot._laserVFX.gameObject.SetActive(false);
+                __audioSourceLaser.clip = _LaserOut;
+                __audioSourceLaser.Play();
                 break;
         }
 
@@ -704,6 +732,8 @@ public partial class CharacterController : InputListener
             SetColliderMode(0);
 
             OnLand(rigid.velocity.y, groundHit);
+            _audiosourcePLayerMouvement.clip = _JumpReception;
+            _audiosourcePLayerMouvement.Play();
 
             SetRigidbodyVelocity(new Vector3(rigidbodyVelocity.x, 0, 0));
         }
@@ -943,6 +973,10 @@ public partial class CharacterController : InputListener
 
     private void DoAJump()
     {
+
+        _audiosourcePLayerMouvement.clip = _Jump;
+        _audiosourcePLayerMouvement.Play();
+
         OnJump(jumpCount);
 
         _isGrounded = false;
@@ -1155,6 +1189,9 @@ public partial class CharacterController : InputListener
 
     public void Death()
     {
+        _audiosourcePLayerMouvement.clip = _DeathSOund;
+        _audiosourcePLayerMouvement.Play();
+
         FreezeCharacter();
 
         _isDead = true;

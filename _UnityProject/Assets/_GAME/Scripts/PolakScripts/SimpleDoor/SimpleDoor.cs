@@ -6,6 +6,9 @@ public class SimpleDoor : MonoBehaviour
 {
     [SerializeField] private Transform _openPos;
     [SerializeField] private Transform _closePos;
+    [SerializeField] private AudioSource _audiosource;
+    [SerializeField] private AudioClip _OpenDoorSound;
+    private bool SoundISPlaying = false;
 
     //[SerializeField] private bool _isOpen = false;
 
@@ -24,12 +27,20 @@ public class SimpleDoor : MonoBehaviour
 
     public void Open()
     {
+        if(SoundISPlaying == false)
+        {
+        _audiosource.clip = _OpenDoorSound;
+        _audiosource.Play();
+            SoundISPlaying = true;
+
+        }
         transform.position = _openPos.position;
     }
 
     public void Close()
     {
-            transform.position = _closePos.position;
+        SoundISPlaying = false;
+        transform.position = _closePos.position;
         //if (_isOpen == false)
         //{
         //}

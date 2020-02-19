@@ -7,6 +7,7 @@ public class GhostController : MonoBehaviour
 {
 
 
+
     private Animator _animator;
     private Animator animator
     {

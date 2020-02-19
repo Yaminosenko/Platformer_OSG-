@@ -5,6 +5,9 @@ using UnityEngine;
 public class InteruptorTimingDoor : MonoBehaviour
 {
     public TimingDoor _linkedObject;
+    [SerializeField] private AudioSource _audiosource;
+    [SerializeField] private AudioClip _OpenDoorSound;
+    private bool SoundISPlaying = false;
 
 
 
@@ -12,7 +15,14 @@ public class InteruptorTimingDoor : MonoBehaviour
     {
         if (other.gameObject.layer == 9 || other.gameObject.layer == 13)
         {
+            SoundISPlaying = false;
             _linkedObject.Open();
+            if(SoundISPlaying == false)
+            {
+                _audiosource.clip = _OpenDoorSound;
+                _audiosource.Play();
+                SoundISPlaying = true;
+            }
         }
     }
 }
