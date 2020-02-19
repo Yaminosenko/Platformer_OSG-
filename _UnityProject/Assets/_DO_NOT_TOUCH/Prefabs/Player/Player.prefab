@@ -18042,7 +18042,7 @@ MonoBehaviour:
   _LaserLoop: {fileID: 8300000, guid: 2a099528396a1b741948c1f88658b2b7, type: 3}
   _LaserOut: {fileID: 8300000, guid: f30cb5573ae8f894a84f5cdccb0fe06d, type: 3}
   _audiosourcePLayerMouvement: {fileID: 4143735559898374019}
-  _Jump: {fileID: 8300000, guid: 117f080a4edf7df44b0782c351cddd09, type: 3}
+  _Jump: {fileID: 8300000, guid: e21a343a79a5d0f4980c30c15c2fb2c6, type: 3}
   _Jump2: {fileID: 8300000, guid: 9d7c561ee4fa9e944af16f26ee5a75c0, type: 3}
   _Jump3: {fileID: 8300000, guid: 9d7c561ee4fa9e944af16f26ee5a75c0, type: 3}
   _JumpReception: {fileID: 8300000, guid: ea2fd9a771a9f634390533beb0bcda16, type: 3}
@@ -18207,6 +18207,7 @@ MonoBehaviour:
   _meshToDisabe:
   - {fileID: 7414570981260925629}
   - {fileID: 8105995890946849842}
+  - {fileID: 5264605766776368320}
   _FXEndRecall: {fileID: 1422584154587927811}
   _strt: {fileID: 4168978914459005926, guid: 9028143f540610c4da4bc1ce4d52c8e0, type: 3}
   _FXtrail: {fileID: 2932124411450771477}
@@ -18232,7 +18233,7 @@ MonoBehaviour:
   buttonDownInputs: []
   buttonUpInputs: []
   axisInputs: []
-  _audioSource: {fileID: 7567369065674958089}
+  _audioSource: {fileID: 7265018763034365204}
   _laserLoop: {fileID: 8300000, guid: 2a099528396a1b741948c1f88658b2b7, type: 3}
   _GhostBehaviorRef: {fileID: 4427175655523834960}
   PlayerID: 0
@@ -18361,9 +18362,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.152
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -18553,9 +18554,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.501
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -19110,9 +19111,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084dc4defba50d346ae640443843d23d, type: 3}
---- !u!4 &3148927726232491694 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4226137287269903791, guid: 084dc4defba50d346ae640443843d23d,
+--- !u!1 &5264605766776368320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6348632231658624961, guid: 084dc4defba50d346ae640443843d23d,
     type: 3}
   m_PrefabInstance: {fileID: 1231026883210394369}
   m_PrefabAsset: {fileID: 0}
@@ -19125,6 +19126,12 @@ LineRenderer:
 --- !u!198 &1165727168360189419 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 87823231382697706, guid: 084dc4defba50d346ae640443843d23d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1231026883210394369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3148927726232491694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4226137287269903791, guid: 084dc4defba50d346ae640443843d23d,
     type: 3}
   m_PrefabInstance: {fileID: 1231026883210394369}
   m_PrefabAsset: {fileID: 0}
@@ -19613,9 +19620,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ecd434f58ce55544836d6ad671c17a0, type: 3}
---- !u!1 &2932124411450771477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8215790538008597830, guid: 8ecd434f58ce55544836d6ad671c17a0,
+--- !u!4 &2932124411450771467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8215790538008597848, guid: 8ecd434f58ce55544836d6ad671c17a0,
     type: 3}
   m_PrefabInstance: {fileID: 6536031937356815699}
   m_PrefabAsset: {fileID: 0}
@@ -19625,9 +19632,9 @@ TrailRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 6536031937356815699}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2932124411450771467 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8215790538008597848, guid: 8ecd434f58ce55544836d6ad671c17a0,
+--- !u!1 &2932124411450771477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8215790538008597830, guid: 8ecd434f58ce55544836d6ad671c17a0,
     type: 3}
   m_PrefabInstance: {fileID: 6536031937356815699}
   m_PrefabAsset: {fileID: 0}
@@ -19935,15 +19942,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a826e9e03af98f4db519a3e55dc4d57, type: 3}
---- !u!4 &2666466302906429560 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
-    type: 3}
-  m_PrefabInstance: {fileID: 8777949969506007388}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7474870909556471959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2192577369817858507, guid: 0a826e9e03af98f4db519a3e55dc4d57,
+    type: 3}
+  m_PrefabInstance: {fileID: 8777949969506007388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2666466302906429560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6688049976389863716, guid: 0a826e9e03af98f4db519a3e55dc4d57,
     type: 3}
   m_PrefabInstance: {fileID: 8777949969506007388}
   m_PrefabAsset: {fileID: 0}

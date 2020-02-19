@@ -10,6 +10,7 @@ public class Interrupteur : MonoBehaviour
     [SerializeField] private int _count = 0;
     [SerializeField] private GameObject _uxInteractionFeedback;
 
+
     private bool _isOntrigger = false;
 
 
