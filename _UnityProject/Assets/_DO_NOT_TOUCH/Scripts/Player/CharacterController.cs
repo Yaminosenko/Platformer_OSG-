@@ -427,7 +427,7 @@ public partial class CharacterController : InputListener
                     if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
                     {
                         __audioSourceLaser.clip = _LaserON;
-                        __audioSourceLaser.Play();
+                        __audioSourceLaser.PlayOneShot(_LaserON);
 
                     }
                 }
@@ -485,7 +485,7 @@ public partial class CharacterController : InputListener
                 _Shoot._LaserIsActive = false;
                 _Shoot._laserVFX.gameObject.SetActive(false);
                 __audioSourceLaser.clip = _LaserOut;
-                __audioSourceLaser.Play();
+                __audioSourceLaser.PlayOneShot(_LaserOut);
                 break;
         }
 
@@ -732,8 +732,8 @@ public partial class CharacterController : InputListener
             SetColliderMode(0);
 
             OnLand(rigid.velocity.y, groundHit);
-            _audiosourcePLayerMouvement.clip = _JumpReception;
-            _audiosourcePLayerMouvement.Play();
+            //_audiosourcePLayerMouvement.clip = _JumpReception;
+            //_audiosourcePLayerMouvement.Play();
 
             SetRigidbodyVelocity(new Vector3(rigidbodyVelocity.x, 0, 0));
         }

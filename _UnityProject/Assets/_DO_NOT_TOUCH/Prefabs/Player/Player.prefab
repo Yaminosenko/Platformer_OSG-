@@ -18042,7 +18042,7 @@ MonoBehaviour:
   _LaserLoop: {fileID: 8300000, guid: 2a099528396a1b741948c1f88658b2b7, type: 3}
   _LaserOut: {fileID: 8300000, guid: f30cb5573ae8f894a84f5cdccb0fe06d, type: 3}
   _audiosourcePLayerMouvement: {fileID: 4143735559898374019}
-  _Jump: {fileID: 8300000, guid: 117f080a4edf7df44b0782c351cddd09, type: 3}
+  _Jump: {fileID: 8300000, guid: e21a343a79a5d0f4980c30c15c2fb2c6, type: 3}
   _Jump2: {fileID: 8300000, guid: 9d7c561ee4fa9e944af16f26ee5a75c0, type: 3}
   _Jump3: {fileID: 8300000, guid: 9d7c561ee4fa9e944af16f26ee5a75c0, type: 3}
   _JumpReception: {fileID: 8300000, guid: ea2fd9a771a9f634390533beb0bcda16, type: 3}
@@ -18232,7 +18232,7 @@ MonoBehaviour:
   buttonDownInputs: []
   buttonUpInputs: []
   axisInputs: []
-  _audioSource: {fileID: 7567369065674958089}
+  _audioSource: {fileID: 7265018763034365204}
   _laserLoop: {fileID: 8300000, guid: 2a099528396a1b741948c1f88658b2b7, type: 3}
   _GhostBehaviorRef: {fileID: 4427175655523834960}
   PlayerID: 0
@@ -18361,9 +18361,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.152
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -18553,9 +18553,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.501
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
