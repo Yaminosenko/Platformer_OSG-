@@ -8,6 +8,8 @@ public class InteruptorTimingDoor : MonoBehaviour
     [SerializeField] private AudioSource _audiosource;
     [SerializeField] private AudioClip _OpenDoorSound;
     private bool SoundISPlaying = false;
+    [SerializeField] private GameObject _openInterupt;
+    [SerializeField] private GameObject _CloseInterupt;
 
 
 
@@ -17,12 +19,19 @@ public class InteruptorTimingDoor : MonoBehaviour
         {
             SoundISPlaying = false;
             _linkedObject.Open();
-            if(SoundISPlaying == false)
+            _openInterupt.SetActive(true);
+            _CloseInterupt.SetActive(false);
+            if (SoundISPlaying == false)
             {
                 _audiosource.clip = _OpenDoorSound;
                 _audiosource.Play();
                 SoundISPlaying = true;
             }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        _openInterupt.SetActive(false);
+        _CloseInterupt.SetActive(true);
     }
 }
