@@ -11,6 +11,8 @@ public class SimpleDoor : MonoBehaviour
     private bool SoundISPlaying = false;
     [SerializeField] private GameObject _InteruptOn;
     [SerializeField] private GameObject _InteruptOff;
+    [SerializeField] private GameObject _Leds;
+    [SerializeField] private GameObject _LedsActivate;
 
     //[SerializeField] private bool _isOpen = false;
 
@@ -38,6 +40,8 @@ public class SimpleDoor : MonoBehaviour
         }
         _InteruptOn.gameObject.SetActive(true);
         _InteruptOff.gameObject.SetActive(false);
+        _LedsActivate.gameObject.SetActive(true);
+        _Leds.gameObject.SetActive(false);
         transform.position = _openPos.position;
     }
 
@@ -45,6 +49,8 @@ public class SimpleDoor : MonoBehaviour
     {
         _InteruptOn.gameObject.SetActive(false);
         _InteruptOff.gameObject.SetActive(true);
+        _LedsActivate.gameObject.SetActive(false);
+        _Leds.gameObject.SetActive(true);
         SoundISPlaying = false;
         transform.position = _closePos.position;
         //if (_isOpen == false)

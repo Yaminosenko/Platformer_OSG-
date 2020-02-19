@@ -10,13 +10,17 @@ public class InteruptorTimingDoor : MonoBehaviour
     private bool SoundISPlaying = false;
     [SerializeField] private GameObject _openInterupt;
     [SerializeField] private GameObject _CloseInterupt;
-
+    [SerializeField] private GameObject _Leds;
+    [SerializeField] private GameObject _LedsActivate;
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9 || other.gameObject.layer == 13)
         {
+            _LedsActivate.SetActive(true);
+            _Leds.SetActive(false);
+
             SoundISPlaying = false;
             _linkedObject.Open();
             _openInterupt.SetActive(true);
@@ -33,5 +37,7 @@ public class InteruptorTimingDoor : MonoBehaviour
     {
         _openInterupt.SetActive(false);
         _CloseInterupt.SetActive(true);
+        _LedsActivate.SetActive(false);
+        _Leds.SetActive(true);
     }
 }
