@@ -6,7 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 public class CharacterBehaviour : MonoBehaviour {
 
-	private Animator _animator;
+
+
+    private Animator _animator;
 	private Animator animator
 	{
 		get

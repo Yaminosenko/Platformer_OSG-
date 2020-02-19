@@ -10,6 +10,7 @@ using UnityEditor;
 
 public class GhostBehavior : InputListener
 {
+
     //LASER
 
     [Header("LASER")]
@@ -94,6 +95,7 @@ public class GhostBehavior : InputListener
     public MeshRenderer[] _ghostMesh;
     public MeshRenderer _droneMesh;
     public FXref[] _FXGhost;
+    public float _coolDownRecall = 2;
 
 
 
@@ -174,6 +176,10 @@ public class GhostBehavior : InputListener
     }
     private void Update()
     {
+
+     
+
+
         if(_setPosDrone == true)
         {
             _SetDroneAndLAserPOstition();
@@ -274,7 +280,7 @@ public class GhostBehavior : InputListener
             _enabledRecall = true;
             _isOnTravel = false;
             _FXEndRecall.gameObject.SetActive(true);
-            
+            StartCoroutine(CoolDownRecall());
         }
 
     }
@@ -361,6 +367,8 @@ public class GhostBehavior : InputListener
         }
     }
 
+
+
     void RecallWaiting()
     {
         if(_indexDebug > ArrayFreeze.Length)
@@ -444,6 +452,12 @@ public class GhostBehavior : InputListener
         _isOnTravel = false;
     }
 
+    IEnumerator CoolDownRecall()
+    {
+        _enabledRecall = false;
+        yield return new WaitForSeconds(_coolDownRecall);
+        _enabledRecall = true;
+    }
 
     private void _SetDroneAndLAserPOstition()
     {

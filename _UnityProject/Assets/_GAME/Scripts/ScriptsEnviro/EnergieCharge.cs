@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class EnergieCharge : MonoBehaviour
 {
+    #region Sound
+    [SerializeField] private AudioSource _audiosource;
+    [SerializeField] private AudioClip _CatlyseurFull;
+    private bool SoundISPLaying = false;
+
+    #endregion
+
+
     public SimpleDoor _linkedObject;
     public SimpleDoor _linkedObject2;
     [SerializeField] public int _currentCharge = 0;
@@ -31,17 +39,20 @@ public class EnergieCharge : MonoBehaviour
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatDesactive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
+                SoundISPLaying = true;
 
                 break;
             case 2:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
+                SoundISPLaying = true;
                 break;
             case 3:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatActive;
+
                 break;
             default:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatDesactive;
@@ -51,6 +62,12 @@ public class EnergieCharge : MonoBehaviour
         }
         if(_currentCharge >= 3)
         {
+            if(SoundISPLaying == true)
+            {
+            _audiosource.clip = _CatlyseurFull;
+            _audiosource.Play();
+            SoundISPLaying = false;
+            }
             _linkedObject.Open();
             if(_linkedObject2 != null)
             {
