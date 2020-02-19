@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SM_MA_GlobalTextures_background
+  m_Name: SM_MA_GlobalTextures_Background
   m_Shader: {fileID: 4800000, guid: f43a3d1755508b347a3f356b1c054cf6, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
