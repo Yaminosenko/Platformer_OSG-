@@ -9,6 +9,7 @@ public class Interrupteur : MonoBehaviour
     public SimpleDoor _linkedObject;
     [SerializeField] private int _count = 0;
     [SerializeField] private GameObject _uxInteractionFeedback;
+    [SerializeField] private Material _materailEmissive;
 
 
     private bool _isOntrigger = false;
@@ -34,12 +35,16 @@ public class Interrupteur : MonoBehaviour
 
                 if (_count == 1)
                 {
+                if(_materailEmissive!=null)
+                _materailEmissive.EnableKeyword("_EMISSION");
                     _linkedObject.Open();
                 }
 
                 if (_count == 0)
                 {
-                    _linkedObject.Close();
+                if(_materailEmissive!=null)
+                _materailEmissive.DisableKeyword("_EMISSION");
+                _linkedObject.Close();
                 }
             
         }
