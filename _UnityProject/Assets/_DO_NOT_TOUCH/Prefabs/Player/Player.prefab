@@ -18191,7 +18191,7 @@ MonoBehaviour:
   recallPeriod: 4
   _rotationGhost: []
   PlayerID: 0
-  _InstanciateRecall: 1
+  _InstanciateRecall: 0
   _recallIsActive2: 0
   _recallCount: 0
   _indexDebug: 0

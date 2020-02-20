@@ -36,7 +36,10 @@ public class InteruptorTimingDoor : MonoBehaviour
                 SoundISPlaying = true;
             }
             if (_materialEmissive != null)
+            {
                 _materialEmissive.EnableKeyword("_EMISSION");
+            }
+                
         }
     }
     private void OnTriggerExit(Collider other)
@@ -53,6 +56,9 @@ public class InteruptorTimingDoor : MonoBehaviour
         _Leds.SetActive(true);
 
         if (_materialEmissive != null)
-            _materialEmissive.EnableKeyword("_EMISSION");
+        {
+            _materialEmissive.DisableKeyword("_EMISSION");
+        }
+           
     }
 }

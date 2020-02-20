@@ -217,7 +217,7 @@ public class Shoot : InputListener
             if(hit.collider != _DroneCollider && hit.collider.gameObject.layer != 13 )
             {
                         Debug.Log(hit.collider);
-                        ThereIsSomthingBetwinDroneAndPlayer = true;
+                       // ThereIsSomthingBetwinDroneAndPlayer = true;
             }
 
         }
