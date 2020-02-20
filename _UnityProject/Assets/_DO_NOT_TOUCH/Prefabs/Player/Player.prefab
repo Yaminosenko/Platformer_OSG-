@@ -18246,7 +18246,7 @@ MonoBehaviour:
   _offsetBlaster: {fileID: 3332549332706370507}
   _deadZone: 0.8
   _drone: {fileID: 3148927726232491694}
-  _disableLaser: 0
+  _disableLaser: 1
   _instantiateLaser: 0
   ThereIsSomthingBetwinDroneAndPlayer: 0
   _rightStickAxis: {x: 0, y: 0}
