@@ -28,6 +28,7 @@ public class EnergieCharge : MonoBehaviour
 
     [SerializeField] private float _TimerDesincrementation = 4f;
     [SerializeField] private float _TimerIncrementation = 0.3f;
+    private bool _Isincrement = false;
 
     
 
@@ -52,7 +53,7 @@ public class EnergieCharge : MonoBehaviour
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatActive;
-
+                SoundISPLaying = false;
                 break;
             default:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatDesactive;
@@ -62,31 +63,36 @@ public class EnergieCharge : MonoBehaviour
         }
         if(_currentCharge >= 3)
         {
-            if(SoundISPLaying == true)
-            {
-            _audiosource.clip = _CatlyseurFull;
-            _audiosource.Play();
-            SoundISPLaying = false;
-            }
             _linkedObject.Open();
             if(_linkedObject2 != null)
             {
             _linkedObject2.Open();
-
+            }
+            if( SoundISPLaying == false && _Isincrement == false)
+            {
+            _audiosource.clip = _CatlyseurFull;
+            _audiosource.Play();
+            SoundISPLaying = false;
+            //StartCoroutine(soundNotloop());
             }
         }
         else
         {
+            if(_Isincrement == false)
+            {
+
             if (_linkedObject2 != null)
             {
                 _linkedObject2.Close();
 
             }
             _linkedObject.Close();
+            }
         }
 
-        if (_currentCharge > 0 && DelaiIsActivate == false)
+        if (_currentCharge > 0 && DelaiIsActivate == false && _Isincrement == false)
         {
+           
             StartCoroutine(DelaiDecrement());
         }
     }
@@ -100,7 +106,6 @@ public class EnergieCharge : MonoBehaviour
     }
     IEnumerator DelaiDecrement()
     {
-        Debug.Log("why");
         DelaiIsActivate = true;
         yield return new WaitForSeconds(_TimerDesincrementation);
         DelaiIsActivate = false;
@@ -114,6 +119,12 @@ public class EnergieCharge : MonoBehaviour
         Instantiate(_FXTicks, transform.position, Quaternion.identity);
         DelaiIsActivateIncrement = false;
         _currentCharge++;
+    }
+    IEnumerator soundNotloop()
+    {
+        _Isincrement = true;
+        yield return new WaitForSeconds(1);
+        _Isincrement = false;
     }
 
 }
