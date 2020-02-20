@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_GAME/Scenes/LevelDesign/Niveau1/Niveau1Iteration.unity
-    guid: b6b7e6048c4227b47874f47bf458e110
+    path: Assets/_GAME/Scenes/Scene Final/Niveau 01.unity
+    guid: 40f6bf64bbadbb64c97529784b1c8ac5
   - enabled: 1
-    path: Assets/_GAME/Scenes/LevelDesign/Niveau2/Niveau 2.unity
-    guid: e4a3f051a52502746acaac135baae6fe
-  - enabled: 1
-    path: Assets/_GAME/Scenes/LevelDesign/Niveau3/Niveau3/Niveau3.unity
-    guid: 65813c4ae3ea6ae4d90abb0cf8f37ee4
+    path: Assets/_GAME/Scenes/Scene Final/Niveau 02.unity
+    guid: 49f21112dd0e70745aa826aa438346fb
   m_configObjects: {}
