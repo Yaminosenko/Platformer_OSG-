@@ -53,6 +53,7 @@ MonoBehaviour:
   axisInputs: []
   _virtualCamera2D: {fileID: 0}
   _Ghost: {fileID: 0}
+  _resetSceneref: {fileID: 0}
   _Polygontrigger2D: {fileID: 0}
   _PolygonColliderArray:
   - {fileID: 0}
