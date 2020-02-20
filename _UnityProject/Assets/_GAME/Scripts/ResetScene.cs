@@ -6,16 +6,16 @@ public class ResetScene : MonoBehaviour
 {
     [SerializeField] private trap_clone[] _trapcloneref;
     [SerializeField] private SimpleDoor[] _doorRef;
-    [SerializeField] private DestructiblePlatform[] _destructibleRef;
+    [SerializeField] private DestructiblePlatform[] _destructiblePlateformRef;
     [SerializeField] private EnergieCharge[] _CatalyserRef;
 
 
    public void SceneReset()
     {
-        for (int i = 0; i < _destructibleRef.Length; i++)
+        for (int i = 0; i < _destructiblePlateformRef.Length; i++)
         {
-            _destructibleRef[i].collider.enabled = true;
-            _destructibleRef[i].child.SetActive(true);
+            _destructiblePlateformRef[i].collider.enabled = true;
+            _destructiblePlateformRef[i].child.SetActive(true);
         }
         for (int i = 0; i < _doorRef.Length; i++)
         {

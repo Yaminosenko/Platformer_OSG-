@@ -60,8 +60,7 @@ public class UI_MainCanvas : MonoBehaviour {
 
     public void SetCollectiblesText(int count, int maxCount)
     {
-        collectiblesCountText.SetText(count.ToString());
-        collectiblesMaxCountText.SetText("/" + maxCount);
+        //collectiblesMaxCountText.SetText("/" + maxCount);
     }
 
     public void CollectibleCollected ()
