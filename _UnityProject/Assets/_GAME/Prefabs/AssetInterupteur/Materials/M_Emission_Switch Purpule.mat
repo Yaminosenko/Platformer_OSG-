@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Emission_Switch Blue 1
+  m_Name: M_Emission_Switch Purpule
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.11053756, g: 0.40334463, b: 0.8679245, a: 1}
-    - _EmissionColor: {r: 0.171924, g: 0.5268639, b: 1.0592737, a: 1}
+    - _Color: {r: 0.8745098, g: 0.12156864, b: 0.65666926, a: 1}
+    - _EmissionColor: {r: 0.8584906, g: 0.09313814, b: 0.43030712, a: 1}
