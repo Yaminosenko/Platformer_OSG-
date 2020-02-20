@@ -8,6 +8,7 @@ public class DestructiblePlatform : MonoBehaviour
      public MeshRenderer mesh;
      public GameObject child;
      public BoxCollider collider;
+    public Animator _AnimTomberLAPorte;
     
     [SerializeField] private float _timeBeforeDestruction = 2;
     [SerializeField] private float _timeReconstruction = 4;
@@ -31,6 +32,7 @@ public class DestructiblePlatform : MonoBehaviour
         if(other.gameObject.layer == 9)
         {
             StartCoroutine("Timetodestroy");
+            _AnimTomberLAPorte.SetBool("Activate", true);
         }
     }
 
@@ -47,6 +49,7 @@ public class DestructiblePlatform : MonoBehaviour
     IEnumerator Timetorespawn()
     {
         yield return new WaitForSeconds(_timeReconstruction);
+        _AnimTomberLAPorte.SetBool("Activate", false);
         child.SetActive(true);
         collider.enabled = true;
         //collider.isTrigger = false;
