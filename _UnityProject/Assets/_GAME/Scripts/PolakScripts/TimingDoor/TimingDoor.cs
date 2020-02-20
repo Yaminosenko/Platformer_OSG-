@@ -5,8 +5,7 @@ using UnityEngine;
 public class TimingDoor : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private GameObject _Leds;
-    [SerializeField] private GameObject _LedsActivate;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +19,7 @@ public class TimingDoor : MonoBehaviour
     public void Open()
     {
         _animator.SetTrigger("Activate");
-        _Leds.SetActive(false);
-        _LedsActivate.SetActive(true);
+
         //_animator.Play();
     }
 }

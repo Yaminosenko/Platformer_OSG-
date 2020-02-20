@@ -9,6 +9,8 @@ public class Dialogues : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textDisplay;
     [SerializeField] private string[] Phrases;
     [SerializeField] private float typingSpeed;
+    [SerializeField] private float TimeBeforeDestroy;
+    [SerializeField] private TextMeshProUGUI _DidacticielBefore;
     private int index;
 
 
@@ -16,18 +18,17 @@ public class Dialogues : MonoBehaviour
     {
         if(other.gameObject.layer == 9)
         {
+            Destroy(_DidacticielBefore);
             StartCoroutine(Type());
+            StartCoroutine(TimeBeforeDeletText());
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    IEnumerator TimeBeforeDeletText()
     {
-        if (other.gameObject.layer == 9)
-        {
-            index++;
-        }
+        yield return new WaitForSeconds(TimeBeforeDestroy);
+        Destroy(textDisplay);
     }
-
-
 
     IEnumerator Type()
     {
@@ -40,18 +41,4 @@ public class Dialogues : MonoBehaviour
 
     }
 
-    [SerializeField]
-    private void NextPhrase()
-    {
-        if (index < Phrases.Length - 1)
-        {
-            index++;
-            textDisplay.text = "";
-            StartCoroutine(Type());
-        }
-        else
-        {
-            textDisplay.text = "";
-        }
-    }
 }
