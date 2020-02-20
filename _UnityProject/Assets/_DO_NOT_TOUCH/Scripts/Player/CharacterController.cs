@@ -460,6 +460,7 @@ public partial class CharacterController : InputListener
                         _Shoot.LaserInstantiate();
                         _Shoot._laserVFX.gameObject.SetActive(true);
                         _Shoot._LaserIsActive = true;
+                        player.SetVibration(1, 0.4f);
                     }
                 }
                 break;
@@ -488,6 +489,7 @@ public partial class CharacterController : InputListener
                 _Shoot._laserVFX.gameObject.SetActive(false);
                 __audioSourceLaser.clip = _LaserOut;
                 __audioSourceLaser.PlayOneShot(_LaserOut);
+                player.SetVibration(1, 0);
                 break;
         }
 
