@@ -2,18 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TriggerChangeScene : MonoBehaviour
 {
     public string _sceneName;
     [SerializeField] private int _indexSceneToLoad;
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Image _fadeImage;
+    private bool _stopFade;
+
+
+    private void OnEnable()
+    {
+        StartCoroutine(FadeTo(0.0f, 1.0f, false));
+    }
+  
+
+
+    IEnumerator FadeTo(float aValue, float aTime, bool _changeScene)
+    {
+        float alpha = _fadeImage.color.a;
+        if(_changeScene == true)
+        {
+            StartCoroutine(WaitLoadScene());
+        }
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            Color newColor = new Color(0, 0, 0, Mathf.Lerp(alpha, aValue, t));
+            _fadeImage.color = newColor;
+            yield return null;
+        }
+    }
+    IEnumerator WaitLoadScene()
+    {
+        yield return new WaitForSeconds(1);
+        ChangeScene();
+    }
 
     private void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.layer == 9)
         {
-            ChangeScene();
+            StartCoroutine(FadeTo(1.0f, 0.0f, true));
+            //ChangeScene();
         }
     }
 

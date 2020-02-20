@@ -32,6 +32,8 @@ public class UI_MainCanvas : MonoBehaviour {
     [SerializeField] private Animation collectiblesCountAnimation;
     [SerializeField] private TextMeshProUGUI collectiblesMaxCountText;
     [SerializeField] private ParticleSystem collectibleCollectedFX;
+    [SerializeField] private Image _fadeImage;
+    private bool _stopFade;
 
     private void Awake()
     {
@@ -50,6 +52,13 @@ public class UI_MainCanvas : MonoBehaviour {
     private void Start()
     {
         Init();
+
+        
+    }
+
+    private void Update()
+    {
+    
     }
 
     private void Init()

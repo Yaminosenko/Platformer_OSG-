@@ -65,8 +65,8 @@ public class Checkpoint : MonoBehaviour {
 
     private void EnableCheckpoint()
     {
-        enableCheckpointFX.Play();
-        EditParticlesColor(checkpointEnabledColor);
+        //enableCheckpointFX.Play();
+        //EditParticlesColor(checkpointEnabledColor);
 
         gameManager.SetCheckpoints(checkPointID);
 
@@ -75,26 +75,26 @@ public class Checkpoint : MonoBehaviour {
 
     public void DisableCheckpoint()
     {
-        EditParticlesColor(checkpointDisabledColor);
+        //EditParticlesColor(checkpointDisabledColor);
 
         checkpointEnabled = false;
     }
 
-    private void EditParticlesColor (Color newColor)
-    {
-        ParticleSystem.MainModule psmm = mainCheckpointFX.main;
-        psmm.startColor = newColor;
+    //private void EditParticlesColor (Color newColor)
+    //{
+    //    ParticleSystem.MainModule psmm = mainCheckpointFX.main;
+    //    psmm.startColor = newColor;
 
-        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[mainCheckpointFX.particleCount];
-        int particlesCount = mainCheckpointFX.GetParticles(particles);
+    //    ParticleSystem.Particle[] particles = new ParticleSystem.Particle[mainCheckpointFX.particleCount];
+    //    int particlesCount = mainCheckpointFX.GetParticles(particles);
 
-        // Edit particles color on-the-fly
-        for (int i = 0; i < particlesCount; i++)
-        {
-            particles[i].startColor = newColor;
-        }
-        mainCheckpointFX.SetParticles(particles, particlesCount);
-    }
+    //    // Edit particles color on-the-fly
+    //    for (int i = 0; i < particlesCount; i++)
+    //    {
+    //        particles[i].startColor = newColor;
+    //    }
+    //    mainCheckpointFX.SetParticles(particles, particlesCount);
+    //}
 
     public Vector2 GetCheckpointPosition()
     {
