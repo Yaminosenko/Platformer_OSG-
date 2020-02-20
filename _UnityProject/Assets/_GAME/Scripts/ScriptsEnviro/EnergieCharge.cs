@@ -28,18 +28,26 @@ public class EnergieCharge : MonoBehaviour
 
     [SerializeField] private float _TimerDesincrementation = 4f;
     [SerializeField] private float _TimerIncrementation = 0.3f;
+   
     private bool _Isincrement = false;
 
     
 
     void Update()
     {
+
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    chargerecieve();
+        //}
         switch (_currentCharge)
         {
             case 1:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatDesactive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
+               
+
                 SoundISPLaying = true;
 
                 break;
@@ -47,18 +55,24 @@ public class EnergieCharge : MonoBehaviour
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
+                
+
                 SoundISPLaying = true;
                 break;
             case 3:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatActive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatActive;
+          
+
                 SoundISPLaying = false;
                 break;
             default:
                 _LedChargement1.GetComponent<MeshRenderer>().material = _LedMatDesactive;
                 _LedChargement2.GetComponent<MeshRenderer>().material = _LedMatDesactive;
                 _LedChargement3.GetComponent<MeshRenderer>().material = _LedMatDesactive;
+
+
                 break;
         }
         if(_currentCharge >= 3)
@@ -70,9 +84,9 @@ public class EnergieCharge : MonoBehaviour
             }
             if( SoundISPLaying == false && _Isincrement == false)
             {
-            _audiosource.clip = _CatlyseurFull;
-            _audiosource.Play();
-            SoundISPLaying = false;
+            //_audiosource.clip = _CatlyseurFull;
+            //_audiosource.Play();
+            //SoundISPLaying = false;
             //StartCoroutine(soundNotloop());
             }
         }
