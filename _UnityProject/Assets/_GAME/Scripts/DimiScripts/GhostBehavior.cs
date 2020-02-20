@@ -30,6 +30,7 @@ public class GhostBehavior : InputListener
     public ParticleSystem _lazerHit;
     public bool _enabledLaser = false;
     private bool _setPosDrone = false;
+    [SerializeField] private float vibrationmanetteduraation = 0.3f;
 
 
     [Header("RECALL")]
@@ -330,10 +331,13 @@ public class GhostBehavior : InputListener
 
     public void Recall()
     {
+       
+       
         if(_InstanciateRecall == true)
         {
             if (_enabledRecall == true)
             {
+                StartCoroutine(LaVibrationDuRecall());
                 if (_recallWithoutTrail == true)
                 {
                     StartCoroutine(FreezeTime());
@@ -474,6 +478,12 @@ public class GhostBehavior : InputListener
         {
             _laserVFX.gameObject.SetActive(false);
         }
+    }
+    private IEnumerator LaVibrationDuRecall()
+    {
+        player.SetVibration(1, 1);
+        yield return new WaitForSeconds(vibrationmanetteduraation);
+        player.SetVibration(1, 0);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
