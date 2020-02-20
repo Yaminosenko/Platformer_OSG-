@@ -47,6 +47,7 @@ public class SimpleDoor : MonoBehaviour
 
     public void Close()
     {
+
         _InteruptOn.gameObject.SetActive(false);
         _InteruptOff.gameObject.SetActive(true);
         _LedsActivate.gameObject.SetActive(false);

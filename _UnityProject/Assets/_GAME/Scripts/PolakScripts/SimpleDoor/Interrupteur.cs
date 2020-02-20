@@ -7,15 +7,35 @@ using Rewired;
 public class Interrupteur : MonoBehaviour
 {
     public SimpleDoor _linkedObject;
-    [SerializeField] private int _count = 0;
+    public int _count = 0;
     [SerializeField] private GameObject _uxInteractionFeedback;
     [SerializeField] private Material _materailEmissive;
 
 
     private bool _isOntrigger = false;
 
+    private void Update()
+    {
+        if (_count > 1)
+        {
+            _count = 0;
+        }
 
-     private void OnTriggerEnter(Collider other)
+        if (_count == 1)
+        {
+            if (_materailEmissive != null)
+                _materailEmissive.EnableKeyword("_EMISSION");
+            _linkedObject.Open();
+        }
+
+        if (_count == 0)
+        {
+            if (_materailEmissive != null)
+                _materailEmissive.DisableKeyword("_EMISSION");
+            _linkedObject.Close();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
@@ -28,24 +48,7 @@ public class Interrupteur : MonoBehaviour
          
                 _count++;
 
-                if (_count > 1)
-                {
-                    _count = 0;
-                }
-
-                if (_count == 1)
-                {
-                if(_materailEmissive!=null)
-                _materailEmissive.EnableKeyword("_EMISSION");
-                    _linkedObject.Open();
-                }
-
-                if (_count == 0)
-                {
-                if(_materailEmissive!=null)
-                _materailEmissive.DisableKeyword("_EMISSION");
-                _linkedObject.Close();
-                }
+                
             
         }
     }
