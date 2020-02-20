@@ -418,6 +418,7 @@ public partial class CharacterController : InputListener
 
             case "Recall":
                 _ghostBehavior.Recall();
+                
                 _audiosourcePLayerMouvement.clip = _RecallSOund;
                 _audiosourcePLayerMouvement.Play();
                 break;
@@ -1206,9 +1207,10 @@ public partial class CharacterController : InputListener
 
     private IEnumerator WaitForResurrect()
     {
+        player.SetVibration(1, 1);
         //_ghostBehavior._FXtrail.SetActive(false);
         yield return new WaitForSeconds(resurrectDelay);
-
+        player.SetVibration(1, 0);
         OnWaitForResurrect(this);
 
         if (!gameManager.isSoloMode)
@@ -1238,6 +1240,7 @@ public partial class CharacterController : InputListener
 
     public void Resurrect()
     {
+        
         _resetsceneref.SceneReset();
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();
