@@ -18051,6 +18051,7 @@ MonoBehaviour:
   _RecallSOund: {fileID: 8300000, guid: 7e2bbc213cffe804d897ee9e09cf37fd, type: 3}
   _ghostBehavior: {fileID: 4427175655523834960}
   _Shoot: {fileID: 510227553}
+  _resetsceneref: {fileID: 0}
   _playerID: 1
   _characterBehaviour: {fileID: 114661623838467906}
   _ghostAnim: {fileID: 0}
@@ -18184,12 +18185,13 @@ MonoBehaviour:
   _Shootref: {fileID: 0}
   _lazerHit: {fileID: 0}
   _enabledLaser: 0
+  vibrationmanetteduraation: 0.6
   _recallWithoutTrail: 0
   _enabledRecall: 1
   recallPeriod: 4
   _rotationGhost: []
   PlayerID: 0
-  _InstanciateRecall: 1
+  _InstanciateRecall: 0
   _recallIsActive2: 0
   _recallCount: 0
   _indexDebug: 0
@@ -18266,7 +18268,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18362,7 +18364,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.152
+  m_Volume: 0.576
   m_Pitch: 1
   Loop: 0
   Mute: 0

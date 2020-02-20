@@ -417,9 +417,12 @@ public partial class CharacterController : InputListener
                 break;
 
             case "Recall":
+                if(_ghostBehavior._enabledRecall == true && _ghostBehavior._InstanciateRecall == true)
+                {
+                    _audiosourcePLayerMouvement.clip = _RecallSOund;
+                    _audiosourcePLayerMouvement.Play();
+                }
                 _ghostBehavior.Recall();
-                _audiosourcePLayerMouvement.clip = _RecallSOund;
-                _audiosourcePLayerMouvement.Play();
                 break;
 
             case "Laser":
@@ -459,6 +462,7 @@ public partial class CharacterController : InputListener
                         _Shoot.LaserInstantiate();
                         _Shoot._laserVFX.gameObject.SetActive(true);
                         _Shoot._LaserIsActive = true;
+                        player.SetVibration(1, 0.4f);
                     }
                 }
                 break;
@@ -483,10 +487,17 @@ public partial class CharacterController : InputListener
                 break;
 
             case "Laser":
-                _Shoot._LaserIsActive = false;
-                _Shoot._laserVFX.gameObject.SetActive(false);
-                __audioSourceLaser.clip = _LaserOut;
-                __audioSourceLaser.PlayOneShot(_LaserOut);
+                if (_Shoot._disableLaser == false)
+                {
+                    if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+                    {
+                        _Shoot._LaserIsActive = false;
+                        _Shoot._laserVFX.gameObject.SetActive(false);
+                        __audioSourceLaser.clip = _LaserOut;
+                        __audioSourceLaser.PlayOneShot(_LaserOut);
+                        player.SetVibration(1, 0);
+                    }
+                }
                 break;
         }
 
@@ -1206,9 +1217,10 @@ public partial class CharacterController : InputListener
 
     private IEnumerator WaitForResurrect()
     {
+        player.SetVibration(1, 1);
         //_ghostBehavior._FXtrail.SetActive(false);
         yield return new WaitForSeconds(resurrectDelay);
-
+        player.SetVibration(1, 0);
         OnWaitForResurrect(this);
 
         if (!gameManager.isSoloMode)
@@ -1238,6 +1250,7 @@ public partial class CharacterController : InputListener
 
     public void Resurrect()
     {
+        
         _resetsceneref.SceneReset();
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();

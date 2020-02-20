@@ -231,6 +231,7 @@ MonoBehaviour:
   _CloseInterupt: {fileID: 569114970519340616}
   _Leds: {fileID: 8968174436592348414}
   _LedsActivate: {fileID: 7453068481035308952}
+  _materialEmissive: {fileID: 0}
 --- !u!82 &2867307937088458544
 AudioSource:
   m_ObjectHideFlags: 0
