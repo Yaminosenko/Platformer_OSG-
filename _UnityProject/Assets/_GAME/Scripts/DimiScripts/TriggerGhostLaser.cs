@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerGhostLaser : MonoBehaviour
 {
     public bool _ghost;
+    public bool _laser;
 
     private void OnTriggerEnter(Collider col)
     {
@@ -14,13 +15,16 @@ public class TriggerGhostLaser : MonoBehaviour
             {
                 col.GetComponent<GhostBehavior>()._InstanciateRecall = true;
                 col.GetComponent<GhostBehavior>().GhostMeshInstanciate();
-                Destroy(gameObject);
+                
             }
-            else
+            if(_laser == true)
             {
                 col.GetComponent<Shoot>()._instantiateLaser = true;
-                Destroy(gameObject);
+                col.GetComponent<Shoot>()._disableLaser = false;
+                
             }
         }
+
+        Destroy(gameObject);
     }
 }

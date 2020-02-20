@@ -417,10 +417,12 @@ public partial class CharacterController : InputListener
                 break;
 
             case "Recall":
+                if(_ghostBehavior._enabledRecall == true && _ghostBehavior._InstanciateRecall == true)
+                {
+                    _audiosourcePLayerMouvement.clip = _RecallSOund;
+                    _audiosourcePLayerMouvement.Play();
+                }
                 _ghostBehavior.Recall();
-                
-                _audiosourcePLayerMouvement.clip = _RecallSOund;
-                _audiosourcePLayerMouvement.Play();
                 break;
 
             case "Laser":
@@ -460,7 +462,7 @@ public partial class CharacterController : InputListener
                         _Shoot.LaserInstantiate();
                         _Shoot._laserVFX.gameObject.SetActive(true);
                         _Shoot._LaserIsActive = true;
-                        player.SetVibration(1, 0.4f);
+                        player.SetVibration(1, 0.2f);
                     }
                 }
                 break;
@@ -485,11 +487,17 @@ public partial class CharacterController : InputListener
                 break;
 
             case "Laser":
-                _Shoot._LaserIsActive = false;
-                _Shoot._laserVFX.gameObject.SetActive(false);
-                __audioSourceLaser.clip = _LaserOut;
-                __audioSourceLaser.PlayOneShot(_LaserOut);
-                player.SetVibration(1, 0);
+                if (_Shoot._disableLaser == false)
+                {
+                    if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+                    {
+                        _Shoot._LaserIsActive = false;
+                        _Shoot._laserVFX.gameObject.SetActive(false);
+                        __audioSourceLaser.clip = _LaserOut;
+                        __audioSourceLaser.PlayOneShot(_LaserOut);
+                        player.SetVibration(1, 0);
+                    }
+                }
                 break;
         }
 
