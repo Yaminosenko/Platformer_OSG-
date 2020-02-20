@@ -25,6 +25,7 @@ public partial class CharacterController : InputListener
     //public bool _isThePlayer = true;
     public GhostBehavior _ghostBehavior;
     public Shoot _Shoot;
+    public ResetScene _resetsceneref;
 
     private Transform _cachedTransform;
     public Transform cachedTransform
@@ -1237,6 +1238,7 @@ public partial class CharacterController : InputListener
 
     public void Resurrect()
     {
+        _resetsceneref.SceneReset();
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();
         _ghostBehavior._positionPlayer.Clear();

@@ -7,6 +7,7 @@ public class GameManager : InputListener {
 
     public VirtualCamera2D _virtualCamera2D;
     public GhostBehavior _Ghost;
+    public ResetScene _resetSceneref;
     public PolygonTrigger2D _Polygontrigger2D;
 
     public PolygonTrigger2D[] _PolygonColliderArray;
@@ -95,6 +96,7 @@ public class GameManager : InputListener {
 			Destroy(gameObject);
 			return;
 		}
+        
     }
 
     private void Start()
@@ -177,6 +179,7 @@ public class GameManager : InputListener {
             newCharacterController.OnResurrect += CharacterResurrected;
 
             mainCanvas.playersPanel.SetPlayerPanel(newCharacterController, i);
+            newCharacterController._resetsceneref = _resetSceneref;
         }
         characterControllers = new List<CharacterController>(characterControllersArray);
 

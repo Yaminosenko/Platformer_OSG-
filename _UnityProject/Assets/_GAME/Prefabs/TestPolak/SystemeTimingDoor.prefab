@@ -100,8 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 2995564414090362937}
-  _Leds: {fileID: 0}
-  _LedsActivate: {fileID: 0}
 --- !u!111 &1386750003485146061
 Animation:
   m_ObjectHideFlags: 0
@@ -606,7 +604,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 079c3c119d643db4ca2a5f04ed2d932e, type: 2}
+      objectReference: {fileID: 2100000, guid: 7c629d77d46f27744a1ad187f594646f, type: 2}
     - target: {fileID: -927199367670048503, guid: c6be2200a5d88a94baa15fba1dc7da81,
         type: 3}
       propertyPath: m_Name
