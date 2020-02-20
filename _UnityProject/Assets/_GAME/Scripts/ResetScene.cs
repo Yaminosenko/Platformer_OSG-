@@ -5,9 +5,10 @@ using UnityEngine;
 public class ResetScene : MonoBehaviour
 {
     [SerializeField] private trap_clone[] _trapcloneref;
-    [SerializeField] private SimpleDoor[] _doorRef;
+    [SerializeField] private Interrupteur[] _doorRef;
     [SerializeField] private DestructiblePlatform[] _destructiblePlateformRef;
     [SerializeField] private EnergieCharge[] _CatalyserRef;
+    [SerializeField] private Material[] _MaaterialEmissive;
 
 
    public void SceneReset()
@@ -19,7 +20,8 @@ public class ResetScene : MonoBehaviour
         }
         for (int i = 0; i < _doorRef.Length; i++)
         {
-            _doorRef[i].Close();
+            _doorRef[i]._count =0;
+
         }
         for (int i = 0; i < _trapcloneref.Length; i++)
         {
@@ -28,6 +30,10 @@ public class ResetScene : MonoBehaviour
         for (int i = 0; i < _CatalyserRef.Length; i++)
         {
             _CatalyserRef[i]._currentCharge = 0;
+        }
+        for (int i = 0; i < _MaaterialEmissive.Length; i++)
+        {
+            _MaaterialEmissive[i].DisableKeyword("_EMISSION");
         }
     }
 }
