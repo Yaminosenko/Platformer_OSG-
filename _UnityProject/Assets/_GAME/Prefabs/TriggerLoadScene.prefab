@@ -59,3 +59,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneName: 
   _indexSceneToLoad: 1
+  _gameManager: {fileID: 0}
+  _fadeImage: {fileID: 0}
