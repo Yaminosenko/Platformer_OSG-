@@ -23,8 +23,8 @@ public class TriggerGhostLaser : MonoBehaviour
                 col.GetComponent<Shoot>()._disableLaser = false;
                 
             }
+        Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
 }

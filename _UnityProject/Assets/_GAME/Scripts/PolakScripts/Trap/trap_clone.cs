@@ -8,6 +8,7 @@ public class trap_clone : MonoBehaviour
     public GameObject _firstTrap;
     public GameObject _secondTrap;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +20,16 @@ public class trap_clone : MonoBehaviour
     void Update()
     {
         
+
+
+
     }
 
     public void Reset()
     {
         _firstTrap.SetActive(true);
         _secondTrap.SetActive(false);
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,9 +46,9 @@ public class trap_clone : MonoBehaviour
             else
             {
                 _character.Hit();
-
                 _firstTrap.SetActive(true);
                 _secondTrap.SetActive(false);
+
             }
         }
     }
