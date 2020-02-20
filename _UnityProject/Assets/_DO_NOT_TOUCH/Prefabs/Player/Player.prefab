@@ -18246,8 +18246,8 @@ MonoBehaviour:
   _offsetBlaster: {fileID: 3332549332706370507}
   _deadZone: 0.8
   _drone: {fileID: 3148927726232491694}
-  _disableLaser: 1
-  _instantiateLaser: 0
+  _disableLaser: 0
+  _instantiateLaser: 1
   ThereIsSomthingBetwinDroneAndPlayer: 0
   _rightStickAxis: {x: 0, y: 0}
   _laserVFX: {fileID: 2901153742718746248}
@@ -18268,7 +18268,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18364,7 +18364,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.152
+  m_Volume: 0.576
   m_Pitch: 1
   Loop: 0
   Mute: 0
