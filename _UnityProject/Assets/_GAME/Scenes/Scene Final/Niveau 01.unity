@@ -16299,7 +16299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 971066510}
   Phrases:
-  - ' You can return to the position of your shadow using LT'
+  - ' You can return to the position of your shadow using RT'
   typingSpeed: 0.05
   TimeBeforeDestroy: 8
   _DidacticielBefore: {fileID: 2021667364}
@@ -28828,11 +28828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 342
+      value: 129
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 16
+      value: -193
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29008,11 +29008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 284
+      value: 471
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 270
+      value: -52
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29028,7 +29028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_margin.x
-      value: -75.69439
+      value: -87.14271
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_margin.y
@@ -29036,7 +29036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_margin.z
-      value: 147.02101
+      value: 99.50246
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_margin.w
@@ -29048,23 +29048,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 971066510, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 971066512, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -29072,7 +29072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971066512, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 238
+      value: 902
       objectReference: {fileID: 0}
     - target: {fileID: 971066512, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
