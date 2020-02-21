@@ -7,7 +7,10 @@ public class trap_clone : MonoBehaviour
 
     public GameObject _firstTrap;
     public GameObject _secondTrap;
-
+    [SerializeField] private GameObject _InterupteurClone1;
+    [SerializeField] private GameObject _InterupteurClone2;
+    [SerializeField] private GameObject _InterupteurPlayer1;
+    [SerializeField] private GameObject _InterupteurPlayer2;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,10 @@ public class trap_clone : MonoBehaviour
     {
         _firstTrap.SetActive(true);
         _secondTrap.SetActive(false);
+        //_InterupteurClone1.SetActive(true);
+        //_InterupteurClone2.SetActive(true);
+        //_InterupteurPlayer1.SetActive(false);
+        //_InterupteurPlayer2.SetActive(false);
 
     }
 

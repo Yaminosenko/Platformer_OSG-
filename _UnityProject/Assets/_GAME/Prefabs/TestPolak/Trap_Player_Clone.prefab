@@ -222,6 +222,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstTrap: {fileID: 0}
   _secondTrap: {fileID: 0}
+  _InterupteurClone1: {fileID: 3016142653712941337}
+  _InterupteurClone2: {fileID: 92723004944006496}
+  _InterupteurPlayer1: {fileID: 198519385160768478}
+  _InterupteurPlayer2: {fileID: 3378789154136169387}
 --- !u!1 &2504993807708966936
 GameObject:
   m_ObjectHideFlags: 0
