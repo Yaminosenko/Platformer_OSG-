@@ -7427,7 +7427,7 @@ Transform:
   m_Children:
   - {fileID: 4076864935888052}
   - {fileID: 4399625345710756}
-  - {fileID: 6345909446151095561}
+  - {fileID: 382053379310008508}
   - {fileID: 2666466302906429560}
   - {fileID: 1422584154587927812}
   m_Father: {fileID: 4100234227039268}
@@ -18268,7 +18268,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.33
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18364,7 +18364,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.576
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18460,7 +18460,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -18556,7 +18556,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.501
+  m_Volume: 0.312
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19033,7 +19033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a684727406af11a41a6204cd564cb3f0, type: 3}
---- !u!4 &6345909446151095561 stripped
+--- !u!4 &382053379310008508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6727358058565172788, guid: a684727406af11a41a6204cd564cb3f0,
     type: 3}

@@ -36,10 +36,10 @@ public class EnergieCharge : MonoBehaviour
     void Update()
     {
 
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    chargerecieve();
-        //}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            chargerecieve();
+        }
         switch (_currentCharge)
         {
             case 1:
