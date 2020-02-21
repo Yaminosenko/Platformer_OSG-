@@ -462,7 +462,7 @@ public partial class CharacterController : InputListener
                         _Shoot.LaserInstantiate();
                         _Shoot._laserVFX.gameObject.SetActive(true);
                         _Shoot._LaserIsActive = true;
-                        player.SetVibration(1, 0.2f);
+                        player.SetVibration(1, 0.05f);
                     }
                 }
                 break;

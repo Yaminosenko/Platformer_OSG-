@@ -15,7 +15,7 @@ public class TriggerChangeScene : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(FadeTo(0.0f, 1.0f, false));
+        StartCoroutine(FadeTo(0.0f, 3.0f, false));
     }
   
 
@@ -23,9 +23,9 @@ public class TriggerChangeScene : MonoBehaviour
     IEnumerator FadeTo(float aValue, float aTime, bool _changeScene)
     {
         float alpha = _fadeImage.color.a;
-        if(_changeScene == true)
+        if (_changeScene == true)
         {
-            StartCoroutine(WaitLoadScene());
+            StartCoroutine(WaitLoadScene(aTime));
         }
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
@@ -34,9 +34,9 @@ public class TriggerChangeScene : MonoBehaviour
             yield return null;
         }
     }
-    IEnumerator WaitLoadScene()
+    IEnumerator WaitLoadScene(float time)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(time);
         ChangeScene();
     }
 
@@ -44,7 +44,7 @@ public class TriggerChangeScene : MonoBehaviour
     {
         if(col.gameObject.layer == 9)
         {
-            StartCoroutine(FadeTo(1.0f, 0.0f, true));
+            StartCoroutine(FadeTo(1.0f, 3.0f, true));
             //ChangeScene();
         }
     }

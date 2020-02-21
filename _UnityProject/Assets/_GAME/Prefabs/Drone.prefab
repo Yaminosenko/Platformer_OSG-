@@ -159,6 +159,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Lazer
       objectReference: {fileID: 0}
+    - target: {fileID: 2372102611496803070, guid: 4989a387d74bcab4ea66e2ca61b88444,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 2648793379253395481, guid: 4989a387d74bcab4ea66e2ca61b88444,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.578
+      objectReference: {fileID: 0}
     - target: {fileID: 5457413315299344825, guid: 4989a387d74bcab4ea66e2ca61b88444,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -219,6 +229,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7268214519667865831, guid: 4989a387d74bcab4ea66e2ca61b88444,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 0.397
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4989a387d74bcab4ea66e2ca61b88444, type: 3}
 --- !u!4 &1600688264438201559 stripped
@@ -234,6 +249,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1600688264438201559}
     m_Modifications:
+    - target: {fileID: 5579273127366539135, guid: 3ba6128ec405d7c4fabff04d26e5b211,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8826887139915765310, guid: 3ba6128ec405d7c4fabff04d26e5b211,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9031710509987841776, guid: 3ba6128ec405d7c4fabff04d26e5b211,
         type: 3}
       propertyPath: m_Name
