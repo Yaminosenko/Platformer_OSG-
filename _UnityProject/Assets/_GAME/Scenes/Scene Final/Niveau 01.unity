@@ -16304,7 +16304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 971066510}
   Phrases:
-  - ' You can return to the position of your shadow using RT'
+  - ' You can return to the position of your shadow using LT'
   typingSpeed: 0.05
   TimeBeforeDestroy: 8
   _DidacticielBefore: {fileID: 2021667364}
@@ -19003,7 +19003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 538074960}
   Phrases:
-  - You can also jump on wall (Press A)
+  - 'You can also jump on wall (Press A) '
   typingSpeed: 0.05
   TimeBeforeDestroy: 8
   _DidacticielBefore: {fileID: 681159585}
@@ -28746,7 +28746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 681159585}
   Phrases:
-  - Press A to Jump
+  - Press A to Jump. Press RIGHT ARROW to commit SUICIDE
   typingSpeed: 0.05
   TimeBeforeDestroy: 8
   _DidacticielBefore: {fileID: 2021667364}
@@ -28758,8 +28758,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041842667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.890974, y: -3.0481973, z: -3.5749989}
-  m_LocalScale: {x: 1.8948, y: 3.9196, z: 2.9491}
+  m_LocalPosition: {x: -17.58, y: -3.0481973, z: -3.5749989}
+  m_LocalScale: {x: 5.547595, y: 3.9196, z: 2.9491}
   m_Children: []
   m_Father: {fileID: 1125040782}
   m_RootOrder: 0
@@ -28833,11 +28833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 129
+      value: 363
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -193
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 538074959, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29013,11 +29013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 471
+      value: 166
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -52
+      value: 243
       objectReference: {fileID: 0}
     - target: {fileID: 681159587, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29077,7 +29077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971066512, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 902
+      value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 971066512, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf, type: 3}
       propertyPath: m_LocalPosition.z
