@@ -9,6 +9,8 @@ public class GameManager : InputListener {
     public GhostBehavior _Ghost;
     public ResetScene _resetSceneref;
     public PolygonTrigger2D _Polygontrigger2D;
+    public AudioSource _audioSource;
+    public AudioClip[] _ambianceSound;
 
     public PolygonTrigger2D[] _PolygonColliderArray;
 
@@ -102,6 +104,19 @@ public class GameManager : InputListener {
     private void Start()
     {
         Init();
+        int _random = Random.Range(0, 4);
+
+        if(_audioSource != null)
+        {
+            for (int i = 0; i < _ambianceSound.Length; i++)
+            {
+                if (i == _random)
+                {
+                    _audioSource.clip = _ambianceSound[i];
+                    _audioSource.Play();
+                }
+            }
+        }
     }
 
     private void Update()
