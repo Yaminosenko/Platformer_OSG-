@@ -43,6 +43,12 @@ public class trap_clone : MonoBehaviour
 
     public void Reset()
     {
+        if (_MaterialEmissionSecond != null && _MaterialEmissionFirst != null)
+        {
+            _MaterialEmissionFirst.EnableKeyword("_EMISSION");
+            _MaterialEmissionSecond.DisableKeyword("_EMISSION");
+           
+        }
         _firstTrap.SetActive(true);
         _secondTrap.SetActive(false);
         _InterupteurClone1.SetActive(true);
