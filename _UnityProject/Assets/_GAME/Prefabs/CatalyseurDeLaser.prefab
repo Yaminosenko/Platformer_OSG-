@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audiosource: {fileID: 0}
-  _CatlyseurFull: {fileID: 0}
+  _CatlyseurFull: {fileID: 8300000, guid: 117f080a4edf7df44b0782c351cddd09, type: 3}
   _linkedObject: {fileID: 0}
   _linkedObject2: {fileID: 0}
   _currentCharge: 0
