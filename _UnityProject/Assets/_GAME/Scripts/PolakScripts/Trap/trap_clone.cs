@@ -32,10 +32,10 @@ public class trap_clone : MonoBehaviour
     {
         _firstTrap.SetActive(true);
         _secondTrap.SetActive(false);
-        //_InterupteurClone1.SetActive(true);
-        //_InterupteurClone2.SetActive(true);
-        //_InterupteurPlayer1.SetActive(false);
-        //_InterupteurPlayer2.SetActive(false);
+        _InterupteurClone1.SetActive(true);
+        _InterupteurClone2.SetActive(true);
+        _InterupteurPlayer1.SetActive(false);
+        _InterupteurPlayer2.SetActive(false);
 
     }
 
