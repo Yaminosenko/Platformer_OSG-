@@ -1249,7 +1249,17 @@ public partial class CharacterController : InputListener
 
     public void Resurrect()
     {
-        
+        if (_Shoot._disableLaser == false)
+        {
+            if (_Shoot.ThereIsSomthingBetwinDroneAndPlayer == false)
+            {
+                _Shoot._LaserIsActive = false;
+                _Shoot._laserVFX.gameObject.SetActive(false);
+                __audioSourceLaser.clip = _LaserOut;
+                __audioSourceLaser.PlayOneShot(_LaserOut);
+                player.SetVibration(1, 0);
+            }
+        }
         _resetsceneref.SceneReset();
         ResetCharacter(targetResurrectPos + new Vector2(0, resurrectYOffset));
         _ghostBehavior._positionGhost.Clear();

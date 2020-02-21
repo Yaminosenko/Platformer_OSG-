@@ -1943,6 +1943,11 @@ PrefabInstance:
       propertyPath: _fadeImage
       value: 
       objectReference: {fileID: 284578847}
+    - target: {fileID: 6862972281067415029, guid: e3372a7467eae45448fff2b7a35ebbe2,
+        type: 3}
+      propertyPath: _indexSceneToLoad
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6862972281067415031, guid: e3372a7467eae45448fff2b7a35ebbe2,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -6908,6 +6908,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstTrap: {fileID: 526636613}
   _secondTrap: {fileID: 284446178}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionFirst: {fileID: 0}
+  _MaterialEmissionSecond: {fileID: 0}
 --- !u!1001 &230756795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7705,6 +7711,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstTrap: {fileID: 526636613}
   _secondTrap: {fileID: 284446178}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionFirst: {fileID: 0}
+  _MaterialEmissionSecond: {fileID: 0}
 --- !u!65 &284446181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7779,6 +7791,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstTrap: {fileID: 1778738102}
   _secondTrap: {fileID: 229448631}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionFirst: {fileID: 0}
+  _MaterialEmissionSecond: {fileID: 0}
 --- !u!1 &296485488
 GameObject:
   m_ObjectHideFlags: 0
@@ -14363,6 +14381,11 @@ PrefabInstance:
     - target: {fileID: 224569014117864202, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3356118925631039956, guid: 33a8a9f85a66d6c4ab1d015bbe432ddf,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -34337,7 +34360,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrap: {fileID: 1778738102}
+  _fxplayertrap: {fileID: 0}
   _cloneTrap: {fileID: 229448631}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionPlayer: {fileID: 0}
+  _MaterialEmissionGhost: {fileID: 0}
 --- !u!65 &1318385802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34411,7 +34441,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrap: {fileID: 526636613}
+  _fxplayertrap: {fileID: 0}
   _cloneTrap: {fileID: 284446178}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionPlayer: {fileID: 0}
+  _MaterialEmissionGhost: {fileID: 0}
 --- !u!1 &1325898331
 GameObject:
   m_ObjectHideFlags: 0
@@ -45254,7 +45291,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrap: {fileID: 526636613}
+  _fxPlayertrap: {fileID: 0}
   _cloneTrap: {fileID: 284446178}
+  _InterupteurClone1: {fileID: 0}
+  _InterupteurClone2: {fileID: 0}
+  _InterupteurPlayer1: {fileID: 0}
+  _InterupteurPlayer2: {fileID: 0}
+  _MaterialEmissionPlayer: {fileID: 0}
+  _MaterialEmissionGhost: {fileID: 0}
 --- !u!1 &1750865682 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2504993807404959811, guid: e68efd80082785a4ca2ae22602317c63,

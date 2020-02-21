@@ -22,7 +22,7 @@ public class StartMenuManager : MonoBehaviour
 
    public void PlayButton()
     {
-        SceneManager.LoadScene("Niveau01");
+        SceneManager.LoadScene(1);
     }
 
     public void ControlButton()

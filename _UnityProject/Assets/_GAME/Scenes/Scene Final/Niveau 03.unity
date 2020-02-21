@@ -29821,6 +29821,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd0db4ae414b0f64d9d5f6904b6d3364, type: 3}
+--- !u!1 &803608701 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1199020437809999512, guid: e68efd80082785a4ca2ae22602317c63,
+    type: 3}
+  m_PrefabInstance: {fileID: 1966172234}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &804402328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46916,8 +46922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrap: {fileID: 526636613}
-  _fxplayertrap: {fileID: 0}
-  _cloneTrap: {fileID: 1642283307}
+  _fxplayertrap: {fileID: 803608701}
+  _cloneTrap: {fileID: 284446178}
   _InterupteurClone1: {fileID: 208474921}
   _InterupteurClone2: {fileID: 208474921}
   _InterupteurPlayer1: {fileID: 2125385629}
@@ -62262,7 +62268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTrap: {fileID: 526636613}
-  _fxPlayertrap: {fileID: 0}
+  _fxPlayertrap: {fileID: 1642283307}
   _cloneTrap: {fileID: 284446178}
   _InterupteurClone1: {fileID: 0}
   _InterupteurClone2: {fileID: 0}
