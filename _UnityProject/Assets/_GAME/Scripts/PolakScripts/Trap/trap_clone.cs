@@ -11,12 +11,25 @@ public class trap_clone : MonoBehaviour
     [SerializeField] private GameObject _InterupteurClone2;
     [SerializeField] private GameObject _InterupteurPlayer1;
     [SerializeField] private GameObject _InterupteurPlayer2;
+    [SerializeField] private Material _MaterialEmissionFirst;
+    [SerializeField] private Material _MaterialEmissionSecond;
+    private bool _Ontime;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       // _firstTrap.SetActive(true);
-       // _secondTrap.SetActive(false);
+        // _firstTrap.SetActive(true);
+        // _secondTrap.SetActive(false);
+        if(_Ontime == false)
+        {
+            if (_MaterialEmissionSecond != null && _MaterialEmissionFirst != null)
+            {
+                //_MaterialEmissionFirst.EnableKeyword("_EMISSION");
+                //_MaterialEmissionSecond.DisableKeyword("_EMISSION");
+                _Ontime = true;
+            }
+        }
     }
 
     // Update is called once per frame

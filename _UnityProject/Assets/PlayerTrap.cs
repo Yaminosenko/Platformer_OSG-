@@ -7,6 +7,8 @@ public class PlayerTrap : MonoBehaviour
 
     public GameObject _firstTrap;
     public GameObject _secondTrap;
+    
+    
     // Start is called before the first frame update
     void Start()
     {

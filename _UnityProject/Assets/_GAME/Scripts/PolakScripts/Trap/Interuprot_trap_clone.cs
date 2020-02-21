@@ -5,11 +5,14 @@ using UnityEngine;
 public class Interuprot_trap_clone : MonoBehaviour
 {
     [SerializeField] private GameObject _playerTrap;
+    [SerializeField] private GameObject _fxplayertrap;
     [SerializeField] private GameObject _cloneTrap;
     [SerializeField] private GameObject _InterupteurClone1;
     [SerializeField] private GameObject _InterupteurClone2;
     [SerializeField] private GameObject _InterupteurPlayer1;
     [SerializeField] private GameObject _InterupteurPlayer2;
+    [SerializeField] private Material _MaterialEmissionPlayer;
+    [SerializeField] private Material _MaterialEmissionGhost;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +34,14 @@ public class Interuprot_trap_clone : MonoBehaviour
                 _InterupteurPlayer1.SetActive(true);
                 _InterupteurPlayer2.SetActive(true);
             _playerTrap.SetActive(false);
+            _fxplayertrap.SetActive(false);
             _cloneTrap.SetActive(true);
+
+            if (_MaterialEmissionGhost!=null && _MaterialEmissionPlayer != null)
+            {
+                _MaterialEmissionGhost.EnableKeyword("_EMISSION");
+                _MaterialEmissionPlayer.DisableKeyword("_EMISSION");
+            }
 
         }
     }
